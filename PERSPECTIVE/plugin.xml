@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="template" name="%extension-point.name" schema="schema/template.exsd"/>
+
+   <!--视图扩展点-->
+   
+     <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="nc.uap.portal.perspective.PortalPerspectiveFactory"
+            icon="icons/title-icon-16x16.png"
+            id="nc.uap.portal.perspective.PortalPerspectiveFactory"
+            name="%perspective.name"/>
+   </extension>
+  
+    <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="nc.uap.portal.perspective.PortalPerspectiveFactory">
+         <perspectiveShortcut id="org.eclipse.debug.ui.DebugPerspective"/>
+          <perspectiveShortcut id="org.eclipse.ui.resourcePerspective"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+         <perspectiveShortcut id="nc.uap.portal.perspective.PortalPerspectiveFactory"/>
+      </perspectiveExtension>
+   </extension>
+   
+   
+   
+   <!--编辑器扩展点-->
+    <extension
+         point="org.eclipse.ui.views">
+     <category
+        id="lfw.views.category"
+        name="%category.name"/>
+      <view
+            category="lfw.views.category"
+            class="nc.uap.portal.perspective.PortalExplorerTreeView"
+            id="nc.uap.portal.perspective.PortalExplorerTreeView"
+            icon="icons/title-icon-16x16.png"
+            name="%view.name"/>
+       <view
+            category="lfw.views.category"
+            class="nc.uap.lfw.perspective.LFWViewSheet"
+            id="nc.uap.lfw.perspective.LFWViewSheet"
+            name="%view.name.0"/>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.page.PortalPageEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.page.PortalPageEditor"
+            name="%editor.name.37"/>
+   </extension>
+ 
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.portalmodule.PortalModuleEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.portalmodule.PortalModuleEditor"
+            name="%editor.name.0"/>
+   </extension>
+
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.managerapps.ManagerAppsEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.managerapps.ManagerAppsEditor"
+            name="%editor.name.1"/>
+   </extension>
+ 
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.theme.ThemeEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.theme.ThemeEditor"
+            name="%editor.name.2"/>
+   </extension>
+ 
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.skin.SkinEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.skin.SkinEditor"
+            name="%editor.name.3"/>
+   </extension>
+ 
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.portlets.PortletEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.portlets.PortletEditor"
+            name="%editor.name.4"/>
+   </extension>
+ 
+ 
+ <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.portal.core.PortalEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.portal.core.PortalEditor"
+            name="%editor.name.5"/>
+   </extension>
+ <extension
+       point="org.eclipse.ui.editors">
+    <editor
+          class="nc.uap.portal.events.EventsEditor"
+          contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+          default="true"
+          icon="icons/editor.gif"
+          id="nc.uap.portal.events.EventsEditor"
+          name="%editor.name.6">
+    </editor>
+ </extension>
+ <extension
+       point="org.eclipse.ui.editors">
+    <editor
+          class="nc.uap.portal.plugin.PluginEditor"
+          contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+          default="true"
+          icon="icons/editor.gif"
+          id="nc.uap.portal.plugin.PluginEditor"
+          name="%editor.name.7">
+    </editor>
+    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.perspective.editor.DataSetEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.perspective.editor.DataSetEditor"
+            name="%editor.name"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.chart.core.ChartEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.chart.core.ChartEditor"
+            name="%editor.name.0"/>
+   </extension>
+    
+	  <extension
+	     point="org.eclipse.ui.editors">
+	  <editor
+	        class="nc.uap.lfw.cardlayout.CardLayoutEditor"
+	        contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+	        default="true"
+	        icon="icons/editor.gif"
+	        id="nc.uap.lfw.cardlayout.CardLayoutEditor"
+	        name="%editor.name.1"/>
+   </extension>
+   
+   
+    <extension
+	     point="org.eclipse.ui.editors">
+	  <editor
+	        class="nc.uap.lfw.selfdefcomp.core.SelfDefCompEditor"
+	        contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+	        default="true"
+	        icon="icons/editor.gif"
+	        id="nc.uap.lfw.selfdefcomp.core.SelfDefCompEditor"
+	        name="%editor.name.2"/>
+   </extension>
+   
+   
+    <extension
+	     point="org.eclipse.ui.editors">
+	  <editor
+	        class="nc.uap.lfw.panellayout.PanelEditor"
+	        contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+	        default="true"
+	        icon="icons/editor.gif"
+	        id="nc.uap.lfw.panellayout.PanelEditor"
+	        name="%editor.name.3"/>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.contextmenubar.ContextMenuEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.contextmenubar.ContextMenuEditor"
+            name="%editor.name.4"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.linkcomp.LinkCompEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.linkcomp.LinkCompEditor"
+            name="%editor.name.5"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.progressbar.ProgressBarEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.progressbar.ProgressBarEditor"
+            name="%editor.name.6"/>
+   </extension>
+     
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.imagebutton.ImageButtonEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.imagebutton.ImageButtonEditor"
+            name="%editor.name.7"/>
+   </extension>
+     
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.refnoderel.RefnoderelEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.refnoderel.RefnoderelEditor"
+            name="%editor.name.8"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.tab.TabEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.tab.TabEditor"
+            name="%editor.name.9"/>
+   </extension>
+   
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.outlookbar.OutLookbarEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.outlookbar.OutLookbarEditor"
+            name="%editor.name.10"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.label.LabelEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.label.LabelEditor"
+            name="%editor.name.11"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.image.ImageEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.image.ImageEditor"
+            name="%editor.name.12"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.iframe.IFrameEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.iframe.IFrameEditor"
+            name="%editor.name.13"/>
+   </extension>
+  
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.toolbar.ToolBarEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.toolbar.ToolBarEditor"
+            name="%editor.name.14"/>
+   </extension>
+   
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.textcomp.TextCompEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.textcomp.TextCompEditor"
+            name="%editor.name.15"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.button.ButtonEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.button.ButtonEditor"
+            name="%editor.name.16"/>
+   </extension>
+   
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.refnode.core.RefNodeEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.refnode.core.RefNodeEditor"
+            name="%editor.name.17"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.datasets.core.DatasetsEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.datasets.core.DatasetsEditor"
+            name="%editor.name.18"/>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.combodata.core.ComboDataEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.combodata.core.ComboDataEditor"
+            name="%editor.name.19"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.grid.core.GridEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.grid.core.GridEditor"
+            name="%editor.name.20"/>
+   </extension>
+   
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.excel.core.ExcelEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.excel.core.ExcelEditor"
+            name="%editor.name.21"/>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.form.core.FormEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.form.core.FormEditor"
+            name="%editor.name.22"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.tree.core.TreeEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.tree.core.TreeEditor"
+            name="%editor.name.23"/>
+   </extension>
+   
+ 
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.pageflow.PageFlowEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.pageflow.PageFlowEditor"
+            name="%editor.name.24"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.pagemeta.PagemetaEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.pagemeta.PagemetaEditor"
+            name="%editor.name.25"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.widget.WidgetEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.widget.WidgetEditor"
+            name="%editor.name.26"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.jsp.editor.GuideEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.jsp.editor.GuideEditor"
+            name="%editor.name.27"/>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.menubar.MenubarEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="false"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.menubar.MenubarEditor"
+            name="%editor.name.28">
+      </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.application.ApplicationEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.editor.application.ApplicationEditor"
+            name="%editor.name.29"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.window.WindowBrowserEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.editor.window.WindowBrowserEditor"
+            name="%editor.name.30"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.view.ViewBrowserEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.editor.view.ViewBrowserEditor"
+            name="%editor.name.31"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.publicview.PublicViewBrowserEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.editor.publicview.PublicViewBrowserEditor"
+            name="%editor.name.32"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.extNode.FuncBrowserEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="FuncEditor"
+            name="%editor.name.33">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.extNode.FuncBrowserEditor"
+            default="true"
+            icon="icons/editor.gif"
+            id="WfmDesigner"
+            name="%editor.name.34">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.editor.extNode.FuncBrowserEditor"
+            default="true"
+            extensions="icons/editor.gif"
+            id="Templates"
+            name="%editor.name.35">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.build.editor.BuildConfigEditor"
+            default="true"
+            id="nc.uap.lfw.build.editor.BuildConfigEditor"
+            name="%editor.name.36">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="PLUGIN_PERSPECTIVE.actionSet2"
+            label="%actionSet.label"
+            visible="true">
+         <menu
+               id="PLUGIN_PERSPECTIVE.runMenu"
+               label="%menu.label"
+               path="additions">
+            <groupMarker
+                  name="content">
+            </groupMarker>
+            <separator
+                  name="additions">
+            </separator>
+            <separator
+                  name="restart">
+            </separator>
+            <separator
+                  name="stop">
+            </separator>
+         </menu>
+         <action
+               class="uap.lfw.smartmw.SmartReStartAction"
+               icon="icons/cancel.gif"
+               id="uap.lfw.smartmw.SmartReStartAction"
+               label="%action.label.0"
+               style="push"
+               toolbarPath="restart">
+         </action>
+         <action
+               class="uap.lfw.smartmw.SmartStopAction"
+               icon="icons/err.gif"
+               id="uap.lfw.smartmw.SmartStopAction"
+               label="%action.label.1"
+               style="push"
+               toolbarPath="stop">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="com.yonyou.studio.web.perspective.template">
+      <itemType
+            class="nc.uap.lfw.template.mastersecondly.MasterSecondlyFactory"
+            id="nc.uap.lfw.template.mastersecondly.MasterSecondlyFactory"
+            name="主子列表单据模板">
+      </itemType>
+   </extension>
+   <extension
+         point="com.yonyou.studio.web.perspective.template">
+      <itemType
+            class="nc.uap.lfw.template.mastersecondlyflow.MasterSecondlyFlowFactory"
+            id="nc.uap.lfw.template.mastersecondlyflow.MasterSecondlyFlowFactory"
+            name="主子列表流程模板">
+      </itemType>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.lfw.editor.pagemeta.WindowEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.lfw.editor.pagemeta.WindowEditor"
+            name="%editor.name.38">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.listview.core.ListViewEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="true"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.listview.core.ListViewEditor"
+            name="%editor.name.020">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="nc.uap.lfw.pagination.PaginationEditor"
+            contributorClass="nc.uap.lfw.perspective.editor.LFWeditorActionBarContributor"
+            default="false"
+            icon="icons/editor.gif"
+            id="nc.uap.lfw.pagination.PaginationEditor"
+            name="%editor.name.39">
+      </editor>
+   </extension>
+	<runtime>
+	<libary name="lib/web_basic.jar"/>
+	</runtime>
+	<runtime>
+	<libary name="lib/web_model.jar"/>
+	</runtime>
+   
+   
+   <!--====================================================-->
+   <!-- Project Plugin -->
+   <!--====================================================-->
+</plugin>

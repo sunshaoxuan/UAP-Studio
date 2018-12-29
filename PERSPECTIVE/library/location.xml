@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="location">
+	<item repl="hash" display="hash" />
+	<item repl="host" display="host" />
+	<item repl="hostname" display="hostname" />
+	<item repl="href" display="href" />
+	<item repl="pathname" display="pathname" />
+	<item repl="port" display="port" />
+	<item repl="protocol" display="protocol" />
+	<item repl="search" display="search" />
+	<item repl="assign(' URL ')" display="assign(' URL ')" />
+	<item repl="reload([unconditional ])" display="reload([unconditional ]),N3,IE4" />
+	<item repl="replace(' URL ')" display="replace(' URL '),N3,IE4" />
+</completion>

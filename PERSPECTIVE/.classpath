@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/template"/>
+	<classpathentry excluding="nc/uap/lfw/application/templates/" kind="src" path="src/amc"/>
+	<classpathentry kind="src" path="src/build"/>
+	<classpathentry kind="src" path="src/design"/>
+	<classpathentry kind="src" path="src/main"/>
+	<classpathentry kind="src" path="src/ncstarter"/>
+	<classpathentry kind="src" path="src/datasets"/>
+	<classpathentry kind="src" path="src/menubar"/>
+	<classpathentry kind="src" path="src/core"/>
+	<classpathentry kind="src" path="src/listener"/>
+	<classpathentry kind="src" path="src/component"/>
+	<classpathentry kind="src" path="src/lfw"/>
+	<classpathentry kind="src" path="src/cpb"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="src/portal"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-digester3-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ojdbc6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/XStream_bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
+		<accessrules>
+			<accessrule kind="accessible" pattern="**"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/portalom.jar"/>
+	<classpathentry kind="lib" path="lib/portlet-api_2.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/granite.jar"/>
+	<classpathentry kind="lib" path="lib/basic.jar"/>
+	<classpathentry kind="lib" path="lib/web_basic.jar"/>
+	<classpathentry kind="lib" path="lib/web_model.jar"/>
+	<classpathentry kind="lib" path="lib/j2ee.jar"/>
+	<classpathentry kind="lib" path="tomcat-embed/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="tomcat-embed/tomcat-embed-core.jar" sourcepath="E:/apache-tomcat-7.0.39-src/apache-tomcat-7.0.39-src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

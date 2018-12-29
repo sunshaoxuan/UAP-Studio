@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<Widget controllerClazz="MainController" dialog="false" id="main" refId="main" sourcePackage="${location}">
+    <PlugoutDescs>
+    </PlugoutDescs>
+    <PluginDescs>
+    </PluginDescs>
+    <Models>
+        <Datasets>
+            <MdDataset caption="DsTemp01" controlwidgetopeStatus="false" enabled="false" id="DsTemp01" lazyLoad="false" notNullBody="false" objMeta="${md_objMeta}" voMeta="${md_voMeta}">
+                <Fields>
+                </Fields>
+            </MdDataset>
+        </Datasets>
+
+    </Models>
+       <Components>
+        <FormComp i18nName="" caption="formTemp01" columnCount="1" dataset="DsTemp01" eleWidth="250" enabled="true" id="formTemp01" labelMinWidth="0" renderHiddenEle="false" renderType="1" rowHeight="22" visible="true">                    
+        </FormComp>
+    </Components>
+    <Containers>
+    </Containers>
+    <Menus>
+        <MenuBarComp id="menubar">
+            <MenuItem id="save" modifiers="2" text="保存">
+            </MenuItem>
+             <MenuItem id="cancel" modifiers="2" text="取消">
+            </MenuItem>
+            <MenuItem id="saveadd" modifiers="2" text="保存新增">
+            </MenuItem>
+        </MenuBarComp>
+    </Menus>
+</Widget>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="navigator" extends="Object">
+	<item repl="appCodeName" display="appCodeName" />
+	<item repl="appMinorVersion" display="appMinorVersion,IE4" />
+	<item repl="appName" display="appName" />
+	<item repl="appVersion" display="appVersion" />
+	<item repl="browserLanguage" display="browserLanguage,IE4" />
+	<item repl="cookieEnabled" display="cookieEnabled,N6,IE4" />
+	<item repl="cpuClass" display="cpuClass,IE4" />
+	<item repl="language" display="language,N4" />
+	<item repl="mimeTypes[]" display="mimeTypes[]" />
+	<item repl="onLine" display="onLine,IE4" />
+	<item repl="oscpu" display="oscpu,N6" />
+	<item repl="platform" display="platform,N4,IE4" />
+	<item repl="plugins[]" display="plugins[],N3,M4" />
+	<item repl="product" display="product,N6" />
+	<item repl="productSub" display="productSub,N6" />
+	<item repl="securityPolicy" display="securityPolicy,N4" />
+	<item repl="systemLanguage" display="systemLanguage,IE4" />
+	<item repl="userAgent" display="userAgent" />
+	<item repl="userLanguage" display="userLanguage,IE4" />
+	<item repl="userProfile" display="userProfile,IE4" />
+	<item repl="vendor" display="vendor,N6" />
+	<item repl="vendorSub" display="vendorSub,N6" />
+	<item repl="javaEnabled()" display="javaEnabled(),N3,M4" />
+	<item repl="preference()" display="preference(name[,val]),N4,(S)" />
+	<item repl="taintEnabled()" display="taintEnabled(),N3,IE4" />
+</completion>

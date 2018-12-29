@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="listwin_um" preferredHeight="0" preferredWidth="0">
+    <FlowhLayout autoFill="true" id="winFlowhLayout">
+        <FlowhPanel className="left_side_style" id="winFlowhLeftPanel" rightBorder="#" width="196">
+            <FlowvLayout id="leftFlowvLayout">
+                <FlowvPanel height="39" id="g_p_1">
+                    <CanvasLayout className="leftcanvas" id="leftTitleCanvas">
+                        <CanvasPanel id="canvasp">
+                        </CanvasPanel>
+                    </CanvasLayout>
+                </FlowvPanel>
+                <FlowvPanel id="g_p_2" leftPadding="20" rightPadding="20">
+                    <PanelLayout expand="true" id="leftOrgPanel" title="组织">
+                        <PanelPanel bottomPadding="10" id="panel" topPadding="20">
+                            <Widget id="modeorg">
+                            </Widget>
+                        </PanelPanel>
+                    </PanelLayout>
+                </FlowvPanel>
+                <FlowvPanel id="g_p_3" leftPadding="20" rightPadding="20">
+                    <Widget id="simplequery">
+                    </Widget>
+                </FlowvPanel>
+            </FlowvLayout>
+        </FlowhPanel>
+        <FlowhPanel id="g_p_1">
+            <Widget id="main">
+            </Widget>
+        </FlowhPanel>
+    </FlowhLayout>
+</UIMeta>

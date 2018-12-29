@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="screen" extends="Object">
+	<item repl="availHeight" display="availHeight" />
+	<item repl="availLeft" display="availLeft" />
+	<item repl="availTop" display="availTop" />
+	<item repl="availWidth" display="availWidth" />
+	<item repl="availWidth" display="availWidth" />
+	<item repl="colorDepth" display="colorDepth" />
+	<item repl="height" display="height" />
+	<item repl="left" display="left" />
+	<item repl="pixelDepth" display="pixelDepth" />
+	<item repl="top" display="top" />
+	<item repl="width" display="width" />
+</completion>

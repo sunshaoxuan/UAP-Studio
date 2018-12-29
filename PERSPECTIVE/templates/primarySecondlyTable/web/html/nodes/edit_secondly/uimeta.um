@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="editjob_um" jquery="0">
+<FlowvLayout autoFill="0" id="flowv1">
+        <FlowvPanel id="flowv456453fd" height="30">   
+          </FlowvPanel>  
+        <FlowvPanel id="flowv456453fd">  
+            <FlowhLayout autoFill="false" id="flowhlayout8289" widgetId="editjob">
+		                <FlowhPanel id="panelh08289" widgetId="editjob" width="50">
+		                </FlowhPanel>
+		                <FlowhPanel id="panelh18289" widgetId="editjob">
+			                 <FormComp id="psnform" widgetId="editjob">
+             					</FormComp> 
+		                </FlowhPanel>
+		                <FlowhPanel id="panelh28289" widgetId="editjob" width="50">
+		                </FlowhPanel>
+					</FlowhLayout>
+                    
+        </FlowvPanel>
+        <FlowvPanel height="30"  id="paneljhjv15301" widgetId="editjob">
+            <FlowhLayout id="flowhlayout1">
+               <FlowhPanel id="flowhpanel1">
+                </FlowhPanel>
+                <FlowhPanel id="flowhpanel2">
+                </FlowhPanel>                
+                <FlowhPanel id="flowhpanel5">
+                </FlowhPanel>
+                 <FlowhPanel id="flowhpanel3">
+                    <Button id="btn_ok" widgetId="editjob">
+                    </Button>
+                </FlowhPanel>
+                <FlowhPanel id="flowhpanel4">
+                    <Button id="btn_cancel" widgetId="editjob">
+                    </Button>
+                </FlowhPanel>
+            </FlowhLayout>
+        </FlowvPanel>
+    </FlowvLayout>
+</UIMeta>

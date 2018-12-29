@@ -1,0 +1,133 @@
+/**
+ * 
+ */
+package nc.uap.lfw.editor.window;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nc.lfw.editor.common.LfwBaseGraph;
+import nc.lfw.editor.common.LfwElementObjWithGraph;
+import nc.lfw.editor.pagemeta.PagemetaGraph;
+import nc.lfw.editor.widget.WidgetGraph;
+import nc.lfw.editor.widget.plug.PluginDescElementObj;
+import nc.lfw.editor.widget.plug.PlugoutDescElementObj;
+import nc.uap.lfw.core.comp.WebElement;
+import nc.uap.lfw.core.page.Connector;
+import nc.uap.lfw.core.page.LfwWindow;
+
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.ui.views.properties.IPropertyDescriptor;
+
+/**
+ * 
+ * Window图形类
+ * @author chouhl
+ *
+ */
+public class WindowObj extends LfwElementObjWithGraph {
+
+	private static final long serialVersionUID = 514645377817718158L;
+
+	private LfwWindow window = null;
+	
+	private WindowFigure figure = null;
+	
+	/*plugoutDesc列表*/
+	private List<PlugoutDescElementObj> plugoutCells = new ArrayList<PlugoutDescElementObj>();
+	/*pluginDesc列表*/
+	private List<PluginDescElementObj> pluginCells = new ArrayList<PluginDescElementObj>();
+	
+	private List<Connector> connectorList = new ArrayList<Connector>();
+	
+	public WebElement getWebElement() {
+		return null;
+	}
+	
+	@Override
+	public Object getPropertyValue(Object id) {
+		return null;
+	}
+	
+	@Override
+	public void setPropertyValue(Object id, Object value){}
+	
+	@Override
+	public IPropertyDescriptor[] getPropertyDescriptors() {
+		return super.getPropertyDescriptors();
+	}
+
+	public LfwWindow getWindow() {
+		return window;
+	}
+
+	public void setWindow(LfwWindow window) {
+		this.window = window;
+	}
+
+	public WindowFigure getFigure() {
+		return figure;
+	}
+
+	public void setFigure(WindowFigure figure) {
+		this.figure = figure;
+	}
+	public List<PlugoutDescElementObj> getPlugoutCells() {
+		return plugoutCells;
+	}
+
+	public void addPlugoutCell(PlugoutDescElementObj cell) {
+		plugoutCells.add(cell);
+		firePlugChange();
+	}
+
+	public void removePlugoutCell(PlugoutDescElementObj cell) {
+		plugoutCells.remove(cell);
+		for (int i = 0 ; i < plugoutCells.size() ; i++){
+			PlugoutDescElementObj plugoutCell = plugoutCells.get(i);
+			Point p = new Point();
+			p.x = plugoutCell.getLocation().x;
+			p.y = plugoutCell.getWidgetObj().getLocation().y + i * 40;
+			plugoutCell.setLocation(p);
+		}
+		firePlugChange();
+	}
+
+	public List<PluginDescElementObj> getPluginCells() {
+		return pluginCells;
+	}
+	
+	public void addPluginCell(PluginDescElementObj cell) {
+		pluginCells.add(cell);
+		firePlugChange();
+	}
+	
+	public void removePluginCell(PluginDescElementObj cell) {
+		pluginCells.remove(cell);
+		for (int i = 0 ; i < pluginCells.size() ; i++){
+			PluginDescElementObj pluginCell = pluginCells.get(i);
+			Point p = new Point();
+			p.x = pluginCell.getLocation().x;
+			p.y = pluginCell.getWidgetObj().getLocation().y + i * 40;
+			pluginCell.setLocation(p);
+		}
+		firePlugChange();
+	}
+	
+	private void firePlugChange(){
+		LfwBaseGraph graph = getGraph();
+		if (graph instanceof PagemetaGraph)
+			((PagemetaGraph)graph).fireWidgetPlugChange(window);
+		if (graph instanceof WidgetGraph)
+			((WidgetGraph)graph).fireWidgetPlugChange(window);
+	}
+
+	public List<Connector> getConnectorList() {
+		return connectorList;
+	}
+
+	public void setConnectorList(List<Connector> connectorList) {
+		this.connectorList = connectorList;
+	}
+	
+}

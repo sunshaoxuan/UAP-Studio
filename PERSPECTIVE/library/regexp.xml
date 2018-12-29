@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="RegExp">
+	<item repl="global" display="global" />
+	<item repl="ignoreCase" display="ignoreCase,M5,W5.5" />
+	<item repl="lastIndex" display="lastIndex" />
+	<item repl="prototype" display="prototype" />
+	<item repl="input" display="input,IE5.5" />
+	<item repl="multiline" display="multiline,W5.5" />
+	<item repl="lastMatch" display="lastMatch,W5.5" />
+	<item repl="lastParent" display="lastParent,W5.5" />
+	<item repl="leftContext" display="leftContext,W5.5" />
+	<item repl="rightContext" display="rightContext,W5.5" />
+	<item repl="source" display="source" />
+	<item repl="compile(regexp)" display="compile(regexp)" />
+	<item repl="exec('string')" display="exec('string')" />
+	<item repl="test('string')" display="test('string')" />
+</completion>

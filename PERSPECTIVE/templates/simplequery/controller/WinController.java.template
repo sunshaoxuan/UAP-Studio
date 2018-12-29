@@ -1,0 +1,6 @@
+package ${winCtrlPackage};
+import java.io.Serializable;
+import nc.uap.lfw.core.ctrl.WindowController;
+public class WinController implements WindowController, Serializable {
+  private static final long serialVersionUID=7532916478964732880L;
+}

@@ -1,0 +1,124 @@
+package ${editViewCtrlPackage};
+import nc.uap.lfw.core.cmd.CmdInvoker;
+import nc.uap.lfw.core.cmd.UifDatasetAfterSelectCmd;
+import nc.uap.lfw.core.cmd.UifSaveCmd;
+import nc.uap.lfw.core.constants.AppConsts;
+import nc.uap.lfw.core.ctx.AppLifeCycleContext;
+import nc.uap.lfw.core.ctx.WindowContext;
+import nc.bs.dao.DAOException;
+import nc.bs.framework.common.NCLocator;
+import nc.uap.lfw.core.serializer.impl.Dataset2SuperVOSerializer;
+import nc.uap.lfw.core.serializer.impl.SuperVO2DatasetSerializer;
+import nc.vo.bd.psn.PsndocVO;
+import nc.uap.lfw.core.ctrl.IController;
+import nc.itf.bd.psn.psndoc.IPsndocService;
+import nc.vo.pub.BusinessException;
+import nc.vo.pub.SuperVO;
+import nc.uap.wfm.utils.AppUtil;
+import nc.uap.lfw.core.event.DialogEvent;
+import java.util.Random;
+import nc.itf.bd.psn.psndoc.IPsndocQueryService;
+import nc.uap.lfw.core.page.LfwView;
+import nc.uap.cpb.persist.dao.PtBaseDAO;
+import nc.uap.cpb.psn.CpPsnConstStr;
+import ${md_voMeta};
+import nc.uap.lfw.core.data.Field;
+import nc.uap.lfw.core.data.Row;
+import nc.vo.bd.psn.PsnjobVO;
+import nc.uap.lfw.core.data.Dataset;
+import nc.uap.lfw.core.event.MouseEvent;
+import nc.uap.lfw.core.exception.LfwRuntimeException;
+
+ /**
+ * 信息卡片默认逻辑
+ * 
+ */
+public class EditController implements IController {
+
+    private static final long serialVersionUID=1L;
+  
+	/**
+	 * 页面显示事件
+	 * 
+	 * @param dialogEvent
+	 */
+	public void beforeShow(DialogEvent dialogEvent){
+		Dataset ds = getCurrentWinCtx().getCurrentViewContext().getView().getViewModels().getDataset(getMasterDsId());
+		ds.clear();
+		String oper = (String)getCurrentWinCtx().getAppAttribute(AppConsts.OPE_SIGN);
+		if(oper==null)return;
+		if (oper.equals(AppConsts.OPE_EDIT)) {
+			String primary_key = (String) getCurrentWinCtx().getAppAttribute(new ${VOClassName}().getPKFieldName());
+			if (primary_key != null) {
+				try {
+					${VOClassName} vo = (${VOClassName}) new PtBaseDAO().retrieveByPK(${VOClassName}.class, primary_key);
+					new SuperVO2DatasetSerializer().serialize(new ${VOClassName}[] { vo }, ds);
+					ds.setRowSelectIndex(0);
+					ds.setEnabled(true);
+				} catch (DAOException e) {
+					throw new LfwRuntimeException(e);
+				}
+			}
+		}
+		else if(oper.equals(AppConsts.OPE_ADD)){
+			  Row emptyRow = ds.getEmptyRow();
+			  ds.addRow(emptyRow);
+			  ds.setRowSelectIndex(ds.getRowIndex(emptyRow));
+			  ds.setEnabled(true);
+		}
+	}
+  
+	/**
+	 * 取消
+	 * 
+	 * @param dialogEvent
+	 */
+	public void onCancelClick(MouseEvent mouseEvent) {
+		AppUtil.getCntAppCtx().getCurrentWindowContext().closeView("edit");
+	}
+  
+	/**
+	 * 确定
+	 * 
+	 * @param dialogEvent
+	 */
+	public void onOkClick(MouseEvent<?> mouseEvent) throws BusinessException {
+	    //保存数据
+	    CmdInvoker.invoke(new UifSaveCmd(getMasterDsId(), null,"nc.uap.lfw.core.vo.LfwExAggVO", false));
+	    
+	    String oper = (String)getCurrentWinCtx().getAppAttribute(AppConsts.OPE_SIGN);
+		LfwView editView = AppLifeCycleContext.current().getWindowContext().getCurrentViewContext().getView();
+		Dataset ds = editView.getViewModels().getDataset(getMasterDsId());
+		
+		LfwView mainView = AppLifeCycleContext.current().getWindowContext().getViewContext("main").getView();
+		Dataset mainDs = mainView.getViewModels().getDataset(getMasterDsId());
+		
+		if (AppConsts.OPE_ADD.equals(oper)) {
+			Row row = ds.getSelectedRow();
+		    Row emptyRow = mainDs.getEmptyRow();
+			for (Field field :  ds.getFieldSet().getFieldList()){
+				emptyRow.setValue(mainDs.nameToIndex(field.getId()), row.getValue(ds.nameToIndex(field.getId())));
+			}
+			mainDs.addRow(emptyRow);
+			mainDs.setRowSelectIndex(mainDs.getRowIndex(emptyRow));
+		} else if (AppConsts.OPE_EDIT.equals(oper)) {
+			Row mainRow = mainDs.getSelectedRow();
+			Row row = ds.getSelectedRow();
+			for (Field field :  ds.getFieldSet().getFieldList()){
+				mainRow.setValue(mainDs.nameToIndex(field.getId()), row.getValue(ds.nameToIndex(field.getId())));
+			}
+		}
+		//CmdInvoker.invoke(new UifDatasetAfterSelectCmd(mainDs.getId()));
+		AppLifeCycleContext.current().getApplicationContext().getCurrentWindowContext().closeView("edit");
+	}
+  
+	private String getMasterDsId() {
+		//return "DsTemp01";
+		return "${masterDsId}";
+	}
+	
+	private WindowContext getCurrentWinCtx() {
+		return AppLifeCycleContext.current().getApplicationContext().getCurrentWindowContext();
+	}
+  
+}

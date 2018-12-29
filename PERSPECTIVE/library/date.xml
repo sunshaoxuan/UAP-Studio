@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Date">
+	<item repl="constructor" display="constructor,N4,IE4" />
+	<item repl="prototype" display="prototype,N3,IE4" />
+	<item repl="getFullYear()" display="getFullYear(),N4,J2" />
+	<item repl="getYear()" display="getYear()" />
+	<item repl="getMonth()" display="getMonth()" />
+	<item repl="getDate()" display="getDate()" />
+	<item repl="getDay()" display="getDay()" />
+	<item repl="getHours()" display="getHours()" />
+	<item repl="getMinutes()" display="getMinutes()" />
+	<item repl="getSeconds()" display="getSeconds()" />
+	<item repl="getTime()" display="getTime()" />
+	<item repl="getMilliseconds()" display="getMilliseconds(),N4,J2" />
+	<item repl="getUTCFullYear()" display="getUTCFullYear(),N4,J2" />
+	<item repl="getUTCMonth()" display="getUTCMonth(),N4,J2" />
+	<item repl="getUTCDate()" display="getUTCDate(),N4,J2" />
+	<item repl="getUTCDay()" display="getUTCDay(),N4,J2" />
+	<item repl="getUTCHours()" display="getUTCHours(),N4,J2" />
+	<item repl="getUTCMinutes()" display="getUTCMinutes(),N4,J2" />
+	<item repl="getUTCSeconds()" display="getUTCSeconds(),N4,J2" />
+	<item repl="getUTCMilliseconds()" display="getUTCMilliseconds(),N4,J2" />
+	<item repl="setFullYear()" display="setFullYear(),N4,J2" />
+	<item repl="setYear()" display="setYear()" />
+	<item repl="setMonth()" display="setMonth()" />
+	<item repl="setDate()" display="setDate()" />
+	<item repl="setDay()" display="setDay()" />
+	<item repl="setHours()" display="setHours()" />
+	<item repl="setMinutes()" display="setMinutes()" />
+	<item repl="setSeconds()" display="setSeconds()" />
+	<item repl="setTime()" display="setTime()" />
+	<item repl="setMilliseconds()" display="setMilliseconds(),N4,J2" />
+	<item repl="setUTCFullYear()" display="setUTCFullYear(),N4,J2" />
+	<item repl="setUTCMonth()" display="setUTCMonth(),N4,J2" />
+	<item repl="setUTCDate()" display="setUTCDate(),N4,J2" />
+	<item repl="setUTCDay()" display="setUTCDay(),N4,J2" />
+	<item repl="setUTCHours()" display="setUTCHours(),N4,J2" />
+	<item repl="setUTCMinutes()" display="setUTCMinutes(),N4,J2" />
+	<item repl="setUTCSeconds()" display="setUTCSeconds(),N4,J2" />
+	<item repl="setUTCMilliseconds()" display="setUTCMilliseconds(),N4,J2" />
+	<item repl="setTimezoneOffset()" display="setTimezoneOffset()" />
+	<item repl="toDateString()" display="toDateString(),W5.5" />
+	<item repl="toGMTString()" display="toGMTString()" />
+	<item repl="toLocaleDateString()" display="toLocaleDateString(),W5.5,N6" />
+	<item repl="toLocaleString()" display="toLocaleString()" />
+	<item repl="toLocaleTimeString()" display="toLocaleTimeString(),W5.5,N6" />
+	<item repl="toString()" display="toString()" />
+	<item repl="toTimeString()" display="toTimeString(),IE5.5" />
+	<item repl="toUTCString()" display="toUTCString(),N4,J2" />
+	<item repl="parse('date String')" display="parse('date String')" />
+	<item repl="UTC(date values)" display="UTC(date values)" />
+</completion>

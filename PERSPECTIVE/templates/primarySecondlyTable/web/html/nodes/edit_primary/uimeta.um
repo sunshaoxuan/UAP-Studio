@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="false" id="editpsndoc_um" jquery="0">
+	<FlowvLayout autoFill="0" id="flowv1">
+		<FlowvPanel id="flowv456453fd" height="30">   
+		</FlowvPanel>  
+        <FlowvPanel id="flowv456453fd">  
+            <FlowhLayout autoFill="false" id="flowhlayout8289" widgetId="editpsndoc">
+		                <FlowhPanel id="panelh08289" widgetId="editpsndoc" width="40">
+		                </FlowhPanel>
+		                <FlowhPanel id="panelh18289" widgetId="editpsndoc">
+			                 <FormComp id="formpsndoc" widgetId="editpsndoc">
+             					</FormComp> 
+		                </FlowhPanel>
+		                <FlowhPanel id="panelh28289" widgetId="editpsndoc" width="40">
+		                </FlowhPanel>
+					</FlowhLayout>
+                    
+        </FlowvPanel>
+        <FlowvPanel id="flowv456453fd"  height="130" topPadding="30" bottomPadding="30">  
+            <FlowhLayout autoFill="false" id="flowhlayout8290" widgetId="editpsndoc">
+		               <FlowhPanel id="panelh08291" widgetId="editpsndoc" width="40"  >
+		                </FlowhPanel>
+		                <FlowhPanel id="panelh18292" widgetId="editpsndoc" >
+			                 <FormComp id="formpsnjob" widgetId="editpsndoc">
+             					</FormComp> 
+		                </FlowhPanel>
+		                <FlowhPanel id="panelh08293" widgetId="editpsndoc" width="40" >
+		                </FlowhPanel>
+					</FlowhLayout>
+                    
+        </FlowvPanel>
+        <FlowvPanel height="30"  id="paneljhjv15301" widgetId="editpsndoc">
+            <FlowhLayout id="flowhlayout1">
+               <FlowhPanel id="flowhpanel1">
+                </FlowhPanel>
+                 <FlowhPanel id="flowhpanel3" width="100">
+                    <Button id="btn_ok" widgetId="editpsndoc">
+                    </Button>
+                </FlowhPanel>
+                <FlowhPanel id="flowhpanel4" width="100">
+                    <Button id="btn_cancel" widgetId="editpsndoc">
+                    </Button>
+                </FlowhPanel>
+            </FlowhLayout>
+        </FlowvPanel>
+    </FlowvLayout>
+</UIMeta>

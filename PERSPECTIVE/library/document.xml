@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="document" extends="Object">
+	<item repl="attributes" display="attributes" />
+	<item repl="alinkColor" display="alinkColor" />
+	<item repl="anchors[]" display="anchors[]" />
+	<item repl="applets[]" display="applets[],N3,IE4" />
+	<item repl="bgColor" display="bgColor" />
+	<item repl="body" display="body" />
+	<item repl="characterSet" display="characterSet" />
+	<item repl="childNodes" display="childNodes" />
+	<item repl="compatMode" display="compatMode" />
+	<item repl="cookie" display="cookie" />
+	<item repl="contentWindow" display="contentWindow" />
+	<item repl="doctype" display="doctype" />
+	<item repl="documentElement" display="documentElement" />
+	<item repl="domain" display="domain,N3,IE4" />
+	<item repl="embeds[]" display="embeds[],N3,IE4" />
+	<item repl="fgColor" display="fgColor" />
+	<item repl="firstChild" display="firstChild" />
+	<item repl="forms[]" display="forms[]" />
+	<item repl="height" display="height,N4" />
+	<item repl="images[]" display="images[],N3,IE4" />
+	<item repl="implementation" display="implementation" />
+	<item repl="lastModified" display="lastModified" />
+	<item repl="layers[]" display="layers[],N4 only" />
+	<item repl="linkColor" display="linkColor" />
+	<item repl="links[]" display="links[]" />
+	<item repl="location" display="location" />
+	<item repl="namespaceURI" display="namespaceURI" />
+	<item repl="navigator" display="navigator" />
+	<item repl="nextSibling" display="nextSibling" />
+	<item repl="nodeName" display="nodeName" />
+	<item repl="nodeType" display="nodeType" />
+	<item repl="nodeValue" display="nodeValue" />
+	<item repl="ownerDocument" display="ownerDocument" />
+	<item repl="parentNode" display="parentNode" />
+	<item repl="plugins" display="plugins" />
+	<item repl="previousSibling" display="previousSibling" />
+	<item repl="referrer" display="referrer" />
+	<item repl="styleSheets" display="styleSheets" />
+	<item repl="screen" display="screen" />
+	<item repl="title" display="title" />
+	<item repl="URL" display="URL,N3,IE4" />
+	<item repl="vlinkColor" display="vlinkColor" />
+	<item repl="width" display="width,N4" />
+	<item repl="captureEvents()" display="captureEvents(type),N4 only" />
+	<item repl="clear()" display="clear()" />
+	<item repl="close()" display="close()" />
+	<item repl="createAttribute()" display="createAttribute()" />
+	<item repl="createDocumentFragment()" display="createDocumentFragment()" />
+	<item repl="createElement()" display="createElement(String name) Element" />
+	<item repl="createTextNode()" display="createTextNode()" />
+	<item repl="getElementById()" display="getElementById(String id) Element" />
+	<item repl="getElementsByName()" display="getElementsByName(String name) Element[]" />
+	<item repl="getElementsByTagName()" display="getElementsByTagName(String name) Element[]" />
+	<item repl="getSelection()" display="getSelection(),N4" />
+	<item repl="hanldeEvent()" display="handleEvent(event),N4 only" />
+	<item repl="open()" display="open('mimetype'[,replace])" />
+	<item repl="releaseEvents()" display="releaseEvents(type),N4 only" />
+	<item repl="routeEvent()" display="routeEvent(event),N4 only" />
+	<item repl="write()" display="write('string')" />
+	<item repl="writeln()" display="writeln('string')" />
+	<item repl="onblur" display="onblur" />
+	<item repl="onclick" display="onclick" />
+	<item repl="ondblclick" display="ondblclick" />
+	<item repl="onfocus" display="onfocus" />
+	<item repl="onkeydown" display="onkeydown" />
+	<item repl="onkeypress" display="onkeypress" />
+	<item repl="onkeyup" display="onkeyup" />
+	<item repl="onmousedown" display="onmousedown" />
+	<item repl="onmousemove" display="onmousemove" />
+	<item repl="onmouseout" display="onmouseout" />
+	<item repl="onmouseover" display="onmouseover" />
+	<item repl="onmouseup" display="onmouseup" />
+	<item repl="onresize" display="onresize" />
+</completion>

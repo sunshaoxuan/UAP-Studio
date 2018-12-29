@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="main" preferredHeight="" preferredWidth="">
+    <FlowvLayout id="flowvLayout" widgetId="main">
+        <FlowvPanel id="g_p_1">
+            <CanvasLayout className="rightcanvas" id="listmenubarCanvas">
+                <CanvasPanel id="canvasp">
+                    <Menubar height="100%" id="menubar" left="0" position="relative" top="0" width="100%">
+                    </Menubar>
+                </CanvasPanel>
+            </CanvasLayout>
+        </FlowvPanel>
+        <FlowvPanel id="g_p_2">
+            <GridComp height="100%" id="${masterDsId}_grid" left="0" position="relative" top="0" width="100%">
+            </GridComp>
+        </FlowvPanel>
+    </FlowvLayout>
+</UIMeta>

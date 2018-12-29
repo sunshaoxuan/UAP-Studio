@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="style">
+	<item repl="color" display="color,N6,IE4" />
+	<item repl="font" display="font,N6,IE4" />
+	<item repl="fontFamily" display="fontFamily,N6,IE4" />
+	<item repl="fontSize" display="fontSize,N6,IE4" />
+	<item repl="fontSizeAdjust" display="fontSizeAdjust,M5,N6" />
+	<item repl="fontStretch" display="fontStretch,M5,N6" />
+	<item repl="fontStyle" display="fontStyle,IE4,N6" />
+	<item repl="fontVariant" display="fontVariant,IE4,N6" />
+	<item repl="fontWeight" display="fontWeight,IE4,N6" />
+	<item repl="letterSpacing" display="letterSpacing,IE4,N6" />
+	<item repl="lineBreak" display="lineBreak,IE5" />
+	<item repl="lineHeight" display="lineHeight,IE4,N6" />
+	<item repl="quotes" display="quotes,M5,N6" />
+	<item repl="rubyAlign" display="rubyAlign,IE5" />
+	<item repl="rubyOverhang" display="rubyOverhang,IE5" />
+	<item repl="rubyPosition" display="rubyPosition,IE5" />
+	<item repl="textAlign" display="textAlign,IE4,N6" />
+	<item repl="textAlignLast" display="textAlignLast,IE5.5" />
+	<item repl="textAutospace" display="textAutospace,W5" />
+	<item repl="textDecoration" display="textDecoration,IE4,N6" />
+	<item repl="textDecorationBlink" display="textDecorationBlink,IE only" />
+	<item repl="textDecorationLineThrough" display="textDecorationLineThrough,IE only" />
+	<item repl="textDecorationNone" display="textDecorationNone,IE only" />
+	<item repl="textDecorationOverline" display="textDecorationOverline,IE only" />
+	<item repl="textDecorationUnderline" display="textDecorationUnderline,IE only" />
+	<item repl="textIndent" display="textIndent,IE4,N6" />
+	<item repl="textJustify" display="textJustify,IE5" />
+	<item repl="textJustifyTrim" display="textJustifyTrim,IE5" />
+	<item repl="textKashidaSpace" display="textKashidaSpace,IE5.5" />
+	<item repl="textOverflow" display="textOverflow,W6" />
+	<item repl="textShadow" display="textShadow,M5,N6" />
+	<item repl="textTransform" display="textTransform,IE4,N6" />
+	<item repl="textUnderlinePosition" display="textUnderlinePosition,IE5.5" />
+	<item repl="unicodeBidi" display="unicodeBidi,IE5,N6" />
+	<item repl="whiteSpace" display="whiteSpace,IE4,N6" />
+	<item repl="wordBreak" display="wordBreak,W5" />
+	<item repl="wordSpacing" display="wordSpacing,M4,N6,W6" />
+	<item repl="wordWrap" display="wordWrap,W5.5" />
+	<item repl="writingMode" display="writingMode,W5.5" />
+	<item repl="bottom" display="bottom,IE5,N6" />
+	<item repl="height" display="height,IE4,N6" />
+	<item repl="left" display="left,IE4,N6" />
+	<item repl="pixelBottom" display="pixelBottom,IE/W only" />
+	<item repl="pixelHeight" display="pixelHeight,IE only" />
+	<item repl="pixelLeft" display="pixelLeft,IE only" />
+	<item repl="pixelRight" display="pixelRight,IE/W only" />
+	<item repl="pixelTop" display="pixelTop,IE only" />
+	<item repl="pixelWidth" display="pixelWidth,IE only" />
+	<item repl="posBottom" display="posBottom,IE/W only" />
+	<item repl="posHeight" display="posHeight,IE only" />
+	<item repl="posLeft" display="posLeft,IE only" />
+	<item repl="posRight" display="posRight,IE/W only" />
+	<item repl="posTop" display="posTop,IE only" />
+	<item repl="posWidth" display="posWidth,IE only" />
+	<item repl="position" display="position,IE4,N6" />
+	<item repl="right" display="right,IE5,N6" />
+	<item repl="top" display="top,IE4,N6" />
+	<item repl="width" display="width,IE4,N6" />
+	<item repl="zIndex" display="zIndex,IE4,N6" />
+	<item repl="border" display="border,IE4,N6" />
+	<item repl="borderBottom" display="borderBottom,IE4,N6" />
+	<item repl="borderLeft" display="borderLeft,IE4,N6" />
+	<item repl="borderRight" display="borderRight,IE4,N6" />
+	<item repl="borderTop" display="borderTop,IE4,N6" />
+	<item repl="borderBottomColor" display="borderBottomColor,IE4,N6" />
+	<item repl="borderLeftColor" display="borderLeftColor,IE4,N6" />
+	<item repl="borderRightColor" display="borderRightColor,IE4,N6" />
+	<item repl="borderTopColor" display="borderTopColor,IE4,N6" />
+	<item repl="borderTopColor" display="borderTopColor,IE4,N6" />
+	<item repl="borderBottomStyle" display="borderBottomStyle,IE4,N6" />
+	<item repl="borderLeftStyle" display="borderLeftStyle,IE4,N6" />
+	<item repl="borderRightStyle" display="borderRightStyle,IE4,N6" />
+	<item repl="borderTopStyle" display="borderTopStyle,IE4,N6" />
+	<item repl="borderBottomWidth" display="borderBottomWidth,IE4,N6" />
+	<item repl="borderLeftWidth" display="borderLeftWidth,IE4,N6" />
+	<item repl="borderRightWidth" display="borderRightWidth,IE4,N6" />
+	<item repl="borderTopWidth" display="borderTopWidth,IE4,N6" />
+	<item repl="borderColor" display="borderColor,IE4,N6" />
+	<item repl="borderStyle" display="borderStyle,IE4,N6" />
+	<item repl="borderWidth" display="borderWidth,IE4,N6" />
+	<item repl="margin" display="margin,IE4,N6" />
+	<item repl="marginBottom" display="marginBottom,IE4,N6" />
+	<item repl="marginLeft" display="marginLeft,IE4,N6" />
+	<item repl="marginRight" display="marginRight,IE4,N6" />
+	<item repl="marginTop" display="marginTop,IE4,N6" />
+	<item repl="outline" display="outline,M5,N6" />
+	<item repl="outlineColor" display="outlineColor,M5,N6" />
+	<item repl="outlineStyle" display="outlineStyle,M5,N6" />
+	<item repl="outlineWidth" display="outlineWidth,M5,N6" />
+	<item repl="padding" display="padding,IE4,N6" />
+	<item repl="paddingBottom" display="paddingBottom,IE4,N6" />
+	<item repl="paddingLeft" display="paddingLeft,IE4,N6" />
+	<item repl="paddingRight" display="paddingRight,IE4,N6" />
+	<item repl="paddingTop" display="paddingTop,IE4,N6" />
+	<item repl="borderCollapse" display="borderCollapse,M5,N6" />
+	<item repl="borderSpacing" display="borderSpacing,M5,N6" />
+	<item repl="captionSide" display="captionSide,M5,N6" />
+	<item repl="emptyCells" display="emptyCells,M5,N6" />
+	<item repl="tableLayout" display="tableLayout,IE5,N6" />
+	<item repl="listStyle" display="listStyle,IE4,N6" />
+	<item repl="listStyleImage" display="listStyleImage,IE4,N6" />
+	<item repl="listStylePosition" display="listStylePosition,IE4,N6" />
+	<item repl="listStyleType" display="listStyleType,IE4,N6" />
+	<item repl="background" display="background,IE4,N6" />
+	<item repl="backgroundAttachment" display="backgroundAttachment,IE4,N6" />
+	<item repl="backgroundColor" display="backgroundColor,IE4,N6" />
+	<item repl="backgroundImage" display="backgroundImage,IE4,N6" />
+	<item repl="backgroundPosition" display="backgroundPosition,IE4,N6" />
+	<item repl="backgroundPositionX" display="backgroundPositionX,IE only" />
+	<item repl="backgroundPositionY" display="backgroundPositionY,IE only" />
+	<item repl="backgroundRepeat" display="backgroundRepeat,IE4,N6" />
+	<item repl="clear" display="clear,IE4,N6" />
+	<item repl="clip" display="clip,IE4,N6" />
+	<item repl="clipBottom" display="clipBottom,W5" />
+	<item repl="clipLeft" display="clipLeft,W5" />
+	<item repl="clipRight" display="clipRight,W5" />
+	<item repl="clipTop" display="clipTop,W5" />
+	<item repl="content" display="content,M5,N6" />
+	<item repl="counterIncrement" display="counterIncrement,M5,N6" />
+	<item repl="counterReset" display="counterReset,M5,N6" />
+	<item repl="cssFloat" display="cssFloat,M5,N6" />
+	<item repl="cursor" display="cursor,IE4,N6" />
+	<item repl="direction" display="direction,IE5,N6" />
+	<item repl="display" display="display,IE4,N6" />
+	<item repl="filter" display="filter,W4" />
+	<item repl="layoutGird" display="layoutGird,W5" />
+	<item repl="layoutGirdChar" display="layoutGirdChar,W5" />
+	<item repl="layoutGirdLine" display="layoutGirdLine,W5" />
+	<item repl="layoutGirdMode" display="layoutGirdMode,W5" />
+	<item repl="layoutGirdType" display="layoutGirdType,W5" />
+	<item repl="markerOffset" display="markerOffset,M5,N6" />
+	<item repl="marks" display="marks,M5,N6" />
+	<item repl="maxHeight" display="maxHeight,M5,N6" />
+	<item repl="maxWidth" display="maxWidth,M5,N6" />
+	<item repl="minHeight" display="minHeight,M5,N6,W6" />
+	<item repl="minWidth" display="minWidth,M5,N6" />
+	<item repl="MozOpacity" display="MozOpacity,N6" />
+	<item repl="overflow" display="overflow,IE4,N6" />
+	<item repl="overflowX" display="overflowX,W5" />
+	<item repl="overflowY" display="overflowY,W5" />
+	<item repl="styleFloat" display="styleFloat,IE-Only" />
+	<item repl="verticalAlign" display="verticalAlign,IE4,N6" />
+	<item repl="visibility" display="visibility,IE4,N6" />
+	<item repl="width" display="width,IE4,N6" />
+	<item repl="zoom" display="zoom,W5.5" />
+	<item repl="orphans" display="orphans,M5,N6" />
+	<item repl="windows" display="windows,M5,N6" />
+	<item repl="page" display="page,M5,N6" />
+	<item repl="pageBreakAfter" display="pageBreakAfter,IE4,N6" />
+	<item repl="pageBreakBefore" display="pageBreakBefore,IE4,N6" />
+	<item repl="pageBreakInside" display="pageBreakInside,M5,N6" />
+	<item repl="size" display="size,N6" />
+	<item repl="accelerator" display="accelerator,W5" />
+	<item repl="behavior" display="behavior,W5" />
+	<item repl="cssText" display="cssText,IE4,N6" />
+	<item repl="imeMode" display="imeMode,W5" />
+	<item repl="scrollbar3dLightColor" display="scrollbar3dLightColor,W5.5" />
+	<item repl="scrollbarArrowColor" display="scrollbarArrowColor,W5.5" />
+	<item repl="scrollbarBaseColor" display="scrollbarBaseColor,W5.5" />
+	<item repl="scrollbarDarkShadowColor" display="scrollbarDarkShadowColor,W5.5" />
+	<item repl="scrollbarFaceColor" display="scrollbarFaceColor,W5.5" />
+	<item repl="scrollbarHighlightColor" display="scrollbarHighlightColor,W5.5" />
+	<item repl="scrollbarShadowColor" display="scrollbarShadowColor,W5.5" />
+	<item repl="scrollbarTrackColor" display="scrollbarTrackColor,W5.5" />
+
+</completion>

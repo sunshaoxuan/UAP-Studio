@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<Widget controllerClazz="${main_controllClazz}" dialog="false" id="main" refId="main" sourcePackage="${location}">
+    <PlugoutDescs>
+    </PlugoutDescs>
+    <PluginDescs>
+        <PluginDesc id="editin">
+        </PluginDesc>
+        <PluginDesc id="simpleQuery_plugin">
+            <PluginDescItem clazztype="java.lang.String" id="row">
+            </PluginDescItem>
+        </PluginDesc>
+    </PluginDescs>
+    <Events>
+        <Event async="true" methodName="pluginsimpleQuery_plugin" onserver="true">
+            <Params>
+                <Param>
+                    <Name>keys</Name>
+                    <Value>
+                    </Value>
+                    <Desc>                        <![CDATA[java.util.Map]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+
+    </Events>
+    <Models>
+        <Datasets>
+            <MdDataset i18nName="" caption="DsTemp01" controloperatorStatus="true" controlwidgetopeStatus="false" enabled="false" id="DsTemp01" lazyLoad="false" notNullBody="false" pageSize="25" objMeta="${md_objMeta}" voMeta="${md_voMeta}">
+                <Fields>
+                </Fields>
+<Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DatasetListener" methodName="onDataLoad" name="onDataLoad" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>dataLoadEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.DataLoadEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event> 
+<Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DatasetListener" methodName="onAfterRowSelect" name="onAfterRowSelect" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>datasetEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.DatasetEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>                   
+                </Events>
+                  <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DatasetListener" methodName="onAfterRowUnSelect" name="onAfterRowUnSelect" onserver="true">
+                                <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                                </SubmitRule>
+                                <Params>
+                                    <Param>
+                                        <Name>datasetEvent</Name>
+                                        <Value></Value>
+                                        <Desc>                                    <![CDATA[nc.uap.lfw.core.event.DatasetEvent]]>
+                                        </Desc>
+                                    </Param>
+                                </Params>
+                                <Action>
+                                </Action>
+                            </Event>
+            </MdDataset>
+        </Datasets>
+    </Models>
+    <Components>
+        <GridComp autoRowHeight="false" i18nName="" caption="GridTemp01" dataset="DsTemp01" editable="true" enabled="true" expandTree="false" id="GridTemp01" multiSelect="true" pagenationTop="false" reference="false" showColInfo="false" showHeader="true" showImageBtn="false" showNumCol="false" showSumRow="false" sortable="true" visible="true">
+            
+        </GridComp>
+    </Components>
+    <Containers>
+    </Containers>
+    <Menus>
+        <MenuBarComp id="MenubarTemp01">
+            <MenuItem i18nName="" id="add" modifiers="2" stateManager="nc.uap.lfw.core.bm.dft.Init_Ss_Ms_StateManager"   text="新建">
+                 <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onAdd" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        <Widget cardSubmit="false" id="main" panelSubmit="false" tabSubmit="false">
+                        </Widget>
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="" id="edit" modifiers="2"  stateManager="nc.uap.lfw.core.bm.dft.Ss_StateManager"   text="编辑">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onEdit" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="" id="delete" modifiers="2"  stateManager="nc.uap.lfw.core.bm.dft.Ss_Ms_StateManager"   text="删除">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onDel" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+        </MenuBarComp>
+    </Menus>
+</Widget>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="app_edit_um" jquery="0">
+	<FlowhLayout id="flowh1" autoFill="true">
+		<FlowhPanel id="flowhp3">
+			<Widget id="main">
+			</Widget>
+		</FlowhPanel>
+	</FlowhLayout>
+</UIMeta>

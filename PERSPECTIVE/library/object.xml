@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Object">
+	<item repl="constructor" display="constructor Function" />
+	<item repl="prototype" display="prototype" />
+	<item repl="eval()" display="eval(String expresion)" />
+	<item repl="toSource()" display="toSource() String" />
+	<item repl="toString()" display="toString() String" />
+	<item repl="unwatch()" display="unwatch(String prop)" />
+	<item repl="valueOf()" display="valueOf() #primitive value#" />
+	<item repl="watch()" display="watch(String prop, Function handler)" />
+</completion>

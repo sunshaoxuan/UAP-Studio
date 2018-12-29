@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="main_um" preferredHeight="" preferredWidth="">
+    <FlowvLayout id="mainFlowvLayout" widgetId="main">
+        <FlowvPanel id="g_p_1" widgetId="main">
+            <CanvasLayout className="rightcanvas" id="menubarcanvas" widgetId="main">
+                <CanvasPanel id="canvasp" widgetId="main">
+                    <FlowhLayout autoFill="false" id="mainFlowhLayout" widgetId="main">
+                        <FlowhPanel id="g_p_1" widgetId="main">
+                            <Menubar height="100%" id="menubar" left="0" position="relative" top="0" widgetId="main" width="100%">
+                            </Menubar>
+                        </FlowhPanel>
+                        <FlowhPanel id="g_p_2" widgetId="main">
+                            <Widget id="pubview_simpleexetask">
+                            </Widget>
+                        </FlowhPanel>
+                    </FlowhLayout>
+                </CanvasPanel>
+            </CanvasLayout>
+        </FlowvPanel>
+        <FlowvPanel id="g_p_2" leftPadding="20" rightPadding="20">
+            <PanelLayout expand="true" id="" title="基本信息">
+                <PanelPanel bottomPadding="10" id="panel" topPadding="20">
+                    <FormComp height="100%" id="${masterDsId}_form" label_position="" left="0" position="relative" top="0" width="100%">
+                    </FormComp>
+                </PanelPanel>
+            </PanelLayout>
+        </FlowvPanel>
+    </FlowvLayout>
+</UIMeta>

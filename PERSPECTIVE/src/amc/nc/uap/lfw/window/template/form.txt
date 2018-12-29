@@ -1,0 +1,111 @@
+package ${PackageToReplace};
+
+import nc.uap.wfm.vo.WfmFormInfoCtx;
+
+
+public class ${CtxClassToReplace} extends ${VoclassToReplace} implements WfmFormInfoCtx {
+	
+	private static final long serialVersionUID = 1L;
+             
+    /**
+     * 返回制单日期
+	 * @return
+     */  
+	@Override
+	public String getBillMakeDateField() {
+		return BILLDATE;
+	}
+
+    /**
+     * 返回制单人PK
+	 * @return
+     */
+	@Override
+	public String getBillMakeUserField() {
+		return BILLMAKER;
+	}
+
+    /**
+     * 返回单据号
+	 * @return
+     */
+	@Override
+	public String getBillMakeNumbField() {
+		return BILLNO;
+	}
+
+    /**
+     * 返回制单部门PK
+	 * @return
+     */
+	@Override
+	public String getBillMakeDeptField() {
+		return PK_ORG;
+	}
+
+    /**
+     * 返回审核人PK
+	 * @return
+     */
+	@Override
+	public String getFrmAuditUserField() {
+		return APPROVER;
+	}
+
+    /**
+     * 返回单据审核时间
+	 * @return
+     */
+	@Override
+	public String getFrmAuditDateField() {
+		return APPROVEDATE;
+	}
+
+    /**
+     * 返回form单据的状态
+	 * @return
+     */
+	@Override
+	public String getFrmStateField() {
+		return APPROVESTATUS;
+	}
+
+    /**
+     * 返回单据标题
+	 * @return
+     */
+	@Override
+	public String getFrmTitileField() {
+		return TITLE;
+	}
+
+    /**
+     * 返回单据主键
+	 * @return
+     */   
+	@Override
+	public String getFrmInsPk() {
+		return this.getPrimaryKey();
+	}
+
+	@Override
+	public Object getAttributeValue(String key) {
+		return super.getAttributeValue(key);
+	}
+
+	@Override
+	public void setAttributeValue(String name, Object value) {
+		super.setAttributeValue(name, value);
+	}
+
+	@Override
+	public String[] getAttributeNames() {
+		return super.getAttributeNames();
+	}
+	
+	@Override
+	public Object getAllLevelAttributeValue(String attribute,String beanID){		
+		return getAttributeValue(attribute);
+	}	
+
+}

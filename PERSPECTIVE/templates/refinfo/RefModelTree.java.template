@@ -1,0 +1,56 @@
+package ${package};
+
+import uap.lfw.ref.model.LfwTreeRefModel;
+import ${controllerFullName};
+import uap.lfw.ref.vo.LfwTreeRefGroupVO;
+
+public class ${className} extends LfwTreeRefModel {
+	
+	@Override
+	public String getControllerClazzName() {
+		return ${controllerName}.class.getName();
+	}
+
+	@Override
+	public LfwTreeRefGroupVO getGroupVO() {
+		return new LfwTreeRefGroupVO() {
+		
+			/*主键字段*/
+			@Override
+			public String getPkField() {
+				return "${pkField}";
+			}
+			/*编码字段*/
+			@Override
+			public String getCodeField() {
+				return "${codeField}";
+			}
+			/*名称字段*/
+			@Override
+			public String getNameField() {
+				return "${nameField}";
+			}
+			/*父节点字段*/
+			@Override
+			public String getFatherField() {
+				return "${fatherField}";
+			}
+			/*子节点字段*/
+			@Override
+			public String getChildField() {
+				return "${childField}";
+			}
+			/*数据集显示字段集合*/
+			@Override
+			public String[] getFieldCodes() {
+				return new String[]{${fieldCodes}};
+			}
+			/*多语字段集合*/
+			@Override
+			public String[] getMultiLanFieldCodes() {
+				return new String[]{${multiLanFieldCodes}};
+			}
+			
+		};
+	}
+}

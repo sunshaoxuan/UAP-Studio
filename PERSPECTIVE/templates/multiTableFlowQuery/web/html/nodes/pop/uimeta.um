@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="popwin_um" preferredHeight="0" preferredWidth="0">
+    <Splitter boundMode="1" divideSize="280" id="mainWinSpliter" inverse="1" modenui="true" oneTouch="false" orientation="h">
+        <SplitterOne id="spliter1">
+            <Widget id="main">
+            </Widget>
+        </SplitterOne>
+        <SplitterTwo id="spliter2">
+            <Widget id="pubview_approveeexetask">
+            </Widget>
+        </SplitterTwo>
+    </Splitter>
+</UIMeta>
+

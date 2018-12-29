@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="element" extends="Object">
+
+<item repl="attributes" display="attributes" >
+   <![CDATA[Returns an array of the attributes on the element.]]>
+</item>
+<item repl="childNodes" display="childNodes" >
+   <![CDATA[Returns an array of the child nodes on the element.]]>
+</item>
+<item repl="className" display="className" >
+   <![CDATA[Gets/sets the class of the element.]]>
+</item>
+<item repl="clientHeight" display="clientHeight" >
+   <![CDATA[DHTML property that represents the inner height 
+of an element.]]>
+</item>
+<item repl="clientWidth" display="clientWidth" >
+   <![CDATA[DHTML property that represents the inner width 
+of an element.]]>
+</item>
+<item repl="dir" display="dir" >
+   <![CDATA[Gets/sets the directionality of the element.]]>
+</item>
+<item repl="firstChild" display="firstChild" >
+   <![CDATA[Returns the first direct child of the current node.]]>
+</item>
+<item repl="id" display="id" >
+   <![CDATA[Gets/sets the id of the current element.]]>
+</item>
+<item repl="innerHTML" display="innerHTML" >
+   <![CDATA[innerHTML returns all of the markup and content within 
+a given element.]]>
+</item>
+<item repl="lang" display="lang" >
+   <![CDATA[Specifies the base language of an element's attribute 
+values and text content.]]>
+</item>
+<item repl="lastChild" display="lastChild" >
+   <![CDATA[Returns the last child of the current node.]]>
+</item>
+<item repl="length" display="length" >
+   <![CDATA[Returns the number of items in a list (e.g. childNodes).]]>
+</item>
+<item repl="localName" display="localName" >
+   <![CDATA[localName returns the local part of the qualified name 
+of this node.]]>
+</item>
+<item repl="namespaceURI" display="namespaceURI" >
+   <![CDATA[The namespace URI of this node, or NULL if it is 
+unspecified.]]>
+</item>
+<item repl="nextSibling" display="nextSibling" >
+   <![CDATA[Returns the node immediately following the current one 
+in the tree.]]>
+</item>
+<item repl="nodeName" display="nodeName" >
+   <![CDATA[Returns the name of the current node.]]>
+</item>
+<item repl="nodeType" display="nodeType" >
+   <![CDATA[Returns the type of the current node.]]>
+</item>
+<item repl="nodeValue" display="nodeValue" >
+   <![CDATA[Returns the value of the current node.]]>
+</item>
+<item repl="offsetHeight" display="offsetHeight" >
+   <![CDATA[offsetHeight is a DHTML property that gets the height 
+of an element relative to the layout.]]>
+</item>
+<item repl="offsetLeft" display="offsetLeft" >
+   <![CDATA[offsetLeft gets/sets the number of pixels that the current 
+element is offset to the left within the offsetParent node.]]>
+</item>
+<item repl="offsetParent" display="offsetParent" >
+   <![CDATA[offsetParent returns a reference to the object in which the 
+current element is offset (i.e., the parent element).]]>
+</item>
+<item repl="offsetTop" display="offsetTop" >
+   <![CDATA[offsetTop returns the position of the current element relative 
+to the top of the offsetParent node.]]>
+</item>
+<item repl="offsetWidth" display="offsetWidth" >
+   <![CDATA[offsetWidth is a DHTML property that gets the width of an element 
+relative to the layout.]]>
+</item>
+<item repl="ownerDocument" display="ownerDocument" >
+   <![CDATA[Returns the document in which this node appears.]]>
+</item>
+<item repl="parentNode" display="parentNode" >
+   <![CDATA[Returns the parent node of the current node.]]>
+</item>
+<item repl="prefix" display="prefix" >
+   <![CDATA[prefix returns the namespace prefix of the current node, 
+or NULL if it is unspecified.]]>
+</item>
+<item repl="previousSibling" display="previousSibling" >
+   <![CDATA[Returns the node immediately previous to the current one 
+in the tree.]]>
+</item>
+<item repl="scrollHeight" display="scrollHeight" >
+   <![CDATA[DHTML property that gets the height of the scroll view 
+of an element.]]>
+</item>
+<item repl="scrollTop" display="scrollTop" >
+   <![CDATA[DHTML property that sets or gets the distance between 
+the top of an element and the topmost portion of its content currently 
+visible.]]>
+</item>
+<item repl="style" display="style" >
+   <![CDATA[style returns the block of style rules on the current element.]]>
+</item>
+<item repl="tabIndex" display="tabIndex" >
+   <![CDATA[Gets/sets the position of the element in the tabbing order.]]>
+</item>
+<item repl="tagName" display="tagName" >
+   <![CDATA[tagName returns the name of the element.]]>
+</item>
+<item repl="title" display="title" >
+   <![CDATA[title returns the title of the document.]]>
+</item>
+<item repl="addEventListener()" display="addEventListener(type, listener, useCapture)" >
+   <![CDATA[addEventListener allows the registration of event listeners 
+on the event target.]]>
+</item>
+<item repl="appendChild()" display="appendChild(newChild)" >
+   <![CDATA[The appendChild method inserts the specified node into the 
+list of nodes on the current document.]]>
+</item>
+<item repl="blur()" display="blur()" >
+   <![CDATA[The blur method removes keyboard focus from the current element.]]>
+</item>
+<item repl="click()" display="click()" >
+   <![CDATA[The click method excecutes a click on the current element.]]>
+</item>
+<item repl="cloneNode()" display="cloneNode(/*boolean*/ deep)" >
+   <![CDATA[The cloneNode method returns a duplicate of the current node.]]>
+</item>
+<item repl="dispatchEvent()" display="dispatchEvent(event)" >
+   <![CDATA[The dispatchEvent method allows the dispatch of events into 
+the implementation's event model.]]>
+</item>
+<item repl="focus()" display="focus()" >
+   <![CDATA[focus sets focus on the current element.]]>
+</item>
+<item repl="getAttribute()" display="getAttribute(name)" >
+   <![CDATA[getAttribute returns the value of the named attribute on 
+the current node.]]>
+</item>
+<item repl="getAttributeNS()" display="getAttributeNS(namespace, name)" >
+   <![CDATA[getAttributeNS returns the value of the attribute with 
+the given name and namespace.]]>
+</item>
+<item repl="getAttributeNode()" display="getAttributeNode(nodeName)" >
+   <![CDATA[Returns the attribute of the current element as a 
+separate node.]]>
+</item>
+<item repl="getElementsByTagName()" display="getElementsByTagName(Name)" >
+   <![CDATA[Returns the elements of a particular name that are children 
+of the current element.]]>
+</item>
+<item repl="hasAttribute()" display="hasAttribute(attName)" >
+   <![CDATA[hasAttribute returns a boolean value indicating whether the 
+current element has the specified attribute or not.]]>
+</item>
+<item repl="hasAttributeNS()" display="hasAttributeNS(namespace, localName)" >
+   <![CDATA[hasAttribute is a boolean value indicating whether the current 
+element has an attribute with the specified name and namespace.]]>
+</item>
+<item repl="hasChildNodes()" display="hasChildNodes()" >
+   <![CDATA[hasChildNodes is a boolean value indicating whether the current 
+element has children or not.]]>
+</item>
+<item repl="insertBefore()" display="insertBefore(newElement, targetElement)" >
+   <![CDATA[The insertBefore method allows you to insert a node before the 
+current element in the DOM.]]>
+</item>
+<item repl="item()" display="item(index)" >
+   <![CDATA[The item method retrieves a node from the tree by index.]]>
+</item>
+<item repl="normalize()" display="normalize()" >
+   <![CDATA[The normalize method puts the current node and all of its subtree 
+into a "normalized" form (see below).]]>
+</item>
+<item repl="removeAttribute()" display="removeAttribute(attName)" >
+   <![CDATA[The removeAttribute() method removes an attribute from the 
+current element.]]>
+</item>
+<item repl="removeAttributeNode()" display="removeAttributeNode(attribute)" >
+   <![CDATA[removeAttributeNode removes the specified attribute from 
+the current element.]]>
+</item>
+<item repl="removeChild()" display="removeChild(child)" >
+   <![CDATA[The removeChild() method removes a child node from the 
+current element.]]>
+</item>
+<item repl="removeEventListener()" display="removeEventListener(type, listener, useCapture)" >
+   <![CDATA[removeEventListener() allows the removal of event listeners 
+from the event target.]]>
+</item>
+<item repl="replaceChild()" display="replaceChild(newChild, oldChild)" >
+   <![CDATA[The replaceChild() method replaces one child node on the 
+current element with another.]]>
+</item>
+<item repl="setAttribute()" display="setAttribute(name, value)" >
+   <![CDATA[setAttribute adds a new attribute or changes the value of 
+an existing attribute on the current element.]]>
+</item>
+<item repl="setAttributeNS()" display="setAttributeNS(namespace, name, value)" >
+   <![CDATA[setAttributeNS adds a new attribute or changes the value of 
+an attribute with the given namespace and name.]]>
+</item>
+<item repl="setAttributeNode()" display="setAttributeNode(attribute)" >
+   <![CDATA[setAttributeNode adds a new attribute node to the current 
+element.]]>
+</item>
+<item repl="supports()" display="supports(feature[, version])" >
+   <![CDATA[The supports method tests if this DOM implementation supports 
+a particular feature.]]>
+</item>
+<item repl="onblur" display="onblur" >
+   <![CDATA[Returns the event handling code for the blur event.]]>
+</item>
+<item repl="onclick" display="onclick" >
+   <![CDATA[Returns the event handling code for the click event.]]>
+</item>
+<item repl="ondblclick" display="ondblclick" >
+   <![CDATA[Returns the event handling code for the dblclick event.]]>
+</item>
+<item repl="onfocus" display="onfocus" >
+   <![CDATA[Returns the event handling code for the focus event.]]>
+</item>
+<item repl="onkeydown" display="onkeydown" >
+   <![CDATA[Returns the event handling code for the keydown event.]]>
+</item>
+<item repl="onkeypress" display="onkeypress" >
+   <![CDATA[Returns the event handling code for the keypress event.]]>
+</item>
+<item repl="onkeyup" display="onkeyup" >
+   <![CDATA[Returns the event handling code for the keyup event.]]>
+</item>
+<item repl="onmousedown" display="onmousedown" >
+   <![CDATA[Returns the event handling code for the mousedown event.]]>
+</item>
+<item repl="onmousemove" display="onmousemove" >
+   <![CDATA[Returns the event handling code for the mousemove event.]]>
+</item>
+<item repl="onmouseout" display="onmouseout" >
+   <![CDATA[Returns the event handling code for the mouseout event.]]>
+</item>
+<item repl="onmouseover" display="onmouseover" >
+   <![CDATA[Returns the event handling code for the mouseover event.]]>
+</item>
+<item repl="onmouseup" display="onmouseup" >
+   <![CDATA[Returns the event handling code for the mouseup event.]]>
+</item>
+<item repl="onresize" display="onresize" >
+   <![CDATA[Returns the event handling code for the resize event.]]>
+</item>
+
+</completion>

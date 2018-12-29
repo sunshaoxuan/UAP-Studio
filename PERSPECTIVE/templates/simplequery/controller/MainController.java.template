@@ -1,0 +1,134 @@
+package ${mainViewCtrlPackage};
+import nc.vo.pub.AggregatedValueObject;
+import nc.uap.lfw.core.cmd.CmdInvoker;
+import nc.uap.lfw.core.event.DataLoadEvent;
+
+import nc.uap.cpb.org.extention.CpbExtentionUtil;
+import nc.uap.lfw.core.ctx.WindowContext;
+import nc.uap.cpb.persist.dao.PtBaseDAO;
+import nc.bs.dao.DAOException;
+import nc.uap.lfw.core.bm.ButtonStateManager;
+import nc.uap.lfw.core.cmd.UifDatasetLoadCmd;
+import nc.uap.lfw.core.data.Row;
+import nc.uap.lfw.core.data.Dataset;
+import nc.uap.cpb.org.querycmd.QueryCmd;
+import nc.uap.cpb.org.extention.ICpbExtentionService;
+import java.util.ArrayList;
+import java.util.Map;
+
+import ${md_voMeta};
+import nc.uap.lfw.core.ctx.AppLifeCycleContext;
+import java.awt.MenuItem;
+import nc.uap.lfw.core.log.LfwLogger;
+import nc.uap.cpb.org.constant.DialogConstant;
+import nc.uap.lfw.core.cmd.UifMultiDelCmd;
+import nc.uap.lfw.core.ctrl.IController;
+import nc.uap.lfw.core.exception.LfwRuntimeException;
+import nc.uap.lfw.core.cmd.base.AbstractWidgetController;
+import nc.uap.lfw.core.event.DatasetEvent;
+import nc.uap.lfw.core.event.MouseEvent;
+import nc.uap.lfw.core.cmd.base.FromWhereSQL;
+import nc.uap.lfw.core.constants.AppConsts;
+
+
+ /**
+ * 信息列表默认逻辑
+ * 
+ */
+public class MainController extends AbstractWidgetController implements IController {
+
+    private static final long serialVersionUID=1L;
+  
+    String primarykey =  new ${VOClassName}().getPKFieldName();
+  
+	/**
+	 * 主数据加载逻辑
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onDataLoad(DataLoadEvent se) {
+		Dataset ds = se.getSource();
+		CmdInvoker.invoke(new UifDatasetLoadCmd(ds.getId()));
+	}
+	
+	/**
+	 * 新增
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onAdd(MouseEvent mouseEvent) {
+		getCurrentWinCtx().addAppAttribute(AppConsts.OPE_SIGN, AppConsts.OPE_ADD);
+		getCurrentWinCtx().popView("edit", DialogConstant.MAX_WIDTH,DialogConstant.MAX_HEIGHT, "新增");
+	}
+	
+	/**
+	 * 删除
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onDel(MouseEvent<MenuItem> mouseEvent){
+		if(AppInteractionUtil.showConfirmDialog("提示", "是否删除此条记录？")){
+			UifMultiDelCmd cmd = new UifMultiDelCmd(getMasterDsId(), "nc.uap.lfw.core.vo.LfwExAggVO");
+			cmd.execute();
+		}
+	}
+	
+	/**
+	 * 编辑
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onEdit(MouseEvent mouseEvent) {
+		Dataset ds = getCurrentWinCtx().getCurrentViewContext().getView().getViewModels().getDataset(getMasterDsId());
+		Row row = ds.getSelectedRow();
+		if (row == null) {
+			throw new LfwRuntimeException("请选择相关信息。");
+		}
+		getCurrentWinCtx().addAppAttribute(AppConsts.OPE_SIGN, AppConsts.OPE_EDIT);
+
+		getCurrentWinCtx().addAppAttribute(primarykey,(String) row.getValue(ds.nameToIndex(primarykey)));
+		getCurrentWinCtx().popView("edit", DialogConstant.MAX_WIDTH,DialogConstant.MAX_HEIGHT, "编辑");
+	}
+	
+  
+	/**
+	 * 行选中事件
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onAfterRowSelect(DatasetEvent datasetEvent) {
+		ButtonStateManager.updateButtons();
+	}
+
+	/**
+	 * 行非选中事件
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onAfterRowUnSelect(DatasetEvent datasetEvent) {
+		ButtonStateManager.updateButtons();
+	}
+  
+	/**
+	 * 查询
+	 * 
+	 * @param keys
+	 */
+	public void pluginsimpleQuery_plugin(Map<Object, Object> keys) {
+		FromWhereSQL whereSql = (FromWhereSQL) keys.get("whereSql");
+		String wheresql = whereSql.getWhere();
+		QueryCmd cmd = new QueryCmd("main", "${masterDsId}", wheresql) {
+		};
+		cmd.excute();
+	}
+
+	private WindowContext getCurrentWinCtx() {
+		return AppLifeCycleContext.current().getApplicationContext().getCurrentWindowContext();
+	}
+	
+	public String getMasterDsId() {
+		//return "DsTemp01";
+		return "${masterDsId}";
+	}
+  
+}

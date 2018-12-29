@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="history">
+	<item repl="current" display="current,(S),N4 signed" />
+	<item repl="length" display="length int" />
+	<item repl="next" display="next,(S),N4 signed" />
+	<item repl="prevous" display="prevous,(S),N4 signed" />
+	<item repl="back()" display="back()" />
+	<item repl="forward()" display="forward()" />
+	<item repl="go(int | ' URL ')" display="go(int | ' URL ')" />
+</completion>

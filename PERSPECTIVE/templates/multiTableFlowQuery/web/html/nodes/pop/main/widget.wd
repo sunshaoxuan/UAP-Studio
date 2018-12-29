@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<Widget controllerClazz="${EditController}" dialog="false" id="main" refId="main" sourcePackage="${location}">
+    <Attributes>
+        <Attribute>
+            <Key>$QueryTemplate</Key>
+            <Value>
+            </Value>
+        </Attribute>
+    </Attributes>
+    <PageMetas>
+    </PageMetas>
+    <PlugoutDescs>
+        <PlugoutDesc id="afterSavePlugout">
+       		<PlugoutDescItem clazztype="java.lang.String" name="OPERATE_ROW" source="${masterDsId}" type="Dataset.TYPE_DATASET_SEL_ROW">
+            </PlugoutDescItem>
+        </PlugoutDesc>
+    </PlugoutDescs>
+    <PluginDescs>
+    	<PluginDesc id="plugin_exetask" methodName="doTaskExecute">
+    	 <SubmitRule>
+                <Widget id="main">
+                    <Dataset id="testflowsub" type="ds_all_line">
+                    </Dataset>
+                </Widget>
+            </SubmitRule>
+        </PluginDesc>
+    </PluginDescs>
+    <Connectors>
+        <Connector connType="4" id="cardViewConnID" pluginId="proxyAfterSavePlugout" plugoutId="afterSavePlugout" source="main" sourceWindow="" target="popwin" targetWindow="">
+        </Connector>
+    </Connectors>
+    <Events>
+        <Event async="true" methodName="beforeShow" name="beforeShow" onserver="true">
+            <Action>
+            </Action>
+        </Event>
+    </Events>
+    <Models>
+        <Datasets>
+            <MdDataset caption="${masterDsId}" controlwidgetopeStatus="false" enabled="false" id="${masterDsId}" lazyLoad="false" notNullBody="false" objMeta="${md_objMeta}" voMeta="${md_voMeta}">
+                <Fields>
+                </Fields>
+                <Events>
+					<Event async="true" methodName="onAfterRowSelect" name="onAfterRowSelect" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>datasetEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                 	</Event>
+                </Events>
+            </MdDataset>
+        </Datasets>
+
+    </Models>
+       <Components>
+        <FormComp i18nName="" caption="${masterDsId}_form" columnCount="3" dataset="${masterDsId}" eleWidth="250" enabled="true" id="${masterDsId}_form" labelMinWidth="0" renderHiddenEle="false" renderType="1" rowHeight="22" visible="true">                    
+        </FormComp>
+    </Components>
+    <Containers>
+    </Containers>
+    <Menus>
+    </Menus>
+</Widget>

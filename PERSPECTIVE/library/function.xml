@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Function">
+	<item repl="arguments" display="arguments" />
+	<item repl="arity" display="arity,N4" />
+	<item repl="caller" display="caller" />
+	<item repl="constructor" display="constructor,N4,IE4" />
+	<item repl="length" display="length" />
+	<item repl="prototype" display="prototype" />
+	<item repl="apply(this,argsArray)" display="apply(this,argsArray),N6,W5.5" />
+	<item repl="call(this[,arg1[,...argN]])" display="call(this[,arg1[,...argN]]),N6,W5.5" />
+	<item repl="toString()" display="toString()" />
+	<item repl="valueOf()" display="valueOf()" />
+</completion>

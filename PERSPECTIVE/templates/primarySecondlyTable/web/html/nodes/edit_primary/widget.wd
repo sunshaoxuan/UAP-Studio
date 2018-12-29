@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<Widget controllerClazz="nc.uap.cpb.psn.EditPsnDocctr" dialog="false" id="editpsndoc" refId="editpsndoc" sourcePackage="cpb/src/public/">
+    <PlugoutDescs>
+        <PlugoutDesc id="edit_plugout">
+            <PlugoutDescItem clazztype="java.lang.String" name="ok" source="dspsndoc" type="Dataset.TYPE_DATASET_SEL_ROW">
+            </PlugoutDescItem>
+        </PlugoutDesc>
+    </PlugoutDescs>
+    <PluginDescs>
+    </PluginDescs>
+    <Events>
+        <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DialogListener" methodName="onBeforeShow" name="beforeShow" onserver="true">
+            <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+            </SubmitRule>
+            <Params>
+                <Param>
+                    <Name>dialogEvent</Name>
+                    <Value>
+                    </Value>
+                    <Desc>                        <![CDATA[nc.uap.lfw.core.event.DialogEvent]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+    </Events>
+    <Models>
+        <Datasets>
+            <RefMdDataset i18nName="w_cp_psndoc-000174" langDir="ad_nodes" caption="用户" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_user" lazyLoad="true" notNullBody="false" objMeta="uap.user" voMeta="nc.vo.sm.UserVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000175" langDir="ad_nodes" caption="组织_部门" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_dept" lazyLoad="true" notNullBody="false" objMeta="uap.dept" voMeta="nc.vo.org.DeptVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000176" langDir="ad_nodes" caption="人员类别" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_psncl" lazyLoad="true" notNullBody="false" objMeta="uap.psncl" voMeta="nc.vo.bd.psn.PsnClVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000177" langDir="ad_nodes" caption="组织_集团" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_group" lazyLoad="true" notNullBody="false" objMeta="uap.group" voMeta="nc.vo.org.GroupVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000178" langDir="ad_nodes" caption="人力资源管理_职务" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_job" lazyLoad="true" notNullBody="false" objMeta="uap.job" voMeta="nc.vo.org.JobVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <MdDataset i18nName="w_cp_psndoc-000179" langDir="ad_nodes" caption="人员基本信息" controlwidgetopeStatus="true" enabled="true" id="dspsndoc" lazyLoad="true" notNullBody="false" objMeta="uap.psndoc" voMeta="nc.vo.bd.psn.PsndocVO">
+                <FieldRelations>
+                    <FieldRelation id="pk_org_rel" refDataset="$refds_uap_org">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_org_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_org" value="pk_org">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="creator_rel" refDataset="$refds_uap_user">
+                        <MatchFields>
+                            <Field readField="user_name" writeField="creator_user_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="cuserid" value="creator">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="modifier_rel" refDataset="$refds_uap_user">
+                        <MatchFields>
+                            <Field readField="user_name" writeField="modifier_user_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="cuserid" value="modifier">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_group_rel" refDataset="$refds_uap_group">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_group_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_group" value="pk_group">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                </FieldRelations>
+                <Fields>
+                	<Field i18nName="w_cp_psndoc-000180" langDir="ad_nodes" dataType="String" id="addrshowvalue" nullAble="true" primaryKey="false" text="家庭住址">
+                    </Field>
+                </Fields>
+                <Listeners>
+                    <DatasetListener id="defaultDsListener" serverClazz="nc.uap.lfw.core.event.deft.DefaultDatasetServerListener">
+                        <Events>
+                            <Event async="true" name="onDataLoad" onserver="true">
+                                <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                                    <Widget cardSubmit="false" id="editpsndoc" panelSubmit="false" tabSubmit="false">
+                                        <Dataset id="dspsndoc" type="ds_current_line">
+                                        </Dataset>
+                                    </Widget>
+                                </SubmitRule>
+                                <Params>
+                                    <Param>
+                                        <Name>dataLoadEvent</Name>
+                                        <Value>
+                                        </Value>
+                                        <Desc>                                            <![CDATA[]]>
+                                        </Desc>
+                                    </Param>
+                                </Params>
+                                <Action>
+                                </Action>
+                            </Event>
+                            <Event async="true" name="onAfterRowSelect" onserver="true">
+                                <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                                    <Widget cardSubmit="false" id="editpsndoc" panelSubmit="false" tabSubmit="false">
+                                        <Dataset id="dspsndoc" type="ds_current_line">
+                                        </Dataset>
+                                    </Widget>
+                                </SubmitRule>
+                                <Params>
+                                    <Param>
+                                        <Name>rowSelectEvent</Name>
+                                        <Value>
+                                        </Value>
+                                        <Desc>                                            <![CDATA[]]>
+                                        </Desc>
+                                    </Param>
+                                </Params>
+                                <Action>
+                                </Action>
+                            </Event>
+                        </Events>
+                    </DatasetListener>
+                </Listeners>
+            </MdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000181" langDir="ad_nodes" caption="工种" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_Defdoc_BD004" lazyLoad="true" notNullBody="false" objMeta="uap.Defdoc-BD004" voMeta="nc.vo.bd.defdoc.DefdocVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000182" langDir="ad_nodes" caption="组织" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_org" lazyLoad="true" notNullBody="false" objMeta="uap.org" voMeta="nc.vo.org.OrgVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000183" langDir="ad_nodes" caption="人力资源管理_岗位" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_post" lazyLoad="true" notNullBody="false" objMeta="uap.post" voMeta="nc.vo.org.PostVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <MdDataset i18nName="w_cp_psndoc-000184" langDir="ad_nodes" caption="人员工作信息" controlwidgetopeStatus="true" enabled="true" id="dspsnjob" lazyLoad="true" notNullBody="false" objMeta="uap.psnjob" voMeta="nc.vo.bd.psn.PsnjobVO">
+                <FieldRelations>
+                    <FieldRelation id="pk_group_rel" refDataset="$refds_uap_group">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_group_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_group" value="pk_group">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_org_rel" refDataset="$refds_uap_org">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_org_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_org" value="pk_org">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_psncl_rel" refDataset="$refds_uap_psncl">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_psncl_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_psncl" value="pk_psncl">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_dept_rel" refDataset="$refds_uap_dept">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_dept_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_dept" value="pk_dept">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="worktype_rel" refDataset="$refds_uap_Defdoc-BD004">
+                        <MatchFields>
+                            <Field readField="name" writeField="worktype_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_defdoc" value="worktype">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_job_rel" refDataset="$refds_uap_job">
+                        <MatchFields>
+                            <Field readField="jobname" writeField="pk_job_jobname">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_job" value="pk_job">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_post_rel" refDataset="$refds_uap_post">
+                        <MatchFields>
+                            <Field readField="postname" writeField="pk_post_postname">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_post" value="pk_post">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                </FieldRelations>
+                <Fields>
+                    <ModifyField id="pk_psncl_name" nullAble="false">
+                    </ModifyField>
+                    
+                </Fields>
+                <Listeners>
+                    <DatasetListener id="defaultDsListener" serverClazz="nc.uap.lfw.core.event.deft.DefaultDatasetServerListener">
+                        <Events>
+                            <Event async="true" name="onDataLoad" onserver="true">
+                                <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                                    <Widget cardSubmit="false" id="editpsndoc" panelSubmit="false" tabSubmit="false">
+                                        <Dataset id="dspsnjob" type="ds_current_line">
+                                        </Dataset>
+                                    </Widget>
+                                </SubmitRule>
+                                <Params>
+                                    <Param>
+                                        <Name>dataLoadEvent</Name>
+                                        <Value>
+                                        </Value>
+                                        <Desc>                                            <![CDATA[]]>
+                                        </Desc>
+                                    </Param>
+                                </Params>
+                                <Action>
+                                </Action>
+                            </Event>
+                            <Event async="true" name="onAfterRowSelect" onserver="true">
+                                <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                                    <Widget cardSubmit="false" id="editpsndoc" panelSubmit="false" tabSubmit="false">
+                                        <Dataset id="dspsnjob" type="ds_current_line">
+                                        </Dataset>
+                                    </Widget>
+                                </SubmitRule>
+                                <Params>
+                                    <Param>
+                                        <Name>rowSelectEvent</Name>
+                                        <Value>
+                                        </Value>
+                                        <Desc>                                            <![CDATA[]]>
+                                        </Desc>
+                                    </Param>
+                                </Params>
+                                <Action>
+                                </Action>
+                            </Event>
+                        </Events>
+                    </DatasetListener>
+                </Listeners>
+            </MdDataset>
+        </Datasets>
+        <ComboDatas>
+            <MDComboDataConf i18nName="w_cp_psndoc-000179" langDir="ad_nodes" caption="人员基本信息" fullclassName="69d898f0-bb9e-46a3-b590-03db3f5d9bd6" id="combo_dspsndoc_idtype">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000179" langDir="ad_nodes" caption="人员基本信息" fullclassName="2e8fa516-2b27-4ac5-981b-264f7e34cb09" id="combo_dspsndoc_dataoriginflag">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000179" langDir="ad_nodes" caption="人员基本信息" fullclassName="04dfe53c-46e0-4536-a26a-f6deeec3180d" id="combo_dspsndoc_sex">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000179" langDir="ad_nodes" caption="人员基本信息" fullclassName="6b533ffa-3e43-4147-8670-ba0f5471fd40" id="combo_dspsndoc_enablestate">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000184" langDir="ad_nodes" caption="人员工作信息" fullclassName="2e8fa516-2b27-4ac5-981b-264f7e34cb09" id="combo_dspsnjob_dataoriginflag">
+            </MDComboDataConf>
+        </ComboDatas>
+        <RefNodes>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000190" id="refnode_dspsnjob_pk_post_postname" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/refgrid.jsp" readDs="masterDs" readFields="pk_post,postname" refId="" refcode="岗位" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_岗位" usePower="false" writeDs="dspsnjob" writeFields="pk_post,pk_post_postname">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000191" id="refnode_dspsndoc_creator_user_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/refgrid.jsp" readDs="masterDs" readFields="cuserid,user_name" refId="" refcode="用户" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员基本信息_用户" usePower="false" writeDs="dspsndoc" writeFields="creator,creator_user_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000192" id="refnode_dspsnjob_pk_psncl_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_psncl,name" refId="" refcode="人员类别" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_人员类别" usePower="false" writeDs="dspsnjob" writeFields="pk_psncl,pk_psncl_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000193" id="refnode_dspsndoc_pk_org_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_org,name" refId="" refcode="业务单元" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员基本信息_业务单元" usePower="false" writeDs="dspsndoc" writeFields="pk_org,pk_org_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000194" id="refnode_dspsndoc_modifier_user_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/refgrid.jsp" readDs="masterDs" readFields="cuserid,user_name" refId="" refcode="用户" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员基本信息_用户" usePower="false" writeDs="dspsndoc" writeFields="modifier,modifier_user_name">
+            </NCRefNode>
+            <SelfRefNode dialog="true" height="" i18nName="w_ad_psndoc-000041" id="refnode_dspsndoc_addr_pk_address" isDialog="true" isRefresh="true" langDir="ad_nodes" path="addressBook?writeDs=dspsndoc&amp;writeField=addr,addrshowvalue" refresh="true" text="" width="">
+            </SelfRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000195" id="refnode_dspsnjob_pk_group_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_group,name" refId="" refcode="集团" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_集团" usePower="false" writeDs="dspsnjob" writeFields="pk_group,pk_group_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000196" id="refnode_dspsnjob_pk_job_jobname" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/refgrid.jsp" readDs="masterDs" readFields="pk_job,jobname" refId="" refcode="职务" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_职务" usePower="false" writeDs="dspsnjob" writeFields="pk_job,pk_job_jobname">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000197" id="refnode_dspsndoc_pk_group_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_group,name" refId="" refcode="集团" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员基本信息_集团" usePower="false" writeDs="dspsndoc" writeFields="pk_group,pk_group_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000198" id="refnode_dspsnjob_worktype_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_defdoc,name" refId="" refcode="工种(自定义档案)" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_工种(自定义档案)" usePower="false" writeDs="dspsnjob" writeFields="worktype,worktype_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000199" id="refnode_dspsnjob_pk_dept_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_dept,name" refId="" refcode="部门" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_部门" usePower="false" writeDs="dspsnjob" writeFields="pk_dept,pk_dept_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialog="true" i18nName="w_cp_psndoc-000200" id="refnode_dspsnjob_pk_org_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" path="reference/reftree.jsp" readDs="masterDs" readFields="pk_org,name" refId="" refcode="业务单元" refnodeDelegator="" refresh="true" selLeafOnly="false" text="人员工作信息_业务单元" usePower="false" writeDs="dspsnjob" writeFields="pk_org,pk_org_name">
+            </NCRefNode>
+        </RefNodes>
+    </Models>
+    <Components>
+        <FormComp i18nName="w_cp_psndoc-000179" langDir="ad_nodes" caption="人员基本信息" columnCount="2" dataset="dspsndoc" eleWidth="120" enabled="true" id="formpsndoc" labelMinWidth="0" renderType="2" rowHeight="22" visible="true">
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_psndoc" height="" i18nName="w_cp_psndoc-000082" langDir="ad_nodes" id="pk_psndoc" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="人员基本信息主键" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="false" field="pk_org" height="" i18nName="w_cp_psndoc-000083" langDir="ad_nodes" id="pk_org" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="所属业务单元" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="false" field="pk_org_name" height="" i18nName="w_cp_psndoc-000084" langDir="ad_nodes" id="pk_org_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsndoc_pk_org_name" rowSpan="1" selectOnly="true" text="所属业务单元" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="code" height="" i18nName="w_cp_psndoc-000085" langDir="ad_nodes" id="code" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="人员编码" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="name" height="" i18nName="w_cp_psndoc-000086" langDir="ad_nodes" id="name" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="姓名" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="name2" height="" i18nName="w_cp_psndoc-000087" langDir="ad_nodes" id="name2" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="name" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="name3" height="" i18nName="w_cp_psndoc-000088" langDir="ad_nodes" id="name3" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="name" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="name4" height="" i18nName="w_cp_psndoc-000089" langDir="ad_nodes" id="name4" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="name" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="name5" height="" i18nName="w_cp_psndoc-000090" langDir="ad_nodes" id="name5" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="name" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="name6" height="" i18nName="w_cp_psndoc-000091" langDir="ad_nodes" id="name6" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="name" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="usedname" height="" i18nName="w_cp_psndoc-000092" langDir="ad_nodes" id="usedname" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="曾用名" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="DateText" enabled="true" field="birthdate" height="" i18nName="w_cp_psndoc-000093" langDir="ad_nodes" id="birthdate" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="出生日期" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="ComboBox" enabled="true" field="sex" height="" i18nName="w_cp_psndoc-000094" langDir="ad_nodes" id="sex" imageOnly="false" nextLine="false" nullAble="true" refComboData="combo_dspsndoc_sex" rowSpan="1" selectOnly="true" text="性别" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="ComboBox" enabled="true" field="idtype" height="" i18nName="w_cp_psndoc-000095" langDir="ad_nodes" id="idtype" imageOnly="false" nextLine="false" nullAble="false" refComboData="combo_dspsndoc_idtype" rowSpan="1" selectOnly="true" text="证件类型" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="id" height="" i18nName="w_cp_psndoc-000096" langDir="ad_nodes" id="id" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="证件号" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="mnecode" height="" i18nName="w_cp_psndoc-000097" langDir="ad_nodes" id="mnecode" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="助记码" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="DateText" enabled="true" field="joinworkdate" height="" i18nName="w_cp_psndoc-000098" langDir="ad_nodes" id="joinworkdate" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="参加工作日期" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="addr" height="" i18nName="w_cp_psndoc-000099" langDir="ad_nodes" id="addr" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="家庭地址" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element i18nName="w_cp_psndoc-000180" langDir="ad_nodes" attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="addrshowvalue" height="" id="addrshowvalue" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsndoc_addr_pk_address" rowSpan="1" selectOnly="true" text="家庭住址" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="officephone" height="" i18nName="w_cp_psndoc-000100" langDir="ad_nodes" id="officephone" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="办公电话" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="homephone" height="" i18nName="w_cp_psndoc-000101" langDir="ad_nodes" id="homephone" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="家庭电话" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="mobile" height="" i18nName="w_cp_psndoc-000102" langDir="ad_nodes" id="mobile" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="手机" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="email" height="" i18nName="w_cp_psndoc-000103" langDir="ad_nodes" id="email" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="电子邮件" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def1" height="" i18nName="w_cp_psndoc-000104" langDir="ad_nodes" id="def1" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项1" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def2" height="" i18nName="w_cp_psndoc-000105" langDir="ad_nodes" id="def2" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项2" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def3" height="" i18nName="w_cp_psndoc-000106" langDir="ad_nodes" id="def3" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项3" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def4" height="" i18nName="w_cp_psndoc-000107" langDir="ad_nodes" id="def4" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项4" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def5" height="" i18nName="w_cp_psndoc-000108" langDir="ad_nodes" id="def5" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项5" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def6" height="" i18nName="w_cp_psndoc-000109" langDir="ad_nodes" id="def6" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项6" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def7" height="" i18nName="w_cp_psndoc-000110" langDir="ad_nodes" id="def7" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项7" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def8" height="" i18nName="w_cp_psndoc-000111" langDir="ad_nodes" id="def8" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项8" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def9" height="" i18nName="w_cp_psndoc-000112" langDir="ad_nodes" id="def9" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项9" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def10" height="" i18nName="w_cp_psndoc-000113" langDir="ad_nodes" id="def10" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项10" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def11" height="" i18nName="w_cp_psndoc-000114" langDir="ad_nodes" id="def11" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项11" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def12" height="" i18nName="w_cp_psndoc-000115" langDir="ad_nodes" id="def12" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项12" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def13" height="" i18nName="w_cp_psndoc-000116" langDir="ad_nodes" id="def13" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项13" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def14" height="" i18nName="w_cp_psndoc-000117" langDir="ad_nodes" id="def14" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项14" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def15" height="" i18nName="w_cp_psndoc-000118" langDir="ad_nodes" id="def15" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项15" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def16" height="" i18nName="w_cp_psndoc-000119" langDir="ad_nodes" id="def16" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项16" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def17" height="" i18nName="w_cp_psndoc-000120" langDir="ad_nodes" id="def17" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项17" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def18" height="" i18nName="w_cp_psndoc-000121" langDir="ad_nodes" id="def18" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项18" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def19" height="" i18nName="w_cp_psndoc-000122" langDir="ad_nodes" id="def19" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项19" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def20" height="" i18nName="w_cp_psndoc-000123" langDir="ad_nodes" id="def20" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项20" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="ComboBox" enabled="false" field="enablestate" height="" i18nName="w_cp_psndoc-000124" langDir="ad_nodes" id="enablestate" imageOnly="false" nextLine="false" nullAble="true" refComboData="combo_dspsndoc_enablestate" rowSpan="1" selectOnly="true" text="启用状态" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="false" field="creator" height="" i18nName="w_cp_psndoc-000125" langDir="ad_nodes" id="creator" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="创建人" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="false" field="creator_user_name" height="" i18nName="w_cp_psndoc-000126" langDir="ad_nodes" id="creator_user_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsndoc_creator_user_name" rowSpan="1" selectOnly="true" text="创建人" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="DateTimeText" enabled="false" field="creationtime" height="" i18nName="w_cp_psndoc-000127" langDir="ad_nodes" id="creationtime" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="创建时间" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="false" field="modifier" height="" i18nName="w_cp_psndoc-000128" langDir="ad_nodes" id="modifier" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="最后修改人" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="false" field="modifier_user_name" height="" i18nName="w_cp_psndoc-000129" langDir="ad_nodes" id="modifier_user_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsndoc_modifier_user_name" rowSpan="1" selectOnly="true" text="最后修改人" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="DateTimeText" enabled="false" field="modifiedtime" height="" i18nName="w_cp_psndoc-000130" langDir="ad_nodes" id="modifiedtime" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="最后修改时间" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="ComboBox" enabled="true" field="dataoriginflag" height="" i18nName="w_cp_psndoc-000131" langDir="ad_nodes" id="dataoriginflag" imageOnly="false" nextLine="false" nullAble="true" refComboData="combo_dspsndoc_dataoriginflag" rowSpan="1" selectOnly="true" text="分布式" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_group" height="" i18nName="w_cp_psndoc-000132" langDir="ad_nodes" id="pk_group" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="所属集团" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_group_name" height="" i18nName="w_cp_psndoc-000133" langDir="ad_nodes" id="pk_group_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsndoc_pk_group_name" rowSpan="1" selectOnly="true" text="所属集团" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="IntegerText" enabled="true" field="status" height="" id="status" imageOnly="false" nextLine="false" nullAble="true" precision="0" rowSpan="1" selectOnly="true" text="vostatus" toolbarType="Custom" visible="false" width="">
+            </Element>
+        </FormComp>
+        <ButtonComp enabled="true" i18nName="w_cp_psndoc-000203" id="btn_cancel" langDir="ad_nodes" text="取消" visible="true">
+            <Events>
+                <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onCancelClick" name="onclick" onserver="true">
+                    <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                    </SubmitRule>
+                    <Params>
+                        <Param>
+                            <Name>mouseEvent</Name>
+                            <Value>
+                            </Value>
+                            <Desc>                                <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                            </Desc>
+                        </Param>
+                    </Params>
+                    <Action>
+                    </Action>
+                </Event>
+            </Events>
+        </ButtonComp>
+        <FormComp i18nName="w_cp_psndoc-000184" langDir="ad_nodes" caption="人员工作信息" columnCount="2" dataset="dspsnjob" eleWidth="120" enabled="true" id="formpsnjob" labelMinWidth="0" renderType="2" rowHeight="22" visible="true">
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_psnjob" height="" i18nName="w_cp_psndoc-000134" langDir="ad_nodes" id="pk_psnjob" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="人员工作信息主键" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_group" height="" i18nName="w_cp_psndoc-000135" langDir="ad_nodes" id="pk_group" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="任职集团" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_group_name" height="" i18nName="w_cp_psndoc-000136" langDir="ad_nodes" id="pk_group_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsnjob_pk_group_name" rowSpan="1" selectOnly="true" text="任职集团" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_org" height="" i18nName="w_cp_psndoc-000137" langDir="ad_nodes" id="pk_org" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="任职业务单元" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_org_name" height="" i18nName="w_cp_psndoc-000138" langDir="ad_nodes" id="pk_org_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsnjob_pk_org_name" rowSpan="1" selectOnly="true" text="任职业务单元" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_dept" height="" i18nName="w_cp_psndoc-000139" langDir="ad_nodes" id="pk_dept" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="所在部门" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_dept_name" height="" i18nName="w_cp_psndoc-000140" langDir="ad_nodes" id="pk_dept_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsnjob_pk_dept_name" rowSpan="1" selectOnly="true" text="所在部门" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="psncode" height="" i18nName="w_cp_psndoc-000141" langDir="ad_nodes" id="psncode" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="员工编号" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_psncl_name" height="" i18nName="w_cp_psndoc-000142" langDir="ad_nodes" id="pk_psncl_name" imageOnly="false" nextLine="false" nullAble="false" refNode="refnode_dspsnjob_pk_psncl_name" rowSpan="1" selectOnly="true" text="人员类别" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_psncl" height="" i18nName="w_cp_psndoc-000143" langDir="ad_nodes" id="pk_psncl" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="人员类别" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="CheckBox" enabled="false" field="ismainjob" height="" i18nName="w_cp_psndoc-000144" langDir="ad_nodes" id="ismainjob" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="是否主职" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="worktype" height="" i18nName="w_cp_psndoc-000145" langDir="ad_nodes" id="worktype" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="工种" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="worktype_name" height="" i18nName="w_cp_psndoc-000146" langDir="ad_nodes" id="worktype_name" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsnjob_worktype_name" rowSpan="1" selectOnly="true" text="工种" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="DateText" enabled="true" field="indutydate" height="" i18nName="w_cp_psndoc-000147" langDir="ad_nodes" id="indutydate" imageOnly="false" nextLine="false" nullAble="false" rowSpan="1" selectOnly="true" text="到职日期" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_job" height="" i18nName="w_cp_psndoc-000148" langDir="ad_nodes" id="pk_job" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="职务" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_job_jobname" height="" i18nName="w_cp_psndoc-000149" langDir="ad_nodes" id="pk_job_jobname" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsnjob_pk_job_jobname" rowSpan="1" selectOnly="true" text="职务" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="jobname" height="" i18nName="w_cp_psndoc-000150" langDir="ad_nodes" id="jobname" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="职务称谓" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_post" height="" i18nName="w_cp_psndoc-000151" langDir="ad_nodes" id="pk_post" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="岗位" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="Reference" enabled="true" field="pk_post_postname" height="" i18nName="w_cp_psndoc-000152" langDir="ad_nodes" id="pk_post_postname" imageOnly="false" nextLine="false" nullAble="true" refNode="refnode_dspsnjob_pk_post_postname" rowSpan="1" selectOnly="true" text="岗位" toolbarType="Custom" visible="true" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def1" height="" i18nName="w_cp_psndoc-000153" langDir="ad_nodes" id="def1" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项1" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def2" height="" i18nName="w_cp_psndoc-000154" langDir="ad_nodes" id="def2" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项2" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def3" height="" i18nName="w_cp_psndoc-000155" langDir="ad_nodes" id="def3" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项3" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def4" height="" i18nName="w_cp_psndoc-000156" langDir="ad_nodes" id="def4" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项4" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def5" height="" i18nName="w_cp_psndoc-000157" langDir="ad_nodes" id="def5" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项5" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def6" height="" i18nName="w_cp_psndoc-000158" langDir="ad_nodes" id="def6" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项6" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def7" height="" i18nName="w_cp_psndoc-000159" langDir="ad_nodes" id="def7" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项7" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def8" height="" i18nName="w_cp_psndoc-000160" langDir="ad_nodes" id="def8" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项8" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def9" height="" i18nName="w_cp_psndoc-000161" langDir="ad_nodes" id="def9" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项9" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def10" height="" i18nName="w_cp_psndoc-000162" langDir="ad_nodes" id="def10" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项10" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def11" height="" i18nName="w_cp_psndoc-000163" langDir="ad_nodes" id="def11" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项11" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def12" height="" i18nName="w_cp_psndoc-000164" langDir="ad_nodes" id="def12" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项12" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def13" height="" i18nName="w_cp_psndoc-000165" langDir="ad_nodes" id="def13" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项13" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def14" height="" i18nName="w_cp_psndoc-000166" langDir="ad_nodes" id="def14" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项14" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def15" height="" i18nName="w_cp_psndoc-000167" langDir="ad_nodes" id="def15" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项15" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def16" height="" i18nName="w_cp_psndoc-000168" langDir="ad_nodes" id="def16" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项16" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def17" height="" i18nName="w_cp_psndoc-000169" langDir="ad_nodes" id="def17" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项17" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def18" height="" i18nName="w_cp_psndoc-000170" langDir="ad_nodes" id="def18" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项18" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def19" height="" i18nName="w_cp_psndoc-000171" langDir="ad_nodes" id="def19" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项19" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="def20" height="" i18nName="w_cp_psndoc-000172" langDir="ad_nodes" id="def20" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="自定义项20" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="ComboBox" enabled="true" field="dataoriginflag" height="" i18nName="w_cp_psndoc-000173" langDir="ad_nodes" id="dataoriginflag" imageOnly="false" nextLine="false" nullAble="true" refComboData="combo_dspsnjob_dataoriginflag" rowSpan="1" selectOnly="true" text="分布式" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element attachNext="false" colSpan="1" editable="true" editorType="IntegerText" enabled="true" field="status" height="" id="status" imageOnly="false" nextLine="false" nullAble="true" precision="0" rowSpan="1" selectOnly="true" text="vostatus" toolbarType="Custom" visible="false" width="">
+            </Element>
+            <Element i18nName="w_cp_psndoc-000205" langDir="ad_nodes" attachNext="false" colSpan="1" editable="true" editorType="StringText" enabled="true" field="pk_psndoc" height="" id="pk_psndoc" imageOnly="false" nextLine="false" nullAble="true" rowSpan="1" selectOnly="true" text="人员基本信息_主键" toolbarType="Custom" visible="false" width="">
+            </Element>
+        </FormComp>
+        <ButtonComp enabled="true" i18nName="w_cp_psndoc-000206" id="btn_ok" langDir="ad_nodes" text="确定" visible="true">
+            <Events>
+                <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onOkClick" name="onclick" onserver="true">
+                    <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                    </SubmitRule>
+                    <Params>
+                        <Param>
+                            <Name>mouseEvent</Name>
+                            <Value>
+                            </Value>
+                            <Desc>                                <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                            </Desc>
+                        </Param>
+                    </Params>
+                    <Action>
+                    </Action>
+                </Event>
+            </Events>
+        </ButtonComp>
+    </Components>
+    <Menus>
+    </Menus>
+</Widget>

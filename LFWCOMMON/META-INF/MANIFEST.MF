@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Lfw Common Plug-in
+Bundle-SymbolicName: com.yonyou.studio.web.common;singleton:=true
+Bundle-Version: 6.3.6.20141111
+Bundle-Localization: plugin
+Bundle-Activator: nc.uap.lfw.plugin.common.CommonPlugin
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.core,
+ org.eclipse.core.filesystem;bundle-version="1.2.0",
+ org.eclipse.ui;bundle-version="3.4.2",
+ org.eclipse.core.variables;bundle-version="3.2.100",
+ org.eclipse.jdt.launching;bundle-version="3.4.1"
+Bundle-ActivationPolicy: lazy
+Export-Package: nc.uap.lfw.common,
+ nc.uap.lfw.plugin.common
+Bundle-Vendor: Yonyou Software CO.LTD
+Bundle-ClassPath: .
+Import-Package: com.yonyou.uap.studio.lic,
+ nc.uap.plugin.studio,
+ org.apache.tools.zip,
+ org.dom4j;version="1.6.1",
+ org.dom4j.io;version="1.6.1",
+ org.jaxen;version="1.1.1"

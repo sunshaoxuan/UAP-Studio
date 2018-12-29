@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!--建工程扩展点-->
+    <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="nc.uap.lfw.newWizards"
+            name="%category.name"/>
+      <wizard
+            category="nc.uap.lfw.newWizards"
+            class="nc.uap.portal.wizards.NewLFWPortalModuleProjectWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/project.gif"
+            id="nc.uap.portal.wizards.NewLFWPortalModuleProjectWizard"
+            name="%wizard.name"
+            preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+            project="true"/>
+   </extension>
+   
+   <!--   
+    <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Portal Development"
+            id="nc.uap.portal.newWizards"/>
+      <wizard
+            category="nc.uap.portal.newWizards"
+            class="nc.uap.portal.wizards.NewPortalModuleProjectWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/project.gif"
+            id="nc.uap.portal.wizards.NewPortalModuleProjectWizard"
+            name="Portal向导(非LFW工程)"
+            preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+            project="true"/>
+   </extension>
+   
+   
+     <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IResource"
+            id="nc.uap.lfw.MDEToolSet">
+         <menu
+               label="LFW Tools"
+               id="nc.uap.lfw.MDETools">
+            <separator name="group0"/>
+         </menu>
+          <filter
+               value="nc.uap.portal.ModuleProjectNature"
+               name="projectNature"/>
+          <action
+               class="nc.uap.portal.wizards.UpdataPortalSpecFiles"
+               id="nc.uap.portal.wizards.UpdataPortalSpecFiles"
+               label="ForceCopyPortalspecFiles"
+               menubarPath="nc.uap.lfw.MDETools/group0"/>          
+      	</objectContribution>
+    </extension>
+   -->
+     <extension
+           id="nc.uap.portal.ModuleProjectNature"
+           name="%portal.nature.name"
+           point="org.eclipse.core.resources.natures">
+        <runtime>
+           <run
+                 class="nc.uap.portal.project.PortalProject">
+           </run>
+        </runtime>
+      <requires-nature id="org.eclipse.jdt.core.javanature"/>
+      <builder id="nc.uap.portal.project.PortalBuilder"/>  
+     </extension>
+   
+       <extension
+         id="nc.uap.portal.project.PortalBuilder"
+         name="%extension.name"
+         point="org.eclipse.core.resources.builders">
+      <builder hasNature="true">
+         <run class="nc.uap.portal.project.PortalBuilder"/>
+      </builder>
+   </extension>
+   <!--
+     <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IResource"
+            id="nc.uap.lfw.MDEToolSet">
+         <filter
+               value="nc.uap.portal.ModuleProjectNature"
+               name="projectNature"/>
+         <menu
+               label="LFW Tools"
+               id="nc.uap.lfw.MDETools">
+            <separator name="group0"/>
+         </menu>
+          <action
+               class="nc.uap.portal.wizards.UpdataPortalSpecFiles"
+               enablesFor="1"
+               id="nc.uap.portal.wizards.UpdataPortalSpecFiles"
+               label="ForceCopyPortalspecFiles"
+               menubarPath="nc.uap.lfw.PortalTools/group0"/>     
+    	</objectContribution>
+    </extension>
+    
+    -->
+ 
+</plugin>

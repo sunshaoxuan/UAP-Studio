@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Math">
+	<item repl="E" display="E" />
+	<item repl="LN2" display="LN2" />
+	<item repl="LN10" display="LN10" />
+	<item repl="LOG2E" display="LOG2E" />
+	<item repl="LOG10E" display="LOG10E" />
+	<item repl="PI" display="PI" />
+	<item repl="SQRT1_2" display="SQRT1_2" />
+	<item repl="SQRT2" display="SQRT2" />
+	<item repl="abs(val)" display="abs(val)" />
+	<item repl="acos(val)" display="acos(val)" />
+	<item repl="asin(val)" display="asin(val)" />
+	<item repl="atan(val)" display="atan(val)" />
+	<item repl="atan2(val)" display="atan2(val)" />
+	<item repl="ceil(val)" display="ceil(val)" />
+	<item repl="cos(val)" display="cos(val)" />
+	<item repl="exp(val)" display="exp(val)" />
+	<item repl="floor(val)" display="floor(val)" />
+	<item repl="log(val)" display="log(val)" />
+	<item repl="max(val1,val2)" display="max(val1,val2)" />
+	<item repl="min(val1,val2)" display="min(val1,val2)" />
+	<item repl="pow(val1,power)" display="pow(val1,pow)" />
+	<item repl="random()" display="random()" />
+	<item repl="round(val)" display="round(val)" />
+	<item repl="sin(val)" display="sin(val)" />
+	<item repl="sqrt(val)" display="sqrt(val)" />
+	<item repl="tan(val)" display="tan(val)" />
+</completion>

@@ -1,0 +1,1017 @@
+package nc.uap.lfw.perspective.editor;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.EventObject;
+import java.util.List;
+
+import nc.lfw.editor.common.Connection;
+import nc.lfw.editor.common.LFWAbstractViewPage;
+import nc.lfw.editor.common.LFWBaseEditor;
+import nc.lfw.editor.common.LfwBaseEditorInput;
+import nc.lfw.editor.common.LfwElementObjWithGraph;
+import nc.lfw.editor.common.tools.LFWPersTool;
+import nc.lfw.lfwtools.perspective.MainPlugin;
+import nc.uap.lfw.core.WEBPersConstants;
+import nc.uap.lfw.core.WEBPersPlugin;
+import nc.uap.lfw.core.combodata.ComboData;
+import nc.uap.lfw.core.comp.WebElement;
+import nc.uap.lfw.core.data.Dataset;
+import nc.uap.lfw.core.data.FieldRelation;
+import nc.uap.lfw.core.data.FieldRelations;
+import nc.uap.lfw.core.data.IRefDataset;
+import nc.uap.lfw.core.data.MdDataset;
+import nc.uap.lfw.core.data.PubDataset;
+import nc.uap.lfw.core.data.RefDataset;
+import nc.uap.lfw.core.data.RefMdDataset;
+import nc.uap.lfw.core.data.RefPubDataset;
+import nc.uap.lfw.core.event.DatasetEvent;
+import nc.uap.lfw.core.event.conf.EventConf;
+import nc.uap.lfw.core.event.conf.JsEventDesc;
+import nc.uap.lfw.core.page.LfwView;
+import nc.uap.lfw.core.refnode.IRefNode;
+import nc.uap.lfw.editor.common.tools.LFWAMCPersTool;
+import nc.uap.lfw.editor.common.tools.LFWSaveElementTool;
+import nc.uap.lfw.editor.common.tools.LFWTool;
+import nc.uap.lfw.factory.ElementEidtPartFactory;
+import nc.uap.lfw.palette.ChildConnection;
+import nc.uap.lfw.palette.PaletteFactory;
+import nc.uap.lfw.parts.LFWElementPart;
+import nc.uap.lfw.perspective.action.NewDsFormMDAction;
+import nc.uap.lfw.perspective.model.DatasetElementObj;
+import nc.uap.lfw.perspective.model.DatasetGraph;
+import nc.uap.lfw.perspective.model.RefDatasetElementObj;
+import nc.uap.lfw.perspective.project.LFWExplorerTreeView;
+import nc.uap.lfw.perspective.views.LFWViewPage;
+import nc.uap.lfw.perspective.webcomponent.LFWBusinessCompnentTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWComboTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWDSTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWDirtoryTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWProjectTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWRefNodeTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWSeparateTreeItem;
+import nc.uap.lfw.perspective.webcomponent.LFWWidgetTreeItem;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.KeyStroke;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
+import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.gef.ui.palette.PaletteViewerProvider;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IPageLayout;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
+
+/**
+ * dataset编辑器
+ * @author zhangxya 
+ *
+ */
+public class DataSetEditor extends LFWBaseEditor {
+	
+	private DatasetGraph graph = new DatasetGraph();
+	private TableViewer tv = null;
+	private	Dataset ds = null;
+	private DatasetElementObj dsElementObj = null;
+//	private boolean isPoolds = false;
+	private PaletteRoot paleteRoot = null;
+	private boolean caneditflag = true;
+	
+
+	public DatasetGraph getGraph() {
+		return graph;
+	}
+
+	public void setGraph(DatasetGraph graph) {
+		this.graph = graph;
+	}
+
+	public DataSetEditor() {
+		super();
+		setEditDomain(new DefaultEditDomain(this));
+		getEditDomain().setDefaultTool(new PaletteFactory.CustomSelectionTool());
+	}
+	public TableViewer getTv() {
+		return tv;
+	}	
+	
+	public void setTv(TableViewer tv) {
+		this.tv = tv;
+	}
+
+	public void executComand(Command cmd){
+		super.getCommandStack().execute(cmd);
+	}
+
+
+	
+	public boolean isDirty() {
+		if(!caneditflag)
+			return false;
+		if (super.isDirty())
+			return true;
+		return getCommandStack().isDirty();
+	}
+	
+	
+	public void commandStackChanged(EventObject arg0) {
+		if(caneditflag){
+			firePropertyChange(IEditorPart.PROP_DIRTY);
+			super.commandStackChanged(arg0);
+		}
+	}
+
+	public boolean isSaveAsAllowed() {
+		return false;
+	}
+	@Override
+	public boolean isSaveOnCloseNeeded() {
+		return caneditflag;		
+	}
+
+	
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
+		super.init(site, input);
+		setPartName(input.getName());
+	}
+	
+	/**
+	 * 第一次增加时，没有保存，则删除节点
+	 */
+	public void  deleteNode(){
+		LFWExplorerTreeView view = LFWExplorerTreeView.getLFWExploerTreeView(null);
+		IEditorInput input = getEditorInput();
+		DataSetEitorInput dsEditor = (DataSetEitorInput)input;
+		Dataset ds = (Dataset)dsEditor.getCloneElement();
+		widget = (LfwView)LFWPersTool.getCurrentWidget().clone();
+		if(widget != null){
+			if(widget.getViewModels().getDataset(ds.getId()) == null){
+				try {
+					view.deleteNewNode();
+				} catch (Exception e) {
+					MainPlugin.getDefault().logError(e.getMessage(), e);
+				}
+			 }
+		}else{
+			
+		}
+	 }
+	
+	public void refreshTreeItemText(Dataset ds){
+		//IEditorInput input = getEditorInput();
+		TreeItem treeItem = LFWPersTool.getCurrentTreeItem();
+		if(treeItem instanceof LFWDSTreeItem){
+			LFWDSTreeItem dsTreeItem = (LFWDSTreeItem) treeItem;
+			dsTreeItem.setText(ds.getId() + "[" + ds.getCaption() + "]");
+		}
+//		if(input instanceof ElementEditorInput){
+//			//WebElement webElement = eleEditorInput.getCloneElement();
+//			Tree tree = LFWPersTool.getTree();
+//			TreeItem treeItem = tree.getSelection()[0];
+//			if(treeItem instanceof LFWDSTreeItem){
+//				LFWDSTreeItem dsTreeItem = (LFWDSTreeItem) treeItem;
+//				dsTreeItem.setText(ds.getId() + "[" + ds.getCaption() + "]");
+//			}
+//		}
+	}
+	
+	public void setFocus() {
+		super.setFocus();
+		Tree tree = LFWPersTool.getTree();
+		IEditorInput input = getEditorInput();
+		DataSetEitorInput dsEditorInput = (DataSetEitorInput)input;
+		Dataset ds = (Dataset) dsEditorInput.getCloneElement();
+		LFWWidgetTreeItem widgetTreeItem = getWidgetTreeItem();
+		//widget下的数据集
+		if(widgetTreeItem != null&&!widgetTreeItem.isDisposed()){
+			LFWSeparateTreeItem lfwSeparaTreeItem = getWebSeparateTreeItem(WEBPersConstants.DATASET);
+			TreeItem[] childTreeItems = lfwSeparaTreeItem.getItems();
+			for (int i = 0; i < childTreeItems.length; i++) {
+				LFWDSTreeItem dsT = (LFWDSTreeItem) childTreeItems[i];
+				if(dsT.getText().indexOf("[") != -1){
+					if(dsT.getText().substring(0,dsT.getText().indexOf("[")).equals(ds.getId())){
+						tree.setSelection(dsT);
+						break;
+					}
+				}
+				else{
+					if(dsT.getText().equals(ds.getId())){
+						tree.setSelection(dsT);
+						break;
+					}
+				}
+			}
+		}
+		else if(widgetTreeItem == null){
+			//公共数据集
+			TreeItem[] treeItems = tree.getItems();
+			IProject project = LFWPersTool.getCurrentProject();
+			LFWProjectTreeItem projectTreeItem = null;
+			for (int i = 0; i < treeItems.length; i++) {
+				LFWProjectTreeItem projectItem = (LFWProjectTreeItem) treeItems[i];
+				if(projectItem.getProjectModel().getJavaProject().equals(project)){
+					projectTreeItem = projectItem;
+					break;
+				}
+			}
+			LFWDirtoryTreeItem pubDsNode = null;
+			
+			LFWDirtoryTreeItem nodeTreeItem = null;
+			LFWBusinessCompnentTreeItem busiCompTreeItem = null;
+			if(LFWPersTool.isBCPProject(project)){
+				TreeItem currComp = LFWPersTool.getCurrentBusiCompTreeItem();
+				if(currComp != null){
+					TreeItem[] compTreeItems = projectTreeItem.getItems();
+					for (int i = 0; i < compTreeItems.length; i++) {
+						TreeItem treeItem = compTreeItems[i];
+						if(treeItem.getText().equals(currComp.getText())){
+							busiCompTreeItem = (LFWBusinessCompnentTreeItem) treeItem;
+							break;
+						}
+					}
+				}
+			}
+			TreeItem[] nodesTreeItems = null;
+			if(busiCompTreeItem != null)
+				nodesTreeItems = busiCompTreeItem.getItems();
+			else
+				nodesTreeItems = projectTreeItem.getItems();
+			for (int i = 0; i < nodesTreeItems.length; i++) {
+				TreeItem treeItem = nodesTreeItems[i];
+				if(treeItem.getText().equals(LFWTool.getWEBProjConstantValue("PUBLIC_DATASET"))){
+					nodeTreeItem = (LFWDirtoryTreeItem) treeItem;
+					pubDsNode = (LFWDirtoryTreeItem) treeItem;
+					break;
+				}
+			}
+			LFWDSTreeItem selDsTreeItem = null;
+			String dsId = ds.getId();
+			if(dsId.indexOf(".") != -1){
+				String firstFolder = dsId.substring(0, dsId.indexOf("."));
+				String leftfolder = dsId.substring(dsId.indexOf(".") + 1);
+				
+				while(nodeTreeItem != null){
+					TreeItem[] childTreeItems = nodeTreeItem.getItems();
+					for (int i = 0; i < childTreeItems.length; i++) {
+						if(nodeTreeItem == null)
+							break;
+						TreeItem childTreeItem = childTreeItems[i];
+						if(childTreeItem instanceof LFWDirtoryTreeItem && childTreeItem.getText().equals(firstFolder)){
+							if(leftfolder.indexOf(".") != -1){
+								firstFolder = leftfolder.substring(0, leftfolder.indexOf("."));
+								leftfolder = leftfolder.substring(leftfolder.indexOf(".")+ 1);
+							}
+							nodeTreeItem = (LFWDirtoryTreeItem) childTreeItem;
+							break;
+						}
+						else {
+							TreeItem[] dsTreeItems = nodeTreeItem.getItems();
+							for (int j = 0; j < dsTreeItems.length; j++) {
+								TreeItem dsTreeItem = dsTreeItems[j];
+								if(dsTreeItem instanceof LFWDSTreeItem){
+									if(dsTreeItem.getText().equals(leftfolder)){
+										selDsTreeItem = (LFWDSTreeItem) dsTreeItem;
+										nodeTreeItem = null;
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			else{
+				TreeItem[] dsTreeItems = nodeTreeItem.getItems();
+				for (int j = 0; j < dsTreeItems.length; j++) {
+					TreeItem dsTreeItem = dsTreeItems[j];
+					if(dsTreeItem instanceof LFWDSTreeItem){
+						if(dsTreeItem.getText().equals(dsId)){
+							selDsTreeItem = (LFWDSTreeItem) dsTreeItem;
+							break;
+						}
+					}
+				}
+			}
+			if(selDsTreeItem != null){
+				tree.setSelection(selDsTreeItem);
+			}
+			else
+				tree.setSelection(pubDsNode);
+		}
+	}
+		
+//	 public String getPath(){
+//		if(widgeTreeItem != null){
+//			File file = widgeTreeItem.getFile();
+//			String path = file.getPath() + "/widget.wd";
+//			return path;
+//		}
+//		else
+//			return null;
+//	}
+	
+	//保存
+	public boolean save(){
+		
+		//如果文件没有checkout,首先checkout文件
+//		if(!isDirty())
+//			return true;
+		DatasetElementObj dsobj = (DatasetElementObj) this.graph.getCells().get(0);
+		//如果ds的Id发生了改变，需要改变相应的数据
+		Dataset dsnewds = dsobj.getDs();
+		IEditorInput input = getEditorInput();
+		DataSetEitorInput dsEditorInput = (DataSetEitorInput)input;
+		ds = (Dataset) dsEditorInput.getCloneElement();
+//		dsnewds.setListenerMap(ds.getListenerMap());
+		RefPubDataset refpubds  = null;
+		RefMdDataset refmdds = null;
+
+		if(ds instanceof IRefDataset){
+			if(dsnewds instanceof PubDataset){
+				refpubds = new RefPubDataset();
+				refpubds.setFieldSet(dsnewds.getFieldSet());
+				refpubds.setRefId(((PubDataset) dsnewds).getRefId());
+				refpubds.setId(ds.getId());
+				dsobj.setDs(refpubds);
+			}
+			if(dsnewds instanceof MdDataset){
+				refmdds = new RefMdDataset();
+				refmdds.setFieldSet(dsnewds.getFieldSet());
+				refmdds.setObjMeta(((MdDataset) dsnewds).getObjMeta());
+				refmdds.setId(ds.getId());
+				dsobj.setDs(refmdds);
+			}
+		}else{
+			dsobj.setDs(dsnewds);
+		}
+		if(dsnewds.getFrom() != null)
+			dsnewds.setConfType(WebElement.CONF_REF);
+		if(widget == null)
+			widget = LFWPersTool.getCurrentWidget();
+		if(widget != null){
+			Dataset oldds = widget.getViewModels().getDataset(dsobj.getOrginaldsId());
+			if(oldds != null){
+				widget.getViewModels().removeDataset(dsobj.getOrginaldsId());
+				RemoveOriginalCombdatas(dsobj.getOrginaldsId());
+				RemoveOriginalRefNodes(dsobj.getOrginaldsId());
+			}
+			if(ds instanceof IRefDataset){
+				if(dsnewds instanceof PubDataset){
+					widget.getViewModels().addDataset(refpubds);
+				}else if(dsnewds instanceof MdDataset){
+					widget.getViewModels().addDataset(refmdds); 
+				}
+			}
+			else
+				widget.getViewModels().addDataset(dsnewds);
+			Dataset currentDS = widget.getViewModels().getDataset(ds.getId());
+			boolean isAddMethod = false;
+			if(currentDS != null && !currentDS.isLazyLoad()){
+				EventConf[] ecs = currentDS.getEventConfs();
+				isAddMethod = true;
+				if(ecs != null && ecs.length > 0){
+					for(EventConf ec : ecs){
+						if(ec.getName().equals(DatasetEvent.ON_DATA_LOAD)){
+							isAddMethod = false;
+							break;
+						}
+					}
+				}
+			}
+			if(isAddMethod){
+				if(widget != null && widget.getControllerClazz() != null && widget.getControllerClazz().trim().length() > 0){
+					EventConf eventConf = null;
+					List<EventConf> ecList = LFWTool.getAcceptEventList(getAcceptEventDescs());
+					for(EventConf ec : ecList){
+						if(DatasetEvent.ON_DATA_LOAD.equals(ec.getName())){
+							eventConf = (EventConf)ec.clone();
+							break;
+						}
+					}
+					eventConf.setMethodName(DatasetEvent.ON_DATA_LOAD + "_" + ds.getId());
+					String projectPath = LFWAMCPersTool.getLFWProjectPath();
+					int index = widget.getControllerClazz().lastIndexOf(".");
+					String packageName = null;
+					if(index > 0){
+						packageName = widget.getControllerClazz().substring(0, index);
+					}else{
+						packageName = "";
+					}
+					String className = widget.getControllerClazz().substring(index + 1);
+					String classFilePath = projectPath + File.separator + widget.getSourcePackage() + packageName.replaceAll("\\.", "/");
+					String classFileName = className + ".java";
+					eventConf.setClassFilePath(classFilePath);
+					eventConf.setClassFileName(classFileName);
+					eventConf.setEventStatus(EventConf.ADD_STATUS);
+					currentDS.addEventConf(eventConf);
+					LFWSaveElementTool.updateView(widget);
+				}
+			}else{
+				LFWPersTool.saveWidget(widget);
+			}
+			getCommandStack().markSaveLocation();
+			//更新左边的树节点
+			refreshTreeItem(dsnewds);
+			if(dsobj.getExtendFlag() != null && dsobj.getExtendFlag()){
+				addExtendedCombdatas();
+				addExtendedRefDs();
+				addExtendedRefNode();
+			}
+			return true;
+		}
+		//公共池中的ds保存
+//		else{
+//			String projectPath = LFWPersTool.getProjectPath();
+//			TreeItem treeItem = LFWPersTool.getCurrentTreeItem();
+//			String directory = treeItem.getText();
+//			TreeItem parent = (TreeItem)treeItem.getParentItem();
+//			while (parent != null && parent instanceof LFWDirtoryTreeItem) {
+//				if (parent.getText().equals(LFWTool.getWEBProjConstantValue("PUBLIC_DATASET")))
+//					break;
+//				directory = ((LFWDirtoryTreeItem)parent).getFile().getName() + "/" + directory;
+//				//treeItem = parent;
+//				parent = (TreeItem)parent.getParentItem();
+//			}
+//			
+//			if(LFWPersTool.isBCPProject(LFWPersTool.getCurrentProject())){
+//				LFWBusinessCompnentTreeItem busiCompnent = LFWPersTool.getCurrentBusiCompTreeItem();
+//				projectPath += "/" + busiCompnent.getText().substring(busiCompnent.getText().indexOf(LFWTool.getWEBProjConstantValue("BUSINESSCOMPONENT")) + 
+//						LFWTool.getWEBProjConstantValue("BUSINESSCOMPONENT").length() + 1, busiCompnent.getText().length() -1 );
+//			}
+//			
+//			String filePath = projectPath + "/web/pagemeta/public/dspool";
+//			if(directory.lastIndexOf("/") != -1){
+//				String folder = directory.substring(0, directory.lastIndexOf("/"));
+//				filePath = projectPath + "/web/pagemeta/public/dspool/" + folder;
+//			}
+//			String fileName = treeItem.getText() + ".xml";
+//			LFWPersTool.getCurrentProject().getLocation();
+//			String rootPath = LFWUtility.getContextFromResource(LFWPersTool.getCurrentProject());
+//			LFWConnector.saveDatasettoXml("/" + rootPath, filePath, fileName, dsnewds);
+//			refreshTreeItem(dsnewds);
+//			getCommandStack().markSaveLocation();
+//			return true;
+//		}
+		return true;
+		
+	}
+	
+	/**
+	 *  删除原来的combodata
+	 * @param id
+	 */
+	public void RemoveOriginalCombdatas(String id){
+		//增加下拉数据集
+		LFWSeparateTreeItem lfwSeparaTreeItem = getWebSeparateTreeItem(LFWTool.getWEBProjConstantValue("COMBODATA"));
+		if(lfwSeparaTreeItem != null){
+			TreeItem[] treeItems = lfwSeparaTreeItem.getItems();
+			for (int i = 0; i < treeItems.length; i++) {
+				ComboData combo = (ComboData) treeItems[i].getData();
+				if(combo.getId().startsWith("combo_" + id))
+					treeItems[i].dispose();
+			}
+		}
+	}
+	
+	
+	/**
+	 * 删除原来的refnodes
+	 * @param id
+	 */
+	public void RemoveOriginalRefNodes(String id){
+		LFWSeparateTreeItem lfwSeparaTreeItem = getWebSeparateTreeItem(LFWTool.getWEBProjConstantValue("REFNODE"));
+		if(lfwSeparaTreeItem != null){
+			TreeItem[] treeItems = lfwSeparaTreeItem.getItems();
+			for (int i = 0; i < treeItems.length; i++) {
+				if(treeItems[i].getData() instanceof IRefNode){
+					IRefNode refnode = (IRefNode) treeItems[i].getData();
+					if(refnode.getId().startsWith("refnode_" + id))
+						treeItems[i].dispose();
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * 从NC引入ds的时候，可能增加新的引用ds，下拉框，参照节点数据
+	 * @param widget
+	 */
+	public void addExtendedCombdatas(){
+		//增加下拉数据集
+		//Map<String, ComboData>  combodataMap = widget.getViewModels().getComboDataMap();
+		if(widget != null){
+			ComboData[] comboDatas = widget.getViewModels().getComboDatas();
+			LFWSeparateTreeItem lfwSeparaTreeItem = getWebSeparateTreeItem(LFWTool.getWEBProjConstantValue("COMBODATA"));
+			if(lfwSeparaTreeItem != null){
+				TreeItem[] treeItems = lfwSeparaTreeItem.getItems();
+				List<String> list = new ArrayList<String>();
+				if(treeItems != null && treeItems.length > 0){
+					for (int i = 0; i < treeItems.length; i++) {
+						ComboData combo = (ComboData) treeItems[i].getData();
+						list.add(combo.getId());
+					}
+				}
+				if(comboDatas != null && comboDatas.length > 0){
+					for (int i = 0; i < comboDatas.length; i++) {
+						if(!list.contains(comboDatas[i].getId())){
+							ComboData comboData  = comboDatas[i];
+							new LFWComboTreeItem(lfwSeparaTreeItem, comboData, LFWTool.getWEBProjConstantValue("COMPONENT_COMBODATA"));
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	//新增refds
+	public void addExtendedRefDs(){
+		LFWSeparateTreeItem lfwSeparaTreeItem = getWebSeparateTreeItem(LFWTool.getWEBProjConstantValue("DATASET"));
+		TreeItem[] treeItems = lfwSeparaTreeItem.getItems();
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < treeItems.length; i++) {
+			Dataset dataset = (Dataset) treeItems[i].getData();
+			list.add(dataset.getId());
+		}
+		Dataset[] datas = widget.getViewModels().getDatasets();
+		for (int i = 0; i < datas.length; i++) {
+			if(!list.contains(datas[i].getId())){
+				Dataset dsData  = datas[i];
+				new LFWDSTreeItem(lfwSeparaTreeItem, dsData, dsData.getId());
+			}
+			else{
+				for (int j = 0; j < treeItems.length; j++) {
+					Dataset ds = (Dataset) treeItems[j].getData();
+					if(datas[i].getId().equals(ds.getId())){
+						treeItems[j].setData(datas[i]);
+						break;
+					}
+				}
+			}
+		}
+	}
+	
+	//参照节点
+	public void addExtendedRefNode(){
+		LFWSeparateTreeItem lfwSeparaTreeItem = getWebSeparateTreeItem(LFWTool.getWEBProjConstantValue("REFNODE"));
+		TreeItem[] treeItems = lfwSeparaTreeItem.getItems();
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < treeItems.length; i++) {
+			if(treeItems[i].getData() instanceof IRefNode){
+				IRefNode refnode  = (IRefNode) treeItems[i].getData();
+				list.add(refnode.getId());
+			}
+		}
+		
+		IRefNode[] refnodes = widget.getViewModels().getRefNodes();
+		for (int i = 0; i < refnodes.length; i++) {
+			if(!list.contains(refnodes[i].getId())){
+				IRefNode ref  = refnodes[i];
+				new LFWRefNodeTreeItem(lfwSeparaTreeItem, ref, LFWTool.getWEBProjConstantValue("COMPONENT_REFNODE"));
+			}
+		}
+	}
+
+	//改变dsId对应的数据
+//	private void doOtherChange(String originalId, String newId){
+//		Map<String, WebComponent>  webComponents = widget.getViewComponents().getComponentsMap();
+//		for (Iterator<String> itwd = webComponents.keySet().iterator(); itwd.hasNext();) {
+//			String webcomId = itwd.next();
+//			//grid改变
+//			if(webComponents.get(webcomId) instanceof GridComp){
+//				GridComp oldgrid  = (GridComp)webComponents.get(webcomId);
+//				if(oldgrid.getDataset() != null && oldgrid.getDataset().equals(originalId)){
+//					oldgrid.setDataset(newId);
+//				}
+//			}
+//			//form改变
+//			else if(webComponents.get(webcomId) instanceof FormComp){
+//				FormComp oldform  = (FormComp)webComponents.get(webcomId);
+//				if(oldform.getDataset() != null && oldform.getDataset().equals(originalId)){
+//					oldform.setDataset(newId);
+//				}
+//			}
+//			//tree改变
+//			else if(webComponents.get(webcomId) instanceof TreeViewComp){
+//				TreeViewComp oldtree  = (TreeViewComp)webComponents.get(webcomId);
+//				TreeLevel toptreeLevel = oldtree.getTopLevel();
+//				if(toptreeLevel != null){
+//					//toplevel改变
+//					if(toptreeLevel.getDataset().equals(originalId)){
+//						toptreeLevel.setDataset(newId);
+//					}
+//					//子treeleve改变
+//					while(toptreeLevel.getChildTreeLevel() != null){
+//						TreeLevel childlevel = toptreeLevel.getChildTreeLevel();
+//						if(childlevel.getDataset().equals(originalId))
+//							childlevel.setDataset(newId);
+//						toptreeLevel = childlevel;
+//					}
+//				}
+//			}
+//		}
+//		//参照节点的writeds和readds改变
+//		RefNode[] refnodes = widget.getViewModels().getRefNodes();
+//		for (int i = 0; i < refnodes.length; i++) {
+//			//String refnodeid = (String) itrf.next();
+//			 RefNode refnode = refnodes[i];
+//			 if(refnode.getWriteDs() != null && refnode.getWriteDs().equals(originalId))
+//				 refnode.setWriteDs(newId);
+//			 if(refnode.getWriteDs() != null && refnode.getReadDs().equals(originalId))
+//				 refnode.setReadDs(newId);
+//		}
+//		 //dsrelation改变
+//		DatasetRelations dsRels = widget.getViewModels().getDsrelations();
+//		if(dsRels != null && dsRels.getRelationList().size() > 0){
+//			List<DatasetRelation> dsrellist = dsRels.getRelationList();
+//			int size = dsrellist.size();
+//			for (int i = 0; i < size; i++) {
+//				DatasetRelation dsrelation =  dsrellist.get(i);
+//				if(dsrelation.getMasterDataset() != null && dsrelation.getMasterDataset().equals(originalId))
+//					dsrelation.setMasterDataset(newId);
+//				if(dsrelation.getDetailDataset() != null && dsrelation.getDetailDataset().equals(originalId))
+//					dsrelation.setDetailDataset(newId);
+//			}
+//		}
+//		//fieldrealition改变
+//		Dataset[] datasets = widget.getViewModels().getDatasets();
+//		for (int i = 0; i < datasets.length; i++) {
+//			Dataset ds = datasets[i];
+//			FieldRelation[] frs = ds.getFieldRelations().getFieldRelations();
+//			if(frs != null){
+//				for (int j = 0; j < frs.length; j++) {
+//					FieldRelation parent = frs[j];
+//					if(parent.getRefDataset() != null && parent.getRefDataset().equals(originalId))
+//						parent.setRefDataset(newId);
+//					doChildRelationChange(parent, originalId, newId);
+//				}
+//			}
+//		}
+//	}
+	
+	public void doChildRelationChange(FieldRelation parent, String originalId, String newId){
+		List<FieldRelation> childlist = parent.getChildRelationList();
+		if(childlist != null && childlist.size() > 0){
+			int size = childlist.size();
+			for (int j = 0; j < size; j++) {
+				FieldRelation child =  childlist.get(j);
+				if(child.getRefDataset() != null && child.getRefDataset().equals(originalId)){
+					child.setRefDataset(newId);
+					doChildRelationChange(child, originalId, newId);
+				}
+			}
+		}
+	}
+	
+	public static DataSetEditor getActiveEditor(){
+//		IWorkbenchPage page = WEBPersPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IEditorPart editor = null;
+//		if(page != null){
+//			editor = page.getActiveEditor();
+//		}
+		editor = LFWBaseEditor.getActiveEditor();
+		if(editor != null && editor instanceof DataSetEditor){
+			return (DataSetEditor)editor;
+		}else {
+			return null;
+		}
+		
+	}
+	
+	Object data = null;
+
+	public void setData(Dataset ds){
+		this.ds = ds;
+		
+	}
+	public Dataset getData(){
+		return ds;
+	}
+	
+//	private LFWWidgetTreeItem widgeTreeItem = null;
+	private LfwView widget = null;
+	
+	protected void setInput(IEditorInput input) {
+		super.setInput(input);
+		DataSetEitorInput dsEditor = (DataSetEitorInput)input;
+		Dataset ds = (Dataset)dsEditor.getCloneElement();
+		DatasetElementObj dsElement = new DatasetElementObj(ds.getId());
+		dsElement.setDs(ds);
+		setData(ds);
+		if(ds instanceof RefMdDataset && ds.getFieldCount()>0)
+			caneditflag = false;
+		dsElement.setLocation(new Point(100,100));
+		graph.addCell(dsElement);
+		this.dsElementObj = dsElement;
+				
+//		widgeTreeItem = LFWPersTool.getCurrentWidgetTreeItem();
+//		if(widgeTreeItem != null){
+		
+			LfwView view = LFWPersTool.getCurrentWidget();
+			widget = (LfwView)view.clone();
+			FieldRelations fieldrelations = ds.getFieldRelations();
+//			FieldRelations fieldrelations = widget.getViewModels().getDataset(ds.getId()).getFieldRelations();
+			int  parenty = 0;
+			if(fieldrelations != null){
+				FieldRelation[] fieldrelas = fieldrelations.getFieldRelations();
+				if(fieldrelas != null){
+					List<FieldRelation> fieldRelist = new ArrayList<FieldRelation>();
+					int time = 0;
+					while(fieldRelist.size()!=fieldrelas.length&&time<100){
+						for(FieldRelation relation:fieldrelas){
+							if(relation.getExtendAttributeValue("parentDs")==null&&!fieldRelist.contains(relation))
+								fieldRelist.add(relation);
+							else{
+								String pid = (String)relation.getExtendAttributeValue("parentDs");
+								int flag = 0;
+								for(FieldRelation exsitRelation:fieldRelist){
+									if(exsitRelation.getRefDatasetid().equals(pid)){
+										flag = 1;
+										break;
+									}										
+								}
+								if(flag == 1&&!fieldRelist.contains(relation)){
+									fieldRelist.add(relation);
+								}
+							}
+						}
+						time ++;
+					}
+					
+				for (int i = 0; i < fieldrelas.length; i++) {
+					FieldRelation fr = fieldRelist.get(i);
+					if(fr.getExtendAttributeValue("parentDs")==null){
+						Dataset refds = widget.getViewModels().getDataset(fr.getRefDataset());
+						RefDatasetElementObj refdsobj = new RefDatasetElementObj();
+						refdsobj.setRefFieldRelation(fr);
+						refdsobj.setDs(refds);
+						dsElement.addRefDataset(refdsobj);
+						refdsobj.setDsobj(dsElement);
+						int pointy = 0;
+						refdsobj.setSize(new Dimension(120, 120));
+						if(i == 0)
+							pointy = 0;
+						else 
+							pointy = parenty + 100 + WEBPersConstants.BETWEEN;
+						parenty = pointy;
+						Point point = new Point(400, pointy);
+						refdsobj.setLocation(point);
+						graph.addRefDs(refdsobj);
+						Connection con = new Connection(dsElement, refdsobj);
+						con.connect();
+					}
+					else{
+						String pid = (String)fr.getExtendAttributeValue("parentDs");
+//						parentfr.getref
+						List<RefDatasetElementObj> refDataList = graph.getRefds();
+						RefDatasetElementObj pobj = null;
+						for(RefDatasetElementObj obj:refDataList){
+							if(obj.getDs().getId().equals(pid)){
+								pobj = obj;
+								break;
+							}
+						}
+						Point refpoint = pobj.getLocation();
+						Dimension refsize = pobj.getSize();
+						String childrefid = fr.getRefDatasetid();
+						Dataset childrefds = widget.getViewModels().getDataset(childrefid);
+						RefDatasetElementObj childrefobj = new RefDatasetElementObj();
+						childrefobj.setDs(childrefds);
+						childrefobj.setDsobj(dsElement);
+						childrefobj.setRefFieldRelation(fr);
+						pobj.addChild(childrefobj);
+						childrefobj.setParent(pobj);
+						childrefobj.setSize(new Dimension(100,100));
+						childrefobj.setLocation(new Point((refpoint.x + refsize.width + 100),(refpoint.y + 200*0)));
+						graph.addRefDs(childrefobj);
+						ChildConnection childcon = new ChildConnection(pobj, childrefobj);
+						childcon.connect();
+					}
+					
+					}
+				}
+			}
+//			if(!(ds instanceof IRefDataset)){
+//				List<ListenerElementObj> listener = graph.getJsListeners();
+//				if(listener == null || listener.size()== 0){
+//					// 绘制Listener图形
+//					Map<String, JsListenerConf> listenerMap = ds.getListenerMap();
+//					for (Iterator<String> itwd = listenerMap.keySet().iterator(); itwd.hasNext();) {
+//						String listerId = (String) itwd.next();
+//						JsListenerConf listenerConf = listenerMap.get(listerId);
+//						//从元数据引用来的listener，并且已经删除
+//						if(listenerConf.getFrom() != null && listenerConf.getConfType() != null && listenerConf.getConfType().equals(WebElement.CONF_DEL)){
+//							listenerMap.remove(listerId);
+//						}
+//					}
+//					addListenerCellToEditor(listenerMap, graph);
+//				}
+//			}
+//		}
+//		else {
+//			dsElementObj.setPoolds(true);
+//			setPoolds(true);
+//		}
+	}
+	
+
+	//循环解析FieldRelation
+	private void dealFieldRelation(RefDatasetElementObj refdsobj, FieldRelation fieldrelation){
+		List<FieldRelation>  childrelationlist = fieldrelation.getChildRelationList();
+		if(childrelationlist != null){
+			for (int j = 0; j < childrelationlist.size(); j++) {
+				Point refpoint = refdsobj.getLocation();
+				Dimension refsize = refdsobj.getSize();
+				FieldRelation childrefrelation = childrelationlist.get(j);
+				String childrefid = childrefrelation.getRefDatasetid();
+				Dataset childrefds = widget.getViewModels().getDataset(childrefid);
+				RefDatasetElementObj childrefobj = new RefDatasetElementObj();
+				childrefobj.setDs(childrefds);
+				refdsobj.addChild(childrefobj);
+				childrefobj.setSize(new Dimension(100,100));
+				childrefobj.setLocation(new Point((refpoint.x + refsize.width + 100),(refpoint.y + 200*j)));
+				graph.addRefDs(childrefobj);
+				ChildConnection childcon = new ChildConnection(refdsobj, childrefobj);
+				childcon.connect();
+				List<FieldRelation> chdchachildfrs = childrefrelation.getChildRelationList();
+				if(chdchachildfrs != null && chdchachildfrs.size() > 0)
+					dealFieldRelation(refdsobj, childrefrelation);
+			}
+		}
+	}
+	
+	
+	public DatasetElementObj getModel(){
+		return this.dsElementObj;
+	}
+	
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+	    getGraphicalViewer().setContents(this.graph);
+	    getGraphicalViewer().addDropTargetListener(new nc.uap.lfw.perspective.editor.DiagramTemplateTransferDropTargetListener(getGraphicalViewer()));
+        LFWPersTool.showView(IPageLayout.ID_PROP_SHEET);
+	}
+	
+	
+	
+	protected PaletteViewerProvider createPaletteViewerProvider() {
+		return new PaletteViewerProvider(getEditDomain()){
+			protected void configurePaletteViewer(PaletteViewer viewer) {
+				super.configurePaletteViewer(viewer);
+				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
+			}
+			
+		};
+	}
+	private KeyHandler shareKeyHandler = null;
+	
+	private KeyHandler getShareKeyHandler() {
+		if(shareKeyHandler == null){
+			shareKeyHandler = new KeyHandler();
+			shareKeyHandler.put(KeyStroke.getPressed(SWT.DEL, 127,0), 
+					getActionRegistry().getAction(ActionFactory.DELETE.getId()));
+		}
+		return shareKeyHandler;
+	}
+	
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		ScalableFreeformRootEditPart rootEditpart = new ScalableFreeformRootEditPart();
+		getGraphicalViewer().setRootEditPart(rootEditpart);
+		getGraphicalViewer().setEditPartFactory(new ElementEidtPartFactory(this));
+		getGraphicalViewer().setKeyHandler(getShareKeyHandler());
+		getGraphicalViewer().setContextMenu(getMenuManager());
+	}
+	
+	/**
+	 * 增加编辑器自定义菜单
+	 * @param manager
+	 */
+	//todo
+	protected void editMenuManager(IMenuManager manager) {
+		if (null != getCurrentSelection()) {
+			StructuredSelection ss = (StructuredSelection) getCurrentSelection();
+			Object sel = ss.getFirstElement();
+			if (sel instanceof LFWElementPart) {
+				LFWElementPart lfwEle = (LFWElementPart) sel;
+				Object model = lfwEle.getModel();
+				if (model instanceof DatasetElementObj) {
+					DatasetElementObj dsObj = (DatasetElementObj) model;
+					Dataset dataset = dsObj.getDs();
+					//if(!(dataset instanceof IRefDataset)){
+						if(dataset.getFrom() == null){
+//							manager.add(new NewDsFromPoolAction((DatasetElementObj) graph.getCells().get(0)));
+							manager.add(new NewDsFormMDAction((DatasetElementObj) graph.getCells().get(0)));
+						}
+//						manager.add(new GeneratorVObyDsAction((DatasetElementObj) graph.getCells().get(0)));
+//						manager.add(new ImportDsFromDBAction((DatasetElementObj)graph.getCells().get(0)));
+				//	}
+				}
+				else if(model instanceof RefDatasetElementObj){
+//					RefDatasetElementObj refdsObj = (RefDatasetElementObj) model;
+//					Dataset refds = refdsObj.getDs();
+//					if(refds.getFrom() == null){
+//						manager.add(new GeneratorRefNodeAction((DatasetElementObj) graph.getCells().get(0), refds));
+//					}
+				}
+			} else {
+				return;
+			}
+		} else {
+			return;
+		}
+	}
+	
+	
+	protected PaletteRoot getPaletteRoot() {
+		if(paleteRoot == null){
+			paleteRoot = PaletteFactory.createPaletteRoot();
+		}
+		return paleteRoot;
+	}
+
+	
+	public void doSave(IProgressMonitor monitor) {
+		if(ds instanceof IRefDataset&&!caneditflag){
+			MessageDialog.openError(null, "提示", "引用数据集不能执行修改操作");
+			setDirtyFalse();
+			getCommandStack().markSaveLocation();
+			return ;
+		}
+		// 保存Event代码
+		super.doSave(monitor);
+		
+		//TODO 其他保存操作
+		String msg = graph.getCells().get(0).validate();
+		if(msg != null){
+			String message = "数据集输入信息有错误，是否还要保存：\r\n\r\n\r\n"+msg;
+			if(!MessageDialog.openConfirm(getSite().getShell(), "提示", message))
+				return;
+		}		
+		save();
+	}
+
+	
+	public LFWAbstractViewPage createViewPage() {
+		return new LFWViewPage();
+	}
+
+
+	@Override
+	protected LfwElementObjWithGraph getLeftElement() {
+		return null;
+	}
+
+	@Override
+	protected LfwElementObjWithGraph getTopElement() {
+		return graph.getCells().get(0);
+	}
+	
+	@Override
+	public List<JsEventDesc> getAcceptEventDescs() {
+		return dsElementObj.getDs().getAcceptEventDescs();
+	}
+
+	public DatasetElementObj getDsElementObj() {
+		return dsElementObj;
+	}
+
+	public void setDsElementObj(DatasetElementObj dsElementObj) {
+		this.dsElementObj = dsElementObj;
+	}
+
+	public LfwView getWidget() {
+		return widget;
+	}
+
+	public void setWidget(LfwView widget) {
+		this.widget = widget;
+	}
+	
+	@Override
+	protected TreeItem getSelectedTreeItem(LFWDirtoryTreeItem dirTreeItem,
+			LfwBaseEditorInput editorInput) {
+		return null;
+	}
+
+	
+}

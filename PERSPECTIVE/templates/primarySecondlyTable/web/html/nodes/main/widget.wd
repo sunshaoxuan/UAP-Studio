@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<Widget controllerClazz="nc.uap.cpb.psn.PsnMainViewCtr" dialog="false" id="main" refId="main" sourcePackage="cpb/src/public/">
+    <PlugoutDescs>
+    </PlugoutDescs>
+    <PluginDescs>
+        <PluginDesc id="dept_plugin">
+        </PluginDesc>
+        <PluginDesc id="edit_job_plugin">
+            <PluginDescItem clazztype="java.lang.String" id="row">
+            </PluginDescItem>
+        </PluginDesc>
+        <PluginDesc id="edit_psn_plugin">
+            <PluginDescItem clazztype="java.lang.String" id="row">
+            </PluginDescItem>
+        </PluginDesc>
+        <PluginDesc id="simpleQuery_plugin">
+            <PluginDescItem clazztype="java.lang.String" id="row">
+            </PluginDescItem>
+        </PluginDesc>
+    </PluginDescs>
+    <Events>
+        <Event async="true" methodName="pluginsimpleQuery_plugin" onserver="true">
+            <Params>
+                <Param>
+                    <Name>keys</Name>
+                    <Value>
+                    </Value>
+                    <Desc>                        <![CDATA[java.util.Map]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+        <Event async="true" methodName="plugindept_plugin" onserver="true">
+            <Params>
+                <Param>
+                    <Name>keys</Name>
+                    <Value>
+                    </Value>
+                    <Desc>                        <![CDATA[java.util.Map]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+        <Event async="true" methodName="pluginedit_job_plugin" onserver="true">
+            <Params>
+                <Param>
+                    <Name>keys</Name>
+                    <Value>
+                    </Value>
+                    <Desc>                        <![CDATA[java.util.Map]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+        <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DialogListener" methodName="onbeforeShow" name="beforeShow" onserver="true">
+            <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+            </SubmitRule>
+            <Params>
+                <Param>
+                    <Name>dialogEvent</Name>
+                    <Value></Value>
+                    <Desc>                        <![CDATA[nc.uap.lfw.core.event.DialogEvent]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+    </Events>
+    <Models>
+        <Datasets>
+            <DatasetRelations>
+                <DatasetRelation detailDataset="psnjob" detailForeignKey="pk_psndoc" id="ds_rolegroup_ds_role" masterDataset="psndoc" masterKeyField="pk_psndoc">
+                </DatasetRelation>
+            </DatasetRelations>
+            <RefMdDataset i18nName="w_cp_psndoc-000320" langDir="ad_nodes" caption="用户" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_user" lazyLoad="true" notNullBody="false" objMeta="uap.user" voMeta="nc.vo.sm.UserVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000321" langDir="ad_nodes" caption="组织_部门" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_dept" lazyLoad="true" notNullBody="false" objMeta="uap.dept" voMeta="nc.vo.org.DeptVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000268" langDir="ad_nodes" caption="人员类别" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_psncl" lazyLoad="true" notNullBody="false" objMeta="uap.psncl" voMeta="nc.vo.bd.psn.PsnClVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000322" langDir="ad_nodes" caption="组织_集团" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_group" lazyLoad="true" notNullBody="false" objMeta="uap.group" voMeta="nc.vo.org.GroupVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000323" langDir="ad_nodes" caption="地址簿" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_address" lazyLoad="true" notNullBody="false" objMeta="uap.address" voMeta="nc.vo.bd.address.AddressVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000324" langDir="ad_nodes" caption="人力资源管理_职务" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_job" lazyLoad="true" notNullBody="false" objMeta="uap.job" voMeta="nc.vo.org.JobVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000271" langDir="ad_nodes" caption="工种" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_Defdoc_BD004" lazyLoad="true" notNullBody="false" objMeta="uap.Defdoc-BD004" voMeta="nc.vo.bd.defdoc.DefdocVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <MdDataset i18nName="w_cp_psndoc-000325" langDir="ad_nodes" caption="人员基本信息" controlwidgetopeStatus="false" enabled="false" id="psndoc" lazyLoad="true" notNullBody="false" objMeta="uap.psndoc" pageSize="10" voMeta="nc.vo.bd.psn.PsndocVO">
+                <FieldRelations>
+                    <FieldRelation id="pk_org_rel" refDataset="$refds_uap_org">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_org_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_org" value="pk_org">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="addr_rel" refDataset="$refds_uap_address">
+                        <MatchFields>
+                            <Field readField="pk_address" writeField="addr_pk_address">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_address" value="addr">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="creator_rel" refDataset="$refds_uap_user">
+                        <MatchFields>
+                            <Field readField="user_name" writeField="creator_user_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="cuserid" value="creator">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="modifier_rel" refDataset="$refds_uap_user">
+                        <MatchFields>
+                            <Field readField="user_name" writeField="modifier_user_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="cuserid" value="modifier">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_group_rel" refDataset="$refds_uap_group">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_group_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_group" value="pk_group">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                </FieldRelations>
+                <Fields>
+                </Fields>
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DatasetListener" methodName="onAfterRowSelect" name="onAfterRowSelect" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                            <Widget cardSubmit="false" id="main" panelSubmit="false" tabSubmit="false">
+                                <Dataset id="psndoc" type="ds_current_line">
+                                </Dataset>
+                                <Dataset id="psnjob" type="ds_all_line">
+                                </Dataset>
+                                <Grid id="psndocgrid" type="grid_current_row">
+                                </Grid>
+                                <Grid id="psnjobgrid" type="grid_all_row">
+                                </Grid>
+                            </Widget>
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>datasetEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.DatasetEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DatasetListener" methodName="psndoconDataLoad" name="onDataLoad" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>dataLoadEvent</Name>
+                                <Value></Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.DataLoadEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000326" langDir="ad_nodes" caption="组织" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_org" lazyLoad="true" notNullBody="false" objMeta="uap.org" voMeta="nc.vo.org.OrgVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <RefMdDataset i18nName="w_cp_psndoc-000327" langDir="ad_nodes" caption="人力资源管理_岗位" controlwidgetopeStatus="false" enabled="false" id="$refds_uap_post" lazyLoad="true" notNullBody="false" objMeta="uap.post" voMeta="nc.vo.org.PostVO">
+                <Fields>
+                </Fields>
+            </RefMdDataset>
+            <MdDataset i18nName="w_cp_psndoc-000328" langDir="ad_nodes" caption="人员工作信息" controlwidgetopeStatus="false" enabled="false" id="psnjob" lazyLoad="true" notNullBody="false" objMeta="uap.psnjob" pageSize="10" voMeta="nc.vo.bd.psn.PsnjobVO">
+                <FieldRelations>
+                    <FieldRelation id="pk_group_rel" refDataset="$refds_uap_group">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_group_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_group" value="pk_group">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_org_rel" refDataset="$refds_uap_org">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_org_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_org" value="pk_org">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_psncl_rel" refDataset="$refds_uap_psncl">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_psncl_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_psncl" value="pk_psncl">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_dept_rel" refDataset="$refds_uap_dept">
+                        <MatchFields>
+                            <Field readField="name" writeField="pk_dept_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_dept" value="pk_dept">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="worktype_rel" refDataset="$refds_uap_Defdoc-BD004">
+                        <MatchFields>
+                            <Field readField="name" writeField="worktype_name">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_defdoc" value="worktype">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_job_rel" refDataset="$refds_uap_job">
+                        <MatchFields>
+                            <Field readField="jobname" writeField="pk_job_jobname">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_job" value="pk_job">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="pk_post_rel" refDataset="$refds_uap_post">
+                        <MatchFields>
+                            <Field readField="postname" writeField="pk_post_postname">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_post" value="pk_post">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                    <FieldRelation id="rel_job_doc" refDataset="psndoc">
+                        <MatchFields>
+                            <Field iscontains="Y" ismatch="Y" readField="pk_psndoc" writeField="pk_psndoc">
+                            </Field>
+                        </MatchFields>
+                        <WhereField>
+                            <Field key="pk_psndoc" value="pk_psndoc">
+                            </Field>
+                        </WhereField>
+                    </FieldRelation>
+                </FieldRelations>
+                <Fields>
+                </Fields>
+            </MdDataset>
+        </Datasets>
+        <ComboDatas>
+            <MDComboDataConf i18nName="w_cp_psndoc-000328" langDir="ad_nodes" caption="人员工作信息" fullclassName="2e8fa516-2b27-4ac5-981b-264f7e34cb09" id="combo_psnjob_dataoriginflag">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000325" langDir="ad_nodes" caption="人员基本信息" fullclassName="2e8fa516-2b27-4ac5-981b-264f7e34cb09" id="combo_psndoc_dataoriginflag">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000325" langDir="ad_nodes" caption="人员基本信息" fullclassName="69d898f0-bb9e-46a3-b590-03db3f5d9bd6" id="combo_psndoc_idtype">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000325" langDir="ad_nodes" caption="人员基本信息" fullclassName="6b533ffa-3e43-4147-8670-ba0f5471fd40" id="combo_psndoc_enablestate">
+            </MDComboDataConf>
+            <MDComboDataConf i18nName="w_cp_psndoc-000325" langDir="ad_nodes" caption="人员基本信息" fullclassName="04dfe53c-46e0-4536-a26a-f6deeec3180d" id="combo_psndoc_sex">
+            </MDComboDataConf>
+        </ComboDatas>
+        <RefNodes>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000300" id="refnode_psnjob_pk_group_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_group,name" refId="" refcode="集团" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_集团" usePower="false" writeDs="psnjob" writeFields="pk_group,pk_group_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000301" id="refnode_psnjob_pk_post_postname" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_post,postname" refId="" refcode="岗位" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_岗位" usePower="false" writeDs="psnjob" writeFields="pk_post,pk_post_postname">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000302" id="refnode_psnjob_pk_job_jobname" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_job,jobname" refId="" refcode="职务" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_职务" usePower="false" writeDs="psnjob" writeFields="pk_job,pk_job_jobname">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000303" id="refnode_psndoc_creator_user_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="cuserid,user_name" refId="" refcode="用户" refnodeDelegator="" selLeafOnly="false" text="人员基本信息_用户" usePower="false" writeDs="psndoc" writeFields="creator,creator_user_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000304" id="refnode_psnjob_pk_psncl_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_psncl,name" refId="" refcode="人员类别" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_人员类别" usePower="false" writeDs="psnjob" writeFields="pk_psncl,pk_psncl_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000305" id="refnode_psnjob_pk_org_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_org,name" refId="" refcode="业务单元" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_业务单元" usePower="false" writeDs="psnjob" writeFields="pk_org,pk_org_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000303" id="refnode_psndoc_modifier_user_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="cuserid,user_name" refId="" refcode="用户" refnodeDelegator="" selLeafOnly="false" text="人员基本信息_用户" usePower="false" writeDs="psndoc" writeFields="modifier,modifier_user_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000307" id="refnode_psndoc_pk_org_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_org,name" refId="" refcode="业务单元" refnodeDelegator="" selLeafOnly="false" text="人员基本信息_业务单元" usePower="false" writeDs="psndoc" writeFields="pk_org,pk_org_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000308" id="refnode_psnjob_pk_dept_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_dept,name" refId="" refcode="部门" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_部门" usePower="false" writeDs="psnjob" writeFields="pk_dept,pk_dept_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000309" id="refnode_psndoc_addr_pk_address" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="null,null" refId="" refcode="地址簿" refnodeDelegator="" selLeafOnly="false" text="人员基本信息_地址簿" usePower="false" writeDs="psndoc" writeFields="addr,addr_pk_address">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000310" id="refnode_psndoc_pk_group_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_group,name" refId="" refcode="集团" refnodeDelegator="" selLeafOnly="false" text="人员基本信息_集团" usePower="false" writeDs="psndoc" writeFields="pk_group,pk_group_name">
+            </NCRefNode>
+            <NCRefNode allowInput="false" dataListener="" dialogHeight="" dialogWidth="" i18nName="w_cp_psndoc-000311" id="refnode_psnjob_worktype_name" langDir="ad_nodes" multiSel="false" orgs="false" pagemeta="reference" pagemodel="" readDs="masterDs" readFields="pk_defdoc,name" refId="" refcode="工种(自定义档案)" refnodeDelegator="" selLeafOnly="false" text="人员工作信息_工种(自定义档案)" usePower="false" writeDs="psnjob" writeFields="worktype,worktype_name">
+            </NCRefNode>
+        </RefNodes>
+    </Models>
+    <Components>
+        <GridComp i18nName="w_cp_psndoc-000325" langDir="ad_nodes" autoRowHeight="false" canCopy="false" caption="人员基本信息" dataset="psndoc" editable="true" enabled="true" expandTree="false" id="psndocgrid" multiSelect="false" pageSize="10" pagenationTop="false" reference="false" selfDefImageBtnRender="" showColInfo="false" showHeader="true" showImageBtn="false" showNumCol="false" showSumRow="false" sortable="true" visible="true">
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_psndoc" fixedHeader="false" i18nName="w_cp_psndoc-000207" langDir="ad_nodes" id="pk_psndoc" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="人员基本信息主键" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_org" fixedHeader="false" i18nName="w_cp_psndoc-000208" langDir="ad_nodes" id="pk_org" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="所属业务单元" textAlign="left" visible="false" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_org_name" fixedHeader="false" i18nName="w_cp_psndoc-000209" langDir="ad_nodes" id="pk_org_name" imageOnly="false" nullAble="true" refNode="refnode_psndoc_pk_org_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="所属业务单元" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="code" fixedHeader="false" i18nName="w_cp_psndoc-000210" langDir="ad_nodes" id="code" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="人员编码" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="name" fixedHeader="false" i18nName="w_cp_psndoc-000211" langDir="ad_nodes" id="name" imageOnly="false" nullAble="false" renderType="LanguageComboRender" showCheckBox="true" sortable="true" sumCol="false" text="姓名" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="name2" fixedHeader="false" i18nName="w_cp_psndoc-000212" langDir="ad_nodes" id="name2" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="name" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="name3" fixedHeader="false" i18nName="w_cp_psndoc-000213" langDir="ad_nodes" id="name3" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="name" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="name4" fixedHeader="false" i18nName="w_cp_psndoc-000214" langDir="ad_nodes" id="name4" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="name" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="name5" fixedHeader="false" i18nName="w_cp_psndoc-000215" langDir="ad_nodes" id="name5" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="name" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="name6" fixedHeader="false" i18nName="w_cp_psndoc-000216" langDir="ad_nodes" id="name6" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="name" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="usedname" fixedHeader="false" i18nName="w_cp_psndoc-000217" langDir="ad_nodes" id="usedname" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="曾用名" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="UFLiteralDate" editable="true" editorType="DateText" field="birthdate" fixedHeader="false" i18nName="w_cp_psndoc-000218" langDir="ad_nodes" id="birthdate" imageOnly="false" nullAble="true" renderType="DateRender" showCheckBox="true" sortable="true" sumCol="false" text="出生日期" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="ComboBox" field="sex" fixedHeader="false" i18nName="w_cp_psndoc-000219" langDir="ad_nodes" id="sex" imageOnly="false" nullAble="true" refComboData="combo_psndoc_sex" renderType="ComboRender" showCheckBox="true" sortable="true" sumCol="false" text="性别" textAlign="right" visible="true" width="40">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="ComboBox" field="idtype" fixedHeader="false" i18nName="w_cp_psndoc-000220" langDir="ad_nodes" id="idtype" imageOnly="false" nullAble="false" refComboData="combo_psndoc_idtype" renderType="ComboRender" showCheckBox="true" sortable="true" sumCol="false" text="证件类型" textAlign="right" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="id" fixedHeader="false" i18nName="w_cp_psndoc-000221" langDir="ad_nodes" id="id" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="证件号" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="mnecode" fixedHeader="false" i18nName="w_cp_psndoc-000222" langDir="ad_nodes" id="mnecode" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="助记码" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="UFLiteralDate" editable="true" editorType="DateText" field="joinworkdate" fixedHeader="false" i18nName="w_cp_psndoc-000223" langDir="ad_nodes" id="joinworkdate" imageOnly="false" nullAble="true" renderType="DateRender" showCheckBox="true" sortable="true" sumCol="false" text="参加工作日期" textAlign="left" visible="false" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="officephone" fixedHeader="false" i18nName="w_cp_psndoc-000224" langDir="ad_nodes" id="officephone" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="办公电话" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="homephone" fixedHeader="false" i18nName="w_cp_psndoc-000225" langDir="ad_nodes" id="homephone" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="家庭电话" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="mobile" fixedHeader="false" i18nName="w_cp_psndoc-000226" langDir="ad_nodes" id="mobile" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="手机" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="email" fixedHeader="false" i18nName="w_cp_psndoc-000227" langDir="ad_nodes" id="email" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="电子邮件" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="addr" fixedHeader="false" i18nName="w_cp_psndoc-000228" langDir="ad_nodes" id="addr" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="家庭地址" textAlign="left" visible="false" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="addr_pk_address" fixedHeader="false" i18nName="w_cp_psndoc-000229" langDir="ad_nodes" id="addr_pk_address" imageOnly="false" nullAble="true" refNode="refnode_psndoc_addr_pk_address" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="家庭地址" textAlign="left" visible="false" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def1" fixedHeader="false" i18nName="w_cp_psndoc-000230" langDir="ad_nodes" id="def1" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项1" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def2" fixedHeader="false" i18nName="w_cp_psndoc-000231" langDir="ad_nodes" id="def2" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项2" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def3" fixedHeader="false" i18nName="w_cp_psndoc-000232" langDir="ad_nodes" id="def3" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项3" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def4" fixedHeader="false" i18nName="w_cp_psndoc-000233" langDir="ad_nodes" id="def4" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项4" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def5" fixedHeader="false" i18nName="w_cp_psndoc-000234" langDir="ad_nodes" id="def5" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项5" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def6" fixedHeader="false" i18nName="w_cp_psndoc-000235" langDir="ad_nodes" id="def6" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项6" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def7" fixedHeader="false" i18nName="w_cp_psndoc-000236" langDir="ad_nodes" id="def7" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项7" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def8" fixedHeader="false" i18nName="w_cp_psndoc-000237" langDir="ad_nodes" id="def8" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项8" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def9" fixedHeader="false" i18nName="w_cp_psndoc-000238" langDir="ad_nodes" id="def9" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项9" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def10" fixedHeader="false" i18nName="w_cp_psndoc-000239" langDir="ad_nodes" id="def10" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项10" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def11" fixedHeader="false" i18nName="w_cp_psndoc-000240" langDir="ad_nodes" id="def11" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项11" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def12" fixedHeader="false" i18nName="w_cp_psndoc-000241" langDir="ad_nodes" id="def12" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项12" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def13" fixedHeader="false" i18nName="w_cp_psndoc-000242" langDir="ad_nodes" id="def13" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项13" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def14" fixedHeader="false" i18nName="w_cp_psndoc-000243" langDir="ad_nodes" id="def14" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项14" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def15" fixedHeader="false" i18nName="w_cp_psndoc-000244" langDir="ad_nodes" id="def15" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项15" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def16" fixedHeader="false" i18nName="w_cp_psndoc-000245" langDir="ad_nodes" id="def16" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项16" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def17" fixedHeader="false" i18nName="w_cp_psndoc-000246" langDir="ad_nodes" id="def17" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项17" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def18" fixedHeader="false" i18nName="w_cp_psndoc-000247" langDir="ad_nodes" id="def18" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项18" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def19" fixedHeader="false" i18nName="w_cp_psndoc-000248" langDir="ad_nodes" id="def19" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项19" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def20" fixedHeader="false" i18nName="w_cp_psndoc-000249" langDir="ad_nodes" id="def20" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项20" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="creator" fixedHeader="false" i18nName="w_cp_psndoc-000250" langDir="ad_nodes" id="creator" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="创建人" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="creator_user_name" fixedHeader="false" i18nName="w_cp_psndoc-000251" langDir="ad_nodes" id="creator_user_name" imageOnly="false" nullAble="true" refNode="refnode_psndoc_creator_user_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="创建人" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="UFDateTime" editable="true" editorType="DateTimeText" field="creationtime" fixedHeader="false" i18nName="w_cp_psndoc-000252" langDir="ad_nodes" id="creationtime" imageOnly="false" nullAble="true" renderType="DateTimeRender" showCheckBox="true" sortable="true" sumCol="false" text="创建时间" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="modifier" fixedHeader="false" i18nName="w_cp_psndoc-000253" langDir="ad_nodes" id="modifier" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="最后修改人" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="modifier_user_name" fixedHeader="false" i18nName="w_cp_psndoc-000254" langDir="ad_nodes" id="modifier_user_name" imageOnly="false" nullAble="true" refNode="refnode_psndoc_modifier_user_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="最后修改人" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="UFDateTime" editable="true" editorType="DateTimeText" field="modifiedtime" fixedHeader="false" i18nName="w_cp_psndoc-000255" langDir="ad_nodes" id="modifiedtime" imageOnly="false" nullAble="true" renderType="DateTimeRender" showCheckBox="true" sortable="true" sumCol="false" text="最后修改时间" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="ComboBox" field="dataoriginflag" fixedHeader="false" i18nName="w_cp_psndoc-000256" langDir="ad_nodes" id="dataoriginflag" imageOnly="false" nullAble="true" refComboData="combo_psndoc_dataoriginflag" renderType="ComboRender" showCheckBox="true" sortable="true" sumCol="false" text="分布式" textAlign="right" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="ComboBox" field="enablestate" fixedHeader="false" i18nName="w_cp_psndoc-000257" langDir="ad_nodes" id="enablestate" imageOnly="false" nullAble="true" refComboData="combo_psndoc_enablestate" renderType="ComboRender" showCheckBox="true" sortable="true" sumCol="false" text="启用状态" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_group" fixedHeader="false" i18nName="w_cp_psndoc-000258" langDir="ad_nodes" id="pk_group" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="所属集团" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_group_name" fixedHeader="false" i18nName="w_cp_psndoc-000259" langDir="ad_nodes" id="pk_group_name" imageOnly="false" nullAble="true" refNode="refnode_psndoc_pk_group_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="所属集团" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="IntegerText" field="status" fixedHeader="false" id="status" imageOnly="false" nullAble="true" renderType="IntegerRender" showCheckBox="true" sortable="true" sumCol="false" text="vostatus" textAlign="right" visible="false" width="120">
+            </Column>
+        </GridComp>
+        <GridComp i18nName="w_cp_psndoc-000328" langDir="ad_nodes" autoRowHeight="false" canCopy="false" caption="人员工作信息" dataset="psnjob" editable="true" enabled="true" expandTree="false" id="psnjobgrid" multiSelect="false" pagenationTop="false" reference="false" selfDefImageBtnRender="" showColInfo="false" showHeader="true" showImageBtn="false" showNumCol="false" showSumRow="false" sortable="true" visible="true">
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_psnjob" fixedHeader="false" i18nName="w_cp_psndoc-000260" langDir="ad_nodes" id="pk_psnjob" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="人员工作信息主键" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_group" fixedHeader="false" i18nName="w_cp_psndoc-000261" langDir="ad_nodes" id="pk_group" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="任职集团" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_group_name" fixedHeader="false" i18nName="w_cp_psndoc-000262" langDir="ad_nodes" id="pk_group_name" imageOnly="false" nullAble="true" refNode="refnode_psnjob_pk_group_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="任职集团" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_org" fixedHeader="false" i18nName="w_cp_psndoc-000263" langDir="ad_nodes" id="pk_org" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="任职业务单元" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_org_name" fixedHeader="false" i18nName="w_cp_psndoc-000264" langDir="ad_nodes" id="pk_org_name" imageOnly="false" nullAble="true" refNode="refnode_psnjob_pk_org_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="任职业务单元" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_dept" fixedHeader="false" i18nName="w_cp_psndoc-000265" langDir="ad_nodes" id="pk_dept" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="所在部门" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_dept_name" fixedHeader="false" i18nName="w_cp_psndoc-000266" langDir="ad_nodes" id="pk_dept_name" imageOnly="false" nullAble="true" refNode="refnode_psnjob_pk_dept_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="所在部门" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="psncode" fixedHeader="false" i18nName="w_cp_psndoc-000267" langDir="ad_nodes" id="psncode" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="员工编号" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_psncl" fixedHeader="false" i18nName="w_cp_psndoc-000268" langDir="ad_nodes" id="pk_psncl" imageOnly="false" nullAble="false" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="人员类别" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_psncl_name" fixedHeader="false" i18nName="w_cp_psndoc-000269" langDir="ad_nodes" id="pk_psncl_name" imageOnly="false" nullAble="true" refNode="refnode_psnjob_pk_psncl_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="人员类别" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="UFBoolean" editable="true" editorType="CheckBox" field="ismainjob" fixedHeader="false" i18nName="w_cp_psndoc-000270" langDir="ad_nodes" id="ismainjob" imageOnly="false" nullAble="false" renderType="BooleanRender" showCheckBox="true" sortable="true" sumCol="false" text="是否主职" textAlign="center" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="worktype" fixedHeader="false" i18nName="w_cp_psndoc-000271" langDir="ad_nodes" id="worktype" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="工种" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="worktype_name" fixedHeader="false" i18nName="w_cp_psndoc-000272" langDir="ad_nodes" id="worktype_name" imageOnly="false" nullAble="true" refNode="refnode_psnjob_worktype_name" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="工种" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="UFLiteralDate" editable="true" editorType="DateText" field="indutydate" fixedHeader="false" i18nName="w_cp_psndoc-000273" langDir="ad_nodes" id="indutydate" imageOnly="false" nullAble="false" renderType="DateRender" showCheckBox="true" sortable="true" sumCol="false" text="到职日期" textAlign="left" visible="true" width="80">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_job" fixedHeader="false" i18nName="w_cp_psndoc-000274" langDir="ad_nodes" id="pk_job" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="职务" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_job_jobname" fixedHeader="false" i18nName="w_cp_psndoc-000275" langDir="ad_nodes" id="pk_job_jobname" imageOnly="false" nullAble="true" refNode="refnode_psnjob_pk_job_jobname" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="职务" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="jobname" fixedHeader="false" i18nName="w_cp_psndoc-000276" langDir="ad_nodes" id="jobname" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="职务称谓" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_post" fixedHeader="false" i18nName="w_cp_psndoc-000277" langDir="ad_nodes" id="pk_post" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="岗位" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="Reference" field="pk_post_postname" fixedHeader="false" i18nName="w_cp_psndoc-000278" langDir="ad_nodes" id="pk_post_postname" imageOnly="false" nullAble="true" refNode="refnode_psnjob_pk_post_postname" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="岗位" textAlign="left" visible="true" width="100">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def1" fixedHeader="false" i18nName="w_cp_psndoc-000279" langDir="ad_nodes" id="def1" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项1" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def2" fixedHeader="false" i18nName="w_cp_psndoc-000280" langDir="ad_nodes" id="def2" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项2" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def3" fixedHeader="false" i18nName="w_cp_psndoc-000281" langDir="ad_nodes" id="def3" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项3" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def4" fixedHeader="false" i18nName="w_cp_psndoc-000282" langDir="ad_nodes" id="def4" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项4" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def5" fixedHeader="false" i18nName="w_cp_psndoc-000283" langDir="ad_nodes" id="def5" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项5" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def6" fixedHeader="false" i18nName="w_cp_psndoc-000284" langDir="ad_nodes" id="def6" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项6" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def7" fixedHeader="false" i18nName="w_cp_psndoc-000285" langDir="ad_nodes" id="def7" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项7" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def8" fixedHeader="false" i18nName="w_cp_psndoc-000286" langDir="ad_nodes" id="def8" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项8" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def9" fixedHeader="false" i18nName="w_cp_psndoc-000287" langDir="ad_nodes" id="def9" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项9" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def10" fixedHeader="false" i18nName="w_cp_psndoc-000288" langDir="ad_nodes" id="def10" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项10" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def11" fixedHeader="false" i18nName="w_cp_psndoc-000289" langDir="ad_nodes" id="def11" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项11" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def12" fixedHeader="false" i18nName="w_cp_psndoc-000290" langDir="ad_nodes" id="def12" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项12" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def13" fixedHeader="false" i18nName="w_cp_psndoc-000291" langDir="ad_nodes" id="def13" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项13" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def14" fixedHeader="false" i18nName="w_cp_psndoc-000292" langDir="ad_nodes" id="def14" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项14" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def15" fixedHeader="false" i18nName="w_cp_psndoc-000293" langDir="ad_nodes" id="def15" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项15" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def16" fixedHeader="false" i18nName="w_cp_psndoc-000294" langDir="ad_nodes" id="def16" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项16" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def17" fixedHeader="false" i18nName="w_cp_psndoc-000295" langDir="ad_nodes" id="def17" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项17" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def18" fixedHeader="false" i18nName="w_cp_psndoc-000296" langDir="ad_nodes" id="def18" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项18" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def19" fixedHeader="false" i18nName="w_cp_psndoc-000297" langDir="ad_nodes" id="def19" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项19" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="SelfDefine" editable="true" editorType="StringText" field="def20" fixedHeader="false" i18nName="w_cp_psndoc-000298" langDir="ad_nodes" id="def20" imageOnly="false" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="自定义项20" textAlign="left" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="ComboBox" field="dataoriginflag" fixedHeader="false" i18nName="w_cp_psndoc-000299" langDir="ad_nodes" id="dataoriginflag" imageOnly="false" nullAble="true" refComboData="combo_psnjob_dataoriginflag" renderType="ComboRender" showCheckBox="true" sortable="true" sumCol="false" text="分布式" textAlign="right" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="Integer" editable="true" editorType="IntegerText" field="status" fixedHeader="false" id="status" imageOnly="false" nullAble="true" renderType="IntegerRender" showCheckBox="true" sortable="true" sumCol="false" text="vostatus" textAlign="right" visible="false" width="120">
+            </Column>
+            <Column autoExpand="false" dataType="String" editable="true" editorType="StringText" field="pk_psndoc" fixedHeader="false" i18nName="w_cp_psndoc-000312" id="pk_psndoc" imageOnly="false" langDir="ad_nodes" nullAble="true" renderType="DefaultRender" showCheckBox="true" sortable="true" sumCol="false" text="人员基本信息_主键" textAlign="left" visible="false" width="120">
+            </Column>
+        </GridComp>
+    </Components>
+    <Menus>
+        <MenuBarComp id="psnmenu">
+            <MenuItem i18nName="w_cp_psndoc-000313" id="menuaddpsndoc" langDir="ad_nodes" modifiers="2" text="新增人员">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="menunewpsnonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="w_cp_psndoc-000314" id="menueditpsndoc" langDir="ad_nodes" modifiers="2" text="修改人员">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="menueditpsnonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="w_cp_psndoc-000315" id="menudeletepsndoc" langDir="ad_nodes" modifiers="2" text="删除人员">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="menudeletepsnonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                            <Widget cardSubmit="false" id="main" panelSubmit="false" tabSubmit="false">
+                                <Grid id="psndocgrid" type="grid_current_row">
+                                </Grid>
+                                <Grid id="psnjobgrid" type="grid_current_row">
+                                </Grid>
+                            </Widget>
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="w_cp_psndoc-000316" id="menuaddjobdoc" langDir="ad_nodes" modifiers="2" text="新增就职信息">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="newjobonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="w_cp_psndoc-000317" id="menueditjob" langDir="ad_nodes" modifiers="2" text="修改就职信息">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="editjobonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                            <Widget cardSubmit="false" id="main" panelSubmit="false" tabSubmit="false">
+                                <Dataset id="psnjob" type="ds_current_line">
+                                </Dataset>
+                                <Grid id="psnjobgrid" type="grid_current_row">
+                                </Grid>
+                            </Widget>
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="w_cp_psndoc-000318" id="menudeletejob" langDir="ad_nodes" modifiers="2" text="删除就职信息">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="menudeletejobonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+            <MenuItem i18nName="w_cp_psndoc-000319" id="menusetmainjob" langDir="ad_nodes" modifiers="2" text="设置为主职">
+                <Events>
+                    <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="menusetmainjobonclick" name="onclick" onserver="true">
+                        <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                        </SubmitRule>
+                        <Params>
+                            <Param>
+                                <Name>mouseEvent</Name>
+                                <Value>
+                                </Value>
+                                <Desc>                                    <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                                </Desc>
+                            </Param>
+                        </Params>
+                        <Action>
+                        </Action>
+                    </Event>
+                </Events>
+            </MenuItem>
+        </MenuBarComp>
+    </Menus>
+</Widget>

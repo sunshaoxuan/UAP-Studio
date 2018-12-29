@@ -1,0 +1,5 @@
+package ${mainWinCtrPackage};
+import java.io.Serializable;
+public class ${listWinCtrName} implements Serializable {
+    private static final long serialVersionUID = -1;
+}

@@ -1,0 +1,102 @@
+package ${package};
+import nc.vo.pub.AggregatedValueObject;
+import nc.uap.lfw.core.cmd.CmdInvoker;
+
+import nc.uap.lfw.core.event.DataLoadEvent;
+
+
+import nc.uap.cpb.org.extention.CpbExtentionUtil;
+import nc.uap.lfw.core.ctx.WindowContext;
+import nc.uap.cpb.persist.dao.PtBaseDAO;
+import nc.uap.lfw.core.cmd.UifDatasetAfterSelectCmd;
+import nc.bs.dao.DAOException;
+import nc.uap.lfw.core.bm.ButtonStateManager;
+import nc.uap.lfw.core.cmd.UifDatasetLoadCmd;
+import nc.uap.lfw.core.data.Row;
+import nc.uap.lfw.core.data.Dataset;
+
+import nc.uap.cpb.org.extention.ICpbExtentionService;
+import java.util.ArrayList;
+
+
+import ${md_voMeta};
+import nc.uap.lfw.core.ctx.AppLifeCycleContext;
+import java.awt.MenuItem;
+import nc.uap.lfw.core.log.LfwLogger;
+import nc.vo.pub.SuperVO;
+import nc.uap.cpb.org.constant.DialogConstant;
+import nc.uap.lfw.core.cmd.UifDelCmd;
+import nc.uap.lfw.core.ctrl.IController;
+import nc.vo.ml.NCLangRes4VoTransl;
+import nc.uap.lfw.core.exception.LfwRuntimeException;
+import nc.uap.lfw.core.cmd.base.AbstractWidgetController;
+import nc.uap.lfw.core.event.DatasetEvent;
+import nc.uap.lfw.core.event.MouseEvent;
+import nc.uap.lfw.core.model.plug.TranslatedRow;
+import nc.uap.lfw.core.page.LfwView;
+import nc.uap.lfw.core.cmd.base.FromWhereSQL;
+
+
+public class MainController extends AbstractWidgetController implements IController {
+  private static final long serialVersionUID=1L;
+  private static final long ID=5L;
+  String primarykey =  new ${VOClassName}().getPKFieldName();
+  public void onAdd(  MouseEvent mouseEvent){
+		getCurrentWinCtx().addAppAttribute("oper","add");
+		getCurrentWinCtx().popView("edit", DialogConstant.MAX_WIDTH, DialogConstant.MAX_HEIGHT, "新增");
+  }
+  private WindowContext getCurrentWinCtx(){
+    return AppLifeCycleContext.current().getApplicationContext()
+				.getCurrentWindowContext();
+  }
+  public String getMasterDsId(){
+    return "DsTemp01";
+  }
+  public void onDataLoad(  DataLoadEvent se){
+    Dataset ds = se.getSource();
+		CmdInvoker.invoke(new UifDatasetLoadCmd(ds.getId()));
+  }
+  /** 
+ * 行非选中事件
+ * @param se
+ */
+  public void onEdit(  MouseEvent mouseEvent){
+	  Dataset ds = getCurrentWinCtx().getCurrentViewContext().getView().getViewModels().getDataset("DsTemp01");
+		Row row = ds.getSelectedRow();
+		if (row == null) {
+			throw new LfwRuntimeException("请选择相关信息。");
+		}
+		getCurrentWinCtx().addAppAttribute("oper", "edit");
+		
+		getCurrentWinCtx().addAppAttribute(primarykey, (String) row.getValue(ds.nameToIndex(primarykey)));
+		getCurrentWinCtx().popView("edit", DialogConstant.MAX_WIDTH, DialogConstant.MAX_HEIGHT, "编辑");
+       
+  }
+  public void onDel(  MouseEvent<MenuItem> mouseEvent){
+    UifDelCmd cmd=new UifDelCmd(getMasterDsId(),getAggVoClazz()){
+	    	protected void onDeleteVO(ArrayList<AggregatedValueObject> vos, boolean trueDel) {
+				for(AggregatedValueObject aggvo:vos){
+					${VOClassName} vo = (${VOClassName}) aggvo.getParentVO();
+
+						PtBaseDAO pbd = new PtBaseDAO();
+						try {
+							pbd.deleteVO(vo);
+							CpbExtentionUtil.notifyAfterAction(ICpbExtentionService.RESPMANAGE, ICpbExtentionService.DELETE, primarykey);
+						} catch (DAOException e) {
+							LfwLogger.error(e.getMessage(),e);
+							
+						}
+
+				}				
+			}
+	    };
+		  cmd.execute();
+  }
+  public void onAfterRowSelect(  DatasetEvent datasetEvent){
+	  ButtonStateManager.updateButtons();
+  }
+  
+ public void onAfterRowUnSelect(  DatasetEvent datasetEvent){
+	  ButtonStateManager.updateButtons();
+  }
+}

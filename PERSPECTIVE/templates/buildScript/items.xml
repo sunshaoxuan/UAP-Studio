@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<items docType="SDP_SCRIPT_ITEM">
+	<item>
+		<itemKey>0001</itemKey>
+		<itemName>cp_appscategory</itemName>
+		<itemRule>cp_appscategory</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_module in (select pk_module from cp_module where devmodulecode = '${moduleName}')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>cp_appsnode</itemName>
+		<itemRule>cp_appsnode</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>devcomponent in ('bcp1','bcp2','bcp3'...)</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>cp_menucategory</itemName>
+		<itemRule>cp_menucategory</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>id in ('xx1','xx2','xx3'......)</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>cp_menuitem</itemName>
+		<itemRule>cp_menuitem</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>code in ('xx1','xx2','xx3'......)</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0005</itemKey>
+		<itemName>cp_module</itemName>
+		<itemRule>cp_module</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>devmodulecode='${moduleName}'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0006</itemKey>
+		<itemName>cp_query_template</itemName>
+		<itemRule>cp_query_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>nodecode in (select id from cp_appsnode where devcomponent in ('bcp1','bcp2','bcp3'...))</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0007</itemKey>
+		<itemName>cp_query_condition</itemName>
+		<itemRule>cp_query_condition</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_query_template in (select pk_query_template from cp_query_template where nodecode in (select id from cp_appsnode where devcomponent in ('bcp1','bcp2','bcp3'...)))</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0008</itemKey>
+		<itemName>cp_print_template</itemName>
+		<itemRule>cp_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>nodecode in (select id from cp_appsnode where devcomponent in ('bcp1','bcp2','bcp3'...))</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0009</itemKey>
+		<itemName>cp_print_condition</itemName>
+		<itemRule>cp_print_condition</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_print_template in (select pk_print_template from cp_query_template where nodecode in (select id from cp_appsnode where devcomponent in ('bcp1','bcp2','bcp3'...)))</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0010</itemKey>
+		<itemName>bd_refinfo</itemName>
+		<itemRule>bd_refinfo</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>modulename ='${moduleName}'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0011</itemKey>
+		<itemName>bd_refinfobase</itemName>
+		<itemRule>bd_refinfobase</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>modulename ='${moduleName}'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0012</itemKey>
+		<itemName>wfm_flwcat</itemName>
+		<itemRule>wfm_flwcat</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>devmodule ='${moduleName}'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0013</itemKey>
+		<itemName>wfm_flwtype</itemName>
+		<itemRule>wfm_flwtype</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>typecode in ('xx1','xx2','xx3'......)</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0014</itemKey>
+		<itemName>wfm_prodef</itemName>
+		<itemRule>wfm_prodef</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>flwtype in ('xx1','xx2','xx3'......)</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0015</itemKey>
+		<itemName>cp_res</itemName>
+		<itemRule>cp_res</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere></fixedWhere>
+	</item>
+	<item>
+		<itemKey>0016</itemKey>
+		<itemName>cp_subfunc</itemName>
+		<itemRule>cp_subfunc</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere></fixedWhere>
+	</item>
+	<item>
+		<itemKey>0017</itemKey>
+		<itemName>pt_portalpage</itemName>
+		<itemRule>pt_portalpage</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere></fixedWhere>
+	</item>
+</items>

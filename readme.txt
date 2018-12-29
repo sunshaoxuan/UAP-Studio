@@ -1,0 +1,8 @@
+COMMON 公共，工具類，License
+DISK 做盤
+FEATHER 構建工程
+SITE 構建工程
+PERSPECTIVE 核心
+PORTALPROJ 站點
+PROJTOOLS 多語
+XML18N XML解析

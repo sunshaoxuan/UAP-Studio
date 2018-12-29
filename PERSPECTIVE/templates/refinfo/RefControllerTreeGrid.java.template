@@ -1,0 +1,24 @@
+package ${package};
+
+import uap.lfw.ref.ctrl.LfwSqlTreeGridReferneceController;
+import uap.lfw.ref.vo.LfwRefSqlVO;
+
+public class ${className} extends LfwSqlTreeGridReferneceController {
+	
+	@Override
+	public LfwRefSqlVO getGridSqlVO() {
+		LfwRefSqlVO vo = new LfwRefSqlVO();
+		vo.setTableName("${tableName_grid}");
+		vo.setRealTableNames("${realTableName_grid}");
+		vo.setOrderByPart("${orderByPart_grid}");
+		return vo;
+	}
+	
+	@Override
+	public LfwRefSqlVO getTreeSqlVO() {
+		LfwRefSqlVO vo = new LfwRefSqlVO();
+		vo.setTableName("${tableName_tree}");
+		vo.setRealTableNames("${realTableName_tree}");
+		return vo;
+	}
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Number">
+	<item repl="constructor" display="constructor,N4,IE4" />
+	<item repl="prototype" display="prototype" />
+	<item repl="NaN" display="NaN,IE4" />
+	<item repl="MAX_VALUE" display="MAX_VALUE,IE4" />
+	<item repl="MIN_VALUE" display="MIN_VALUE,IE4" />
+	<item repl="NaN" display="NaN,IE4" />
+	<item repl="NEGATIVE_INFINITY" display="NEGATIVE_INFINITY,IE4" />
+	<item repl="POSITIVE_INFINITY" display="POSITIVE_INFINITY,IE4" />
+	<item repl="toExponential(n)" display="toExponential(n),N6,W5.5" />
+	<item repl="toFixed(n)" display="toFixed(n),N6,IE5.5" />
+	<item repl="toLocaleString(n)" display="toLocaleString(n),N6,W5.5,M5" />
+	<item repl="toString([radix])" display="toString([radix]),N4,IE4" />
+	<item repl="toPrecision(n)" display="toPrecision(n),N6,W5.5" />
+	<item repl="valueOf()" display="valueOf(),N4,IE4" />
+</completion>

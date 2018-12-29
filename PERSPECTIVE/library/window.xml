@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="window" extends="Object">
+	<item repl="_content" display="_content" />
+	<item repl="appCore" display="appCore,N6" />
+	<item repl="clientInformation" display="clientInformation,IE4" />
+	<item repl="clipboardData" display="clipboardData,W5" />
+	<item repl="closed" display="cloded,N3,IE4" />
+	<item repl="components[]" display="components[],N6" />
+	<item repl="controllers[]" display="controllers[],N6" />
+	<item repl="crypto" display="crypto,N6" />
+	<item repl="defaultStatus" display="defaultStatus" />
+	<item repl="dialogArguments" display="dialogArguments,IE4" />
+	<item repl="dialogHeight" display="dialogHeight,W4" />
+	<item repl="dialogLeft" display="dialogLeft,IE4" />
+	<item repl="dialogTop" display="dialogTop,IE4" />
+	<item repl="dialogWidth" display="dialogWidth,W4" />
+	<item repl="directories" display="directories,N4,(S)" />
+	<item repl="document" display="document" />
+	<item repl="event" display="event,IE4" />
+	<item repl="external" display="external,W4" />
+	<item repl="frameElement" display="frameElement,W5.5" />
+	<item repl="frames[]" display="frames[]" />
+	<item repl="history" display="history" />
+	<item repl="innerHeight" display="innerHeight,N4" />
+	<item repl="innerWidth" display="innerWidth,N4" />
+	<item repl="length" display="length,N6,IE4" />
+	<item repl="loading" display="loading,N4 only" />
+	<item repl="location" display="location" />
+	<item repl="locationbar" display="locationbar,N4,(S)" />
+	<item repl="menubar" display="menubar,N4,(S)" />
+	<item repl="name" display="name" />
+	<item repl="navigator" display="navigator,N6,IE4" />
+	<item repl="offscreenBuffering" display="offscreenBuffering,IE4" />
+	<item repl="opener" display="opener,IE3,N3" />
+	<item repl="outerHeight" display="outerHeight,N4" />
+	<item repl="outerWidth" display="outerWidth,N4" />
+	<item repl="pageXOffset" display="pageXOffset,N4" />
+	<item repl="pageYOffset" display="pageYOffset,N4" />
+	<item repl="parent" display="parent" />
+	<item repl="personalbar" display="personalbar,N4,(S)" />
+	<item repl="pkcs11" display="pkcs11,N6" />
+	<item repl="prompter" display="prompter,N6" />
+	<item repl="returnValue" display="screen,W4,M5" />
+	<item repl="screen" display="screen,N6,IE4" />
+	<item repl="screenLeft" display="screen,W5" />
+	<item repl="screenTop" display="screen,W5" />
+	<item repl="screenX" display="screenX,N6" />
+	<item repl="screenY" display="screenY,N6" />
+	<item repl="scrollbars" display="scrollbars,N6,(S)" />
+	<item repl="scrollX" display="scrollX,N6" />
+	<item repl="scrollY" display="scrollY,N6" />
+	<item repl="self" display="self" />
+	<item repl="sidebar" display="sidebar,N4,(S)" />
+	<item repl="status" display="status" />
+	<item repl="statusbar" display="statusbar,N4,(S)" />
+	<item repl="toolbar" display="toolbar,N4,(S)" />
+	<item repl="top" display="top" />
+	<item repl="window" display="window" />
+	<item repl="alert(msg)" display="alert()" />
+	<item repl="attachEvent('evt',func)" display="attachEvent('evt',func),IE5" />
+	<item repl="back()" display="back(),N4" />
+	<item repl="blur()" display="blur(),N3,IE4" />
+	<item repl="captureEvents()" display="captureEvents(type),N4 only" />
+	<item repl="clearInterval()" display="clearInterval(ID),N4,IE4" />
+	<item repl="clearTimeout()" display="clearTimeout(ID)" />
+	<item repl="close()" display="close()" />
+	<item repl="confirm()" display="confirm()" />
+	<item repl="createPopup()" display="createPopup(),W5.5" />
+	<item repl="detachEvent()" display="detachEvent('evt',func),IE5" />
+	<item repl="dump()" display="dump()" />
+	<item repl="disableExternalCapture()" display="disableExternalCapture(),N4 only" />
+	<item repl="enableExternalCapture()" display="enableExternalCapture(),N4 only" />
+	<item repl="execScript()" display="execScript('exprs'[,lang]),IE4" />
+	<item repl="escape()" display="escape()" />
+	<item repl="find()" display="find(['str'][,case,bkwd]),N4" />
+	<item repl="fireEvent()" display="fireEvent('evt'[,evtObj]),W5.5" />
+	<item repl="focus()" display="focus(),N3,IE4" />
+	<item repl="forward()" display="forward(),N4" />
+	<item repl="getAttention()" display="GetAttention()" />
+	<item repl="getSelection()" display="getSelection()" />
+	<item repl="handleEvent(event)" display="handleEvent(event),N4 only" />
+	<item repl="home()" display="home(),N4" />
+	<item repl="moveBy()" display="moveBy(dx,dy),N4,IE4" />
+	<item repl="moveTo()" display="moveTo(x,y),N4,IE4" />
+	<item repl="navigate()" display="navigate(),IE3" />
+	<item repl="open()" display="open(URL,'name','specs'),(S)" />
+	<item repl="print()" display="print(),N4,IE5" />
+	<item repl="prompt()" display="prompt('msg','reply')" />
+	<item repl="releaseEvents()" display="releaseEvents(type),N4 only" />
+	<item repl="resizeBy()" display="resizeBy(dx,dy),N4 only,IE4" />
+	<item repl="resizeTo()" display="resizeTo(width,height),N4 only,IE4" />
+	<item repl="routeEvent()" display="routeEvent(event),IE4 only" />
+	<item repl="scroll()" display="scroll(x,y),N3,IE4" />
+	<item repl="scrollBy()" display="scrollBy(dx,dy),N4,IE4" />
+	<item repl="scrollByLines()" display="scrollByLines()" />
+	<item repl="scrollByPages()" display="scrollByPages()" />
+	<item repl="scrollTo()" display="N4,IE4,scrollTo()" />
+	<item repl="setActive()" display="W5.5,setCursor()" />
+	<item repl="setCursor()" display="setCursor()" />
+	<item repl="setInterval()" display="setInterval(func,msec[,args]),N4,IE4" />
+	<item repl="setTimeout()" display="setTimeout(func,msec[,args])" />
+	<item repl="showHelp()" display="showHelp(),W4" />
+	<item repl="showModalDialog()" display="showModalDialog(),IE4" />
+	<item repl="showModelessDialog()" display="showModelessDialog(),IE4" />
+	<item repl="sizeToContent()" display="sizeToContent(),N6" />
+	<item repl="stop()" display="stop(),N4" />
+	<item repl="unescape()" display="unescape()" />
+	<item repl="updateCommands()" display="updateCommands()" />
+	<item repl="onabort" display="onabort,N6," />
+	<item repl="onafterprint" display="onabort,W5" />
+	<item repl="onbeforeprint" display="onabort,W5" />
+	<item repl="onbeforeunload" display="onabort,IE4" />
+	<item repl="onblur" display="onblur,N3,IE4" />
+	<item repl="onchange" display="onchange,N6" />
+	<item repl="onclick" display="onclick,N6" />
+	<item repl="onclose" display="onclose,N6" />
+	<item repl="ondragdrop" display="ondragdrop,N4 only" />
+	<item repl="onerror" display="onerror,N3,IE4" />
+	<item repl="onfocus" display="onfocus,N3,IE4" />
+	<item repl="onhelp" display="onfocus,IE4" />
+	<item repl="onkeydown" display="onkeydown,N6" />
+	<item repl="onkeypress" display="onkeypress,N6" />
+	<item repl="onkeyup" display="onkeyup,N6" />
+	<item repl="onload" display="onload" />
+	<item repl="onmousedown" display="onmousedown,N6" />
+	<item repl="onmousemove" display="onmousemove,N6" />
+	<item repl="onmouseout" display="onmouseout,N6" />
+	<item repl="onmouseover" display="onmouseover,N6" />
+	<item repl="onmouseup" display="onmouseup,N6" />
+	<item repl="onmove" display="onmove,N4 only" />
+	<item repl="onpaint" display="onpaint" />
+	<item repl="onreset" display="onreset,N6" />
+	<item repl="onresize" display="onresize,N4,IE4" />
+	<item repl="onscroll" display="onscroll,IE4" />
+	<item repl="onselect" display="onselect,N6" />
+	<item repl="onsubmit" display="onsubmit,N6" />
+	<item repl="onunload" display="onunload" />
+</completion>

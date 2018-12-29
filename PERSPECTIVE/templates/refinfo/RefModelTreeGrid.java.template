@@ -1,0 +1,91 @@
+package ${package};
+
+import uap.lfw.ref.model.LfwTreeGridRefModel;
+import ${controllerFullName};
+import uap.lfw.ref.vo.LfwTreeGridRefGroupVO;
+
+public class ${className} extends LfwTreeGridRefModel {
+	
+	@Override
+	public String getControllerClazzName() {
+		return ${controllerName}.class.getName();
+	}
+
+	@Override
+	public LfwTreeGridRefGroupVO getGroupVO() {
+		return new LfwTreeGridRefGroupVO() {
+			
+			/*主键字段*/
+			@Override
+			public String getPkField() {
+				return "${pkField}";
+			}
+			/*编码字段*/
+			@Override
+			public String getCodeField() {
+				return "${codeField}";
+			}
+			/*名称字段*/
+			@Override
+			public String getNameField() {
+				return "${nameField}";
+			}
+			/*数据集显示字段集合*/
+			@Override
+			public String[] getFieldCodes() {
+				return new String[]{${fieldCodes}};
+			}
+			/*数据集显示字段名称集合*/
+			@Override
+			public String[] getFieldNames() {
+				return new String[]{${fieldNames}};
+			}
+			/*数据集隐藏字段集合*/
+			@Override
+			public String[] getHiddenFieldCodes() {
+				return new String[]{${hiddenFieldCodes}};
+			}
+			/*外键字段*/
+			@Override
+			public String getDocJoinField() {
+				return "${docJoinField}";
+			}
+			/*树主键字段*/
+			@Override
+			public String getClassPkField() {
+				return "${classPkField}";
+			}
+			/*树编码字段*/
+			@Override
+			public String getClassCodeField() {
+				return "${classCodeField}";
+			}
+			/*树名称字段*/
+			@Override
+			public String getClassNameField() {
+				return "${classNameField}";
+			}
+			/*树父节点字段*/
+			@Override
+			public String getClassFatherField() {
+				return "${fatherField}";
+			}
+			/*树子节点字段*/
+			@Override
+			public String getClassChildField() {
+				return "${childField}";
+			}
+			/*树数据集字段集合*/
+			@Override
+			public String[] getClassFieldCodes() {
+				return new String[]{${classFieldCodes}};
+			}
+			/*多语字段集合*/
+			@Override
+			public String[] getMultiLanFieldCodes() {
+				return new String[]{${multiLanFieldCodes}};
+			}
+			
+		};
+	}
+}

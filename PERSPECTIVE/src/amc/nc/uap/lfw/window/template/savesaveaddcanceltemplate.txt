@@ -1,0 +1,137 @@
+package ${PackageToReplace};
+
+import java.util.HashMap;
+import java.util.Map;
+
+import nc.uap.lfw.core.cmd.CmdInvoker;
+import nc.uap.lfw.core.cmd.UifAddCmd;
+import nc.uap.lfw.core.cmd.UifDatasetLoadCmd;
+import nc.uap.lfw.core.cmd.UifPlugoutCmd;
+import nc.uap.lfw.core.cmd.UifSaveCmdRV;
+import nc.uap.lfw.core.constants.AppConsts;
+import nc.uap.lfw.core.data.Dataset;
+import nc.uap.lfw.core.data.Row;
+import nc.uap.lfw.core.event.DialogEvent;
+import nc.uap.lfw.core.event.MouseEvent;
+import uap.lfw.core.itf.ctrl.AbstractMasterSlaveViewController;
+
+/**
+ * 卡片窗口默认逻辑
+ * 
+ */
+public class ${ClassToReplace} extends AbstractMasterSlaveViewController {
+
+	private static final String PLUGOUT_ID = "afterSavePlugout";
+
+	/**
+	 * 页面显示事件
+	 * @param dialogEvent
+	 */
+	public void beforeShow(DialogEvent dialogEvent) {
+		Dataset masterDs = this.getMasterDs();
+		masterDs.clear();
+		
+		String oper = getOperator();
+		if(AppConsts.OPE_ADD.equals(oper)){
+			CmdInvoker.invoke(new UifAddCmd(getMasterDsId()) {
+				protected void onBeforeRowAdd(Row row) {
+					setAutoFillValue(row);
+					
+					Dataset masterDs = getMasterDs();
+					String pk_primarykey = generatePk();
+					row.setValue(masterDs.nameToIndex(masterDs.getPrimaryKeyField()), pk_primarykey);
+				}
+			});
+		}else if(AppConsts.OPE_EDIT.equals(oper)){
+			CmdInvoker.invoke(new UifDatasetLoadCmd(masterDs){
+				@Override
+				protected void onAfterDatasetLoad() {
+					this.getDs().setEnabled(true);
+				}
+			});
+		}
+	}
+
+	/**
+	 * 保存按钮单击事件
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onBtnOk(MouseEvent<?> mouseEvent) {
+		Dataset masterDs = this.getMasterDs();
+		CmdInvoker.invoke(new UifSaveCmdRV(this.getMasterDsId(), this.getDetailDsIds(), false));
+		masterDs.setEnabled(true);
+		this.getCurrentAppCtx().closeWinDialog();
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>(2);
+		Row savedRow = masterDs.getSelectedRow();
+		paramMap.put(OPERATE_ROW, savedRow);
+		CmdInvoker.invoke(new UifPlugoutCmd(this.getCurrentView().getId(), PLUGOUT_ID, paramMap));
+	}
+
+	/**
+	 * 保存并新增按钮单击事件
+	 * @param mouseEvent
+	 */
+	public void onBtnSaveAdd(MouseEvent<?> mouseEvent) {
+		Dataset masterDs = this.getMasterDs();
+		CmdInvoker.invoke(new UifSaveCmdRV(this.getMasterDsId(), this.getDetailDsIds(), false));
+		masterDs.setEnabled(true);
+		
+		Row row = masterDs.getEmptyRow();
+		masterDs.getCurrentRowData().insertRow(0, row);
+		this.setAutoFillValue(row);
+		
+		String pk_primarykey = this.generatePk();
+		row.setValue(masterDs.nameToIndex(masterDs.getPrimaryKeyField()), pk_primarykey);
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>(2);
+		Row savedRow = masterDs.getSelectedRow();
+		paramMap.put(OPERATE_ROW, savedRow);
+		CmdInvoker.invoke(new UifPlugoutCmd(this.getCurrentView().getId(), PLUGOUT_ID, paramMap));
+	}
+	
+	/**
+	 * 取消按钮单击事件
+	 * 
+	 * @param mouseEvent
+	 */
+	public void onBtnCancel(MouseEvent<?> mouseEvent) {
+		this.getCurrentAppCtx().closeWinDialog();
+	}
+	
+	/**
+	 * 获取主数据集id
+	 * @return String
+	 */
+	@Override
+	protected String getMasterDsId() {
+		return "cardds";
+	}
+	
+	/**
+	 * 设置PK_ORG字段值
+	 * @param row
+	 */
+	private void setAutoFillValue(Row row){
+		if(row != null){
+			Dataset ds = this.getCurrentView().getViewModels().getDataset(this.getMasterDsId());
+			
+			String pkOrg = this.getCurrentAppCtx().getAppEnvironment().getPk_org();
+			if(pkOrg != null){
+				int pkOrgIndex = ds.nameToIndex(PK_ORG);
+				if(pkOrgIndex >= 0){
+					row.setValue(pkOrgIndex, pkOrg);		
+				}
+			}
+			String pkGroup = this.getCurrentAppCtx().getAppEnvironment().getPk_group();
+			if(pkGroup != null){
+				int pkGroupIndex = ds.nameToIndex(PK_GROUP);
+				if(pkGroupIndex >= 0){
+					row.setValue(pkGroupIndex, pkGroup);		
+				}
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,15 @@
+package ${package};
+
+import uap.lfw.ref.ctrl.LfwSqlTreeReferenceController;
+import uap.lfw.ref.vo.LfwRefSqlVO;
+
+public class ${className} extends LfwSqlTreeReferenceController {
+	
+	@Override
+	public LfwRefSqlVO getTreeSqlVO() {
+		LfwRefSqlVO vo = new LfwRefSqlVO();
+		vo.setTableName("${tableName}");
+		vo.setRealTableNames("${realTableName}");
+		return vo;
+	}
+}

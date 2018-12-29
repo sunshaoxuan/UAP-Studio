@@ -1,0 +1,7 @@
+package ${package};
+
+import ${classFullName};
+
+public class ${className} extends ${superClassName} {
+
+}

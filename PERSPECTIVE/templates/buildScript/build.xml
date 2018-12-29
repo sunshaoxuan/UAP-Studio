@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="rsd_task" default="deploy">
+	<property name="compiledir" value="c:/tempcompile"/>
+	<property name="nc_home" value="${nchome}"/>
+	<property name="nc_lib" value="${nc_home}/lib"/>
+	<property name="external_lib" value="${nc_home}/external/lib"/>
+	<property name="modules_lib" value="${nc_home}/modules"/>
+	<property name="middleware_lib" value="${nc_home}/middleware"/>
+	<property name="compile_debug" value="true"/>
+	<property name="compile_source" value="true"/>
+	<path id="depend_path">
+		<fileset dir="${nc_lib}" id="id1">
+		    <include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${external_lib}" id="id2">
+		    <include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${modules_lib}" id="id3">
+		    <include name="*/lib/*.jar"/>
+		</fileset>
+		<fileset dir="${middleware_lib}" id="id4">
+		    <include name="**/*.jar"/>
+		</fileset>
+	</path>
+	<path id="private_depend_path">
+		<fileset dir="${modules_lib}" id="id5">
+			<include name="${module}/META-INF/lib/*.jar"/>
+		</fileset>
+	</path>
+	<target name="preCompile">
+		<echo message="begin to compile the files under folder:${compile_path}"/>
+		<mkdir dir="${tempdir}"/>
+		<mkdir dir="${tempdir}/web"/>
+		<mkdir dir="${tempdir}/lib"/>
+		<mkdir dir="${tempdir}/srclib"/>
+		<mkdir dir="${tempdir}/classes"/>		
+		<echo message="successfully compile the files under folder:${compile_path}"/>
+	</target>
+	<target name="compile" depends="preCompile">
+	</target>
+	<target name="deploy" depends="compile"> 
+		<echo message="begin to copy the files under folder:${tempdir}"/>
+		<mkdir dir="${mk_nc_home}"/>
+		<mkdir dir="${mk_nc_home}/hotwebs"/>
+		<mkdir dir="${mk_nc_home}/hotwebs/lfw"/>
+		<mkdir dir="${mk_nc_home}/hotwebs/portal"/>
+		<echo message="successfully copy the files under folder:${tempdir}"/> 
+	</target>
+</project>

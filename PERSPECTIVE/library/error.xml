@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Error">
+	<item repl="constructor" display="constructor,N6,W5" />
+	<item repl="prototype" display="prototype,N6,W5" />
+	<item repl="description" display="description,W5" />
+	<item repl="fileName" display="fileName,N6" />
+	<item repl="fileNumber" display="fileNumber,N6" />
+	<item repl="message" display="message,N6,IE5.5" />
+	<item repl="name" display="name,N6,IE5.5" />
+	<item repl="number" display="number,W5" />
+	<item repl="toString()" display="toString(),N6,W5" />
+</completion>

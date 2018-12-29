@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Array">
+	<item repl="constructor" display="constructor,N4,IE4" />
+	<item repl="prototype" display="prototype" />
+	<item repl="length" display="length int" />
+	<item repl="concat(array2)" display="concat(array2),N4,IE4" />
+	<item repl="join('char')" display="join('char'),IE4" />
+	<item repl="push()" display="push(),N4,W5.5" />
+	<item repl="pop()" display="pop(),N4,W5.5" />
+	<item repl="reverse()" display="reverse(),IE4" />
+	<item repl="shift()" display="shift(),N4,W5.5" />
+	<item repl="slice(i[,j])" display="slice(i[,j]),N4,IE4" />
+	<item repl="sort(compareFunc)" display="sort(compareFunc),IE4" />
+	<item repl="splice(i,j[,items])" display="splice(i,j[,items]),N4,W5.5" />
+	<item repl="toLocaleString()" display="toLocaleString(),N6,W5.5" />
+	<item repl="toString()" display="toString(),IE4" />
+	<item repl="unshift()" display="unshift(),N4,W5.5" />
+</completion>

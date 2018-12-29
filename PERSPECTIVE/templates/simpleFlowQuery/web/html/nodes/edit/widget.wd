@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<Widget controllerClazz="${edit_controllClazz}" dialog="false" id="edit" refId="edit" sourcePackage="${location}">
+    <PlugoutDescs>
+        <PlugoutDesc id="edit_plugout">
+            <PlugoutDescItem clazztype="java.lang.String" name="ok" source="DsTemp01" type="Dataset.TYPE_DATASET_SEL_ROW">
+            </PlugoutDescItem>
+            <PlugoutEmitItem id="okbtn" source="btn_ok" type="Button.onclick">
+            </PlugoutEmitItem>
+        </PlugoutDesc>
+    </PlugoutDescs>
+    <PluginDescs>
+    </PluginDescs>
+    <Events>
+        <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.DialogListener" methodName="beforeShow" name="beforeShow" onserver="true">
+            <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+            </SubmitRule>
+            <Params>
+                <Param>
+                    <Name>dialogEvent</Name>
+                    <Desc>                        <![CDATA[nc.uap.lfw.core.event.DialogEvent]]>
+                    </Desc>
+                </Param>
+            </Params>
+            <Action>
+            </Action>
+        </Event>
+    </Events>
+    <Models>
+        <Datasets>
+            <MdDataset i18nName="" caption="DsTemp01" controloperatorStatus="true" controlwidgetopeStatus="true" enabled="false" id="DsTemp01" lazyLoad="false" objMeta="${md_objMeta}" voMeta="${md_voMeta}">
+                <Fields>
+                </Fields>
+            </MdDataset>
+        </Datasets>
+    </Models>
+    <Components>
+        <ButtonComp i18nName="" enabled="true" id="btn_cancel" text="取消" visible="true">
+            <Events>
+                <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onCancelClick" name="onclick" onserver="true">
+                    <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                    </SubmitRule>
+                    <Params>
+                        <Param>
+                            <Name>mouseEvent</Name>
+                            <Value>
+                            </Value>
+                            <Desc>                                <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                            </Desc>
+                        </Param>
+                    </Params>
+                    <Action>
+                    </Action>
+                </Event>
+            </Events>
+        </ButtonComp>
+        <ButtonComp i18nName="" enabled="true" id="btn_ok" text="确定" visible="true">
+                    <Events>
+                <Event async="true" jsEventClaszz="nc.uap.lfw.core.event.conf.MouseListener" methodName="onOkClick" name="onclick" onserver="true">
+                    <SubmitRule cardSubmit="false" panelSubmit="false" tabSubmit="false">
+                    </SubmitRule>
+                    <Params>
+                        <Param>
+                            <Name>mouseEvent</Name>
+                            <Value></Value>
+                            <Desc>                                <![CDATA[nc.uap.lfw.core.event.MouseEvent]]>
+                            </Desc>
+                        </Param>
+                    </Params>
+                    <Action>
+                    </Action>
+                </Event>
+            </Events>
+        </ButtonComp>
+        <FormComp i18nName="" caption="formTemp01" columnCount="1" dataset="DsTemp01" eleWidth="250" enabled="true" id="formTemp01" labelMinWidth="0" renderHiddenEle="false" renderType="1" rowHeight="22" visible="true">           
+          
+        </FormComp>
+    </Components>
+    <Containers>
+    </Containers>
+    <Menus>
+    </Menus>
+</Widget>

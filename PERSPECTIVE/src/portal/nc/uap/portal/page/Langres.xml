@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<multilanres>
+	<numconfirm_tip2>确定</numconfirm_tip2>
+	<tx_layout_ID>编号：</tx_layout_ID>
+	<numconfirm_tip3>取消</numconfirm_tip3>
+	<template_comb>主题：</template_comb>
+	<tx_page_Pagename>页面名称：</tx_page_Pagename>
+	<numconfirm_tip1>输入列数：</numconfirm_tip1>
+	<padding>内边距</padding>
+	<tx_portlet_title>标题：</tx_portlet_title>
+	<page_skin_comb>样式：</page_skin_comb>
+	<margin>外边距</margin>
+	<tab_portlet_prop>Portlet设置</tab_portlet_prop>
+	<setServerInfo>没有获得服务器地址,与服务器的交互都不会成功的</setServerInfo>
+	<SaveFile2>错误提示</SaveFile2>
+	<SaveFile1>请重新输入</SaveFile1>
+	<layout_mianlayout>主布局</layout_mianlayout>
+	<tx_layout_sizes>宽度比例：</tx_layout_sizes>
+	<tx_page_Level>用户类型：</tx_page_Level>
+	<tx_page_Title>页面标题：</tx_page_Title>
+	<tab_page_prop>页面设置</tab_page_prop>
+	<request_error>是</request_error>
+	<keepstate_comb>保持页面状态：</keepstate_comb>
+	<label_admin>管理员</label_admin>
+	<tx_page_I18N>国际化：</tx_page_I18N>
+	<tab_layout_prop>布局设置</tab_layout_prop>
+	<validateName>页面名称已经存在!</validateName>
+	<showXml>xml文件</showXml>
+	<tx_portlet_Name>名称：</tx_portlet_Name>
+	<fourdirection>上      下       左      右</fourdirection>
+	<label_no>否</label_no>
+	<layout_tip1>布局的  宽度比例  设置错误</layout_tip1>
+	<portlet_skin_comb>样式：</portlet_skin_comb>
+	<layout_tip2>布局的  宽度比例  设置错误</layout_tip2>
+	<device_comb>设备：</device_comb>
+	<isdefault_comb>是否默认：</isdefault_comb>
+	<version>版本：</version>
+	<label_user>用户</label_user>
+	<label_yes>是</label_yes>
+	<tx_page_Ordernum>优先级：</tx_page_Ordernum>
+	<layout_container>布局容器</layout_container>
+	<tx_page_Label>页签：</tx_page_Label>
+	<tx_layout_sizes_toolTip>输入格式:如50,50或50,50%或100,50%,50%;整数-像素宽度，百分数-比例宽度;例如50,50%：第一列占50像素宽度，第二列占剩下宽度的50%</tx_layout_sizes_toolTip>
+	<page_linkgroup_comb>菜单分类：</page_linkgroup_comb>
+	<tx_portlet_I18N>国际化：</tx_portlet_I18N>
+	<ToolButton1>保存</ToolButton1>
+	<layout_skin_comb>样式：</layout_skin_comb>
+	<httpErrorHandler>服务请求失败</httpErrorHandler>
+	<ToolButton4>查看xml文件</ToolButton4>
+	<saveXml_resultHandler>保存成功!</saveXml_resultHandler>
+	<ToolButton2>清空</ToolButton2>
+	<ToolButton3>删除</ToolButton3>
+	<ontoolbarclick2>提示</ontoolbarclick2>
+	<readonly_comb>是否只读：</readonly_comb>
+	<ontoolbarclick1>您确认要清空图形吗？</ontoolbarclick1>
+	<page_tip1>页面名称不能为空!</page_tip1>
+	<page_tip2>标题不能为空!</page_tip2>
+	<tx_portlet_ID>编号：</tx_portlet_ID>
+	<tx_layout_Name>名称：</tx_layout_Name>
+	<page_tip5>页面名称:只能以英文开头!</page_tip5>
+	<page_tip3>样式不能为空!</page_tip3>
+	<page_tip4>主题不能为空!</page_tip4>
+</multilanres>

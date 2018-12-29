@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="Boolean">
+	<item repl="constructor" display="constructor,N4,IE4" />
+	<item repl="prototype" display="prototype" />
+	<item repl="toString()" display="toString(),N4,IE4" />
+	<item repl="valueOf()" display="valueOf(),N4,IE4" />
+</completion>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!--建工程扩展点-->
+ <extension
+         point="org.eclipse.jdt.core.classpathContainerInitializer">
+      <classpathContainerInitializer
+            class="nc.uap.lfw.internal.core.LFWClasspathInitializer"
+            id="nc.uap.lfw.library.container"/>
+   </extension>
+
+    
+    <extension
+         id="nc.uap.lfw.ModuleProjectNature"
+         name="%lfw.nature.name"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run class="nc.uap.lfw.internal.project.WEBProject"/>
+      </runtime>
+      <requires-nature id="org.eclipse.jdt.core.javanature"/>
+      <builder id="nc.uap.lfw.tools.project.LFWModuleBuilder"/> 
+      
+    </extension>
+    	<extension id="nc.uap.lfw.BizCompProjectNature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="nc.uap.lfw.internal.project.WEBProject">
+			</run>
+		</runtime>
+		<requires-nature id="org.eclipse.jdt.core.javanature">
+		</requires-nature>
+	</extension>
+	<extension id="nc.uap.mde.BizCompProjectNature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="nc.uap.lfw.internal.project.WEBProject">
+			</run>
+		</runtime>
+		<requires-nature id="org.eclipse.jdt.core.javanature">
+		</requires-nature>
+	</extension>
+   
+    <extension
+         id="nc.uap.lfw.tools.project.LFWModuleBuilder"
+         name="%extension.name"
+         point="org.eclipse.core.resources.builders">
+      <builder hasNature="true">
+         <run class="nc.uap.lfw.internal.project.ModuleBuilder"/>
+      </builder>
+   </extension>
+   
+ 
+
+  <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="%new.wizard.category"
+            id="nc.uap.lfw.newWizards"/>
+   <!--   <wizard
+            category="nc.uap.lfw.newWizards"
+            class="nc.uap.lfw.wizards.NewWebModuleProjectWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/project.gif"
+            id="nc.uap.lfw.wizards.NewWebModuleProjectWizard"
+            name="%new.wizard.project"
+            preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+            project="true"/> -->
+      <wizard
+            category="nc.uap.lfw.newWizards"
+            class="nc.uap.lfw.wizards.NewBcpModuleWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/bcp-icon.gif"
+            id="LFWPROJ.wizard2"
+            name="%wizard.name"
+            preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+            project="true">
+      </wizard>
+      <wizard
+            category="nc.uap.lfw.newWizards"
+            class="nc.uap.lfw.wizards.NewCodeRefProjectWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/bcp-icon.gif"
+            id="LFWPROJ.codeWizard"
+            name="%wizard.name.0"
+            preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+            project="true">
+      </wizard>
+   </extension>
+   
+  
+   
+     
+   <extension
+            point="org.eclipse.core.variables.valueVariables">
+         <variable
+               description="%variable.description"
+               initialValue="c:\nc_home"
+               name="FIELD_NC_HOME"/>
+         <variable
+               description="%variable.description.0"
+               initialValue="testbill"
+               name="FIELD_EX_MODULES"/>
+         <variable
+               description="%variable.description.1"
+               initialValue="127.0.0.1"
+               name="FIELD_CLINET_IP">
+         </variable>
+         <variable
+               description="%variable.description.2"
+               initialValue="80"
+               name="FIELD_CLINET_PORT">
+         </variable>
+      </extension>
+      
+      
+     <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IResource"
+            id="nc.uap.lfw.MDEToolSet">
+         <menu
+               label="%menu.group.LFWTools"
+               id="nc.uap.lfw.MDETools">
+            <separator name="group0"/>
+         </menu>
+         <filter
+               value="nc.uap.lfw.ModuleProjectNature"
+               name="projectNature"/>
+         <action
+               class="nc.uap.lfw.ui.action.UpdateLFWClasspathAction"
+               id="nc.uap.lfw.UpdateClassPathAction"
+               label="%lfwupdateClasspathAction.label"
+               menubarPath="nc.uap.lfw.MDETools/group0">
+                <enablement>
+       			 <systemProperty
+           			 name="LFW_LICENSE_STATE"
+           			 value="OK">
+       			 </systemProperty>
+       		   </enablement>
+         </action>
+         <action
+               class="nc.uap.lfw.ui.action.SyncWebFilesAction"
+               enablesFor="1"
+               id="nc.uap.lfw.SyncWebFilesAction"
+               label="%action.label"
+               menubarPath="nc.uap.lfw.MDETools/group0">
+                <enablement>
+       			 <systemProperty
+           			 name="LFW_LICENSE_STATE"
+           			 value="OK">
+       			 </systemProperty>
+       		   </enablement>
+         </action>
+         <action
+               class="nc.uap.lfw.ui.action.SyncCurrentWebFilesAction"
+               enablesFor="1"
+               id="nc.uap.lfw.SyncCurrentWebFilesAction"
+               label="%action.label.0"
+               menubarPath="nc.uap.lfw.MDETools/group0">
+                <enablement>
+       			 <systemProperty
+           			 name="LFW_LICENSE_STATE"
+           			 value="OK">
+       			 </systemProperty>
+       		   </enablement>
+         </action>
+         <action
+               class="nc.uap.lfw.ui.action.OpenFileLocationAction"
+               id="nc.uap.lfw.OpenFileLocationAction" 
+               label="%action.label.1"
+               menubarPath="nc.uap.lfw.MDETools/group0">
+               <enablement>
+       			 <systemProperty
+           			 name="LFW_LICENSE_STATE"
+           			 value="OK">
+       			 </systemProperty>
+       		   </enablement>
+         </action>
+       	</objectContribution>
+    </extension>
+   
+
+   <extension point="org.eclipse.jdt.launching.classpathProviders">
+		<classpathProvider
+			class="nc.uap.lfw.internal.core.MDEClientClasspathProvider"
+			id="nc.uap.lfw.MiddlewareClasspathProvider" />
+	</extension>
+	<extension point="org.eclipse.jdt.launching.runtimeClasspathEntries">
+		<runtimeClasspathEntry
+			class="nc.uap.lfw.internal.core.ClientClasspathEntry"
+			id="nc.uap.lfw.ClientClasspathEntry">
+		</runtimeClasspathEntry>
+	</extension>
+   <extension
+        point="org.eclipse.debug.ui.launchShortcuts">
+     <shortcut
+           class="nc.uap.lfw.launcher.LFWMiddlewareLaunchShortcut"
+           icon="icons/start_server.gif"
+           id="nc.uap.lfw.MiddlewareLaunchShortcut"
+           label="%launcher.server.name"
+           modes="run, debug">
+           <contextualLaunch>
+            <enablement>
+               <with variable="selection">
+                  <count value="1"/>
+                  <iterate operator="and">
+                  	 <test property="org.eclipse.debug.ui.projectNature" value="nc.uap.lfw.ModuleProjectNature"/>  
+                  	 <adapt type="org.eclipse.jdt.core.IJavaElement">
+									<test property="org.eclipse.jdt.core.isInJavaProject">
+									</test>
+								</adapt>            
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+     </shortcut>
+     <shortcut
+           class="nc.uap.lfw.launcher.LFWClientLaunchShortcut"
+           icon="icons/start_server.gif"
+           id="nc.uap.lfw.ClientLaunchShortcut"
+           label="%shortcut.label"
+           modes="run, debug">
+           <contextualLaunch>
+            <enablement>
+               <with variable="selection">
+                  <count value="1"/>
+                  <iterate operator="and">
+                  	 <test property="org.eclipse.debug.ui.projectNature" value="nc.uap.lfw.ModuleProjectNature"/>  
+                  	 <adapt type="org.eclipse.jdt.core.IJavaElement">
+									<test property="org.eclipse.jdt.core.isInJavaProject">
+									</test>
+								</adapt>            
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+     </shortcut>
+  </extension>
+   
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="nc.uap.lfw.launcher.LFWLaunchDelegate"
+            id="nc.uap.lfw.launch"
+            migrationDelegate="org.eclipse.jdt.internal.launching.JavaMigrationDelegate"
+            modes="run, debug"
+            name="%launcher.configName"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+      </launchConfigurationType>
+
+   </extension>
+   
+    <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            icon="icons/start_server.gif"
+            configTypeID="nc.uap.lfw.launch"
+            id="nc.uap.lfw.launchServerImage"/>
+   </extension>
+   
+  <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="nc.uap.lfw.core.WebConfigurationTabGroup"
+            id="nc.uap.lfw.launchConfigurationTabGroup"
+            type="nc.uap.lfw.launch">
+      </launchConfigurationTabGroup>
+   </extension>
+   <!--
+  <extension
+        point="org.eclipse.ui.preferencePages">
+      <page
+        category="nc.uap.studio.common.preferencePages.main"
+        class="nc.uap.lfw.preference.SourceUpdatePreferencePage"
+        id="nc.uap.studio.common.preferencePages.LFW"
+        name="%page.name.update"/>
+      
+  </extension>
+  -->
+ 
+</plugin>

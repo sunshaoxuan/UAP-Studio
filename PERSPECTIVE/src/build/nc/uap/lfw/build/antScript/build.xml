@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="main" default="build" basedir=".">
+	<property name="bcpName" value=""></property>
+	<property name="diskLocation" value=""></property>
+	<target name="build">
+		
+		<copy todir="${buildFolder}/businessFolder/ncscript/${domain}/${moduleName}/business">
+			<fileset dir="${buildFolder}/init"></fileset>
+		</copy>		
+	
+
+		<copy todir="${buildFolder}/dbcreateFolder/ncscript/${domain}/${moduleName}/">
+			<fileset dir="${buildFolder}/script"></fileset>
+		</copy>	
+	
+	</target>	
+	<target name="toJar">
+		<mkdir dir="${buildFolder}/codeFolder/langlib"></mkdir>			
+	</target>
+	<target name="finish" depends="toJar">
+		<jar destfile="${buildFolder}/codeFolder/code.jar" basedir="${buildFolder}/codeFolder"></jar>
+		<copy todir="${diskLocation}" >
+			<fileset file="${buildFolder}/businessFolder/business.jar"></fileset>
+		</copy>
+		<copy todir="${diskLocation}" >
+			<fileset file="${buildFolder}/codeFolder/code.jar"></fileset>
+		</copy>
+		<copy todir="${diskLocation}" >
+			<fileset file="${buildFolder}/dbcreateFolder/dbcreate.jar"></fileset>
+		</copy>
+			
+	</target>
+		
+</project>

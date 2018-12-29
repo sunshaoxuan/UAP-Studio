@@ -1,0 +1,16 @@
+package ${package};
+
+import uap.lfw.ref.ctrl.LfwSqlGridReferenceController;
+import uap.lfw.ref.vo.LfwRefSqlVO;
+
+public class ${className} extends LfwSqlGridReferenceController {
+	
+	@Override
+	public LfwRefSqlVO getGridSqlVO() {
+		LfwRefSqlVO vo = new LfwRefSqlVO();
+		vo.setTableName("${tableName}");
+		vo.setRealTableNames("${realTableName}");
+		vo.setOrderByPart("${orderByPart}");
+		return vo;
+	}
+}

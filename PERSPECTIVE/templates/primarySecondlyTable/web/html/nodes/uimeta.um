@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" id="cp_sysinit_um" jquery="0">
+	<FlowhLayout id="flowh1" autoFill="true">
+		<FlowhPanel id="flowhp1" width="196" rightBorder="#" className="left_side_style">
+			<FlowvLayout id="navflowv1">
+				<FlowvPanel id="flowv1">
+					<CanvasLayout id="titlecanvas" className="leftcanvas">
+						<CanvasPanel id="canvasp1">
+						</CanvasPanel>
+					</CanvasLayout>
+				</FlowvPanel>
+				<FlowvPanel id="flowv4" topPadding="0" bottomPadding="0" leftPadding="20" rightPadding="20">
+					<PanelLayout i18nName="w_cp_psndoc-000329" langDir="ad_nodes" id="panel4" title="组织">
+						<PanelPanel>
+							<Widget id="modeorg">
+							</Widget>
+						</PanelPanel>
+					</PanelLayout>
+				</FlowvPanel>
+				<FlowvPanel id="flowv5" topPadding="0" bottomPadding="0" leftPadding="20" rightPadding="20">
+					<PanelLayout i18nName="w_cp_psndoc-000330" langDir="ad_nodes" id="panel5" title="部门">
+						<PanelPanel>
+							<Widget id="dept">
+							</Widget>
+						</PanelPanel>
+					</PanelLayout>
+				</FlowvPanel>
+				<FlowvPanel id="flowv3" topPadding="0" bottomPadding="0" leftPadding="20" rightPadding="20">
+					<PanelLayout i18nName="w_cp_psndoc-000331" langDir="ad_nodes" id="panel2" title="快速查询">
+						<PanelPanel>
+							<Widget id="simplequery">
+							</Widget>
+						</PanelPanel>
+					</PanelLayout>
+				</FlowvPanel>
+			</FlowvLayout>
+		</FlowhPanel>
+		<FlowhPanel id="flowhp3">
+			<Widget id="main">
+    		</Widget>
+		</FlowhPanel>
+	</FlowhLayout>
+</UIMeta>

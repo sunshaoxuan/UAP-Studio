@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<UIMeta flowmode="true" jquery="0">
+	<FlowhLayout id="flowh1" autoFill="true">
+		<FlowhPanel id="flowhp11" width="196" rightBorder="#" className="left_side_style">
+			<FlowvLayout id="flowv1">
+				<FlowvPanel id="flowvp11">
+					<CanvasLayout id="titlecanvas" className="leftcanvas">
+						<CanvasPanel id="canvaspTemp01">
+						</CanvasPanel>
+					</CanvasLayout>
+				</FlowvPanel>
+				<FlowvPanel id="flowvp12" leftPadding="20" rightPadding="20">
+					<PanelLayout i18nName="" id="panel1" title="查询计划">
+						<PanelPanel>
+							<Widget id="queryplan">
+                            </Widget>
+						</PanelPanel>
+					</PanelLayout>
+				</FlowvPanel>
+				<FlowvPanel id="flowvp13" leftPadding="20" rightPadding="20">
+					<PanelLayout i18nName="" id="panel2" title="快速查询">
+						<PanelPanel>
+							<Widget id="simplequery">
+                    		</Widget>
+						</PanelPanel>
+					</PanelLayout>
+				</FlowvPanel>
+			</FlowvLayout>
+		</FlowhPanel>
+		<FlowhPanel id="flowhp12">
+			<Widget id="main">
+    		</Widget>
+		</FlowhPanel>
+	</FlowhLayout>
+</UIMeta>

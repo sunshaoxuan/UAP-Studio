@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completion prefix="String" extends="Object">
+	<item repl="length" display="length int" />
+	<item repl="anchor()" display="anchor(String nameAttribute) String" />
+	<item repl="big()" display="big() String" />
+	<item repl="blink()" display="blink() String" />
+	<item repl="bold()" display="bold()" />
+	<item repl="charAt(index)" display="charAt(index)" />
+	<item repl="charCodeAt()" display="charCodeAt([i]),N4,IE4" />
+	<item repl="concat()" display="concat(string2),N4,IE4" />
+	<item repl="fixed()" display="fixed()" />
+	<item repl="fontcolor()" display="fontcolor(#rrggbb)" />
+	<item repl="fontsize()" display="fontsize(1 to 7)" />
+	<item repl="fromCharCode()" display="fromCharCode(n1...),N4,IE4" />
+	<item repl="indexOf()" display="indexOf('str'[,i])" />
+	<item repl="italics()" display="italics()" />
+	<item repl="lastIndexOf()" display="lastIndexOf('str'[,i])" />
+	<item repl="link()" display="link(URL)" />
+	<item repl="localeCompare()" display="localeCompare(),N6,W5.5" />
+	<item repl="match()" display="match(regexp),N4,IE4" />
+	<item repl="replace()" display="replace(regexp,str),N4,IE4" />
+	<item repl="search()" display="search(regexp),N4,IE4" />
+	<item repl="slice()" display="slice(i,j),N4,IE4" />
+	<item repl="small()" display="small()" />
+	<item repl="split()" display="split(char),N3,IE4" />
+	<item repl="split()" display="split(regexp[,limit])" />
+	<item repl="strike()" display="strike()" />
+	<item repl="sub()" display="sub()" />
+	<item repl="substr()" display="substr(start,lenght),N4,IE4" />
+	<item repl="substring()" display="substring(intA,intB)" />
+	<item repl="sup()" display="sup()" />
+	<item repl="toLocaleLowerCase()" display="toLocaleLowerCase(),N6,W5.5" />
+	<item repl="toLocaleUpperCase()" display="toLocaleUpperCase(),N6,W5.5" />
+	<item repl="toLowerCase()" display="toLowerCase()" />
+	<item repl="toString()" display="toString(),N4,IE4" />
+	<item repl="toLowerCase()" display="toLowerCase()" />
+	<item repl="toUpperCase()" display="toUpperCase()" />
+	<item repl="valueOf()" display="valueOf(),N4,IE4" />
+</completion>
